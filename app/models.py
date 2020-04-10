@@ -2,7 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
 class Usuario(models.Model):
     contrasena = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
@@ -30,9 +29,9 @@ class Equipo(models.Model):
 class Tarea(models.Model):
     hora_inicio = models.DateTimeField()
     hora_fin = models.DateTimeField()
-    equipo = models.ForeignKey(Equipo, on_delete=models.set_null)
-    proceso = models.ForeignKey(Proceso, on_delete=models.set_null)
-    pedido = models.ForeignKey(Pedido, on_delete=models.set_null)
+    equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL)
+    proceso = models.ForeignKey(Proceso, on_delete=models.SET_NULL)
+    pedido = models.ForeignKey(Pedido, on_delete=models.SET_NULL)
 
 
 class Proceso(models.Model):
@@ -53,8 +52,8 @@ class Pedido(models.Model):
     producido = models.BooleanField()
     cantidad = models.IntegerField()
     # set_null por si ya no fabricamos esta pieza, para poder comunicarlo
-    catalogo = models.ForeignKey(Catalogo, on_delete=models.set_null)
-    cliente = models.ForeignKey(Cliente, on_delete=models.set_null)
+    catalogo = models.ForeignKey(Catalogo, on_delete=models.SET_NULL)
+    cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL)
 
 
 class Cliente(models.Model):
