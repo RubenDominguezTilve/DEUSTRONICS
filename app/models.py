@@ -56,8 +56,4 @@ class Tarea(models.Model):
     equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)
     proceso = models.ForeignKey(Proceso, on_delete=models.SET_NULL, null=True)
     pedido = models.ForeignKey(Pedido, on_delete=models.SET_NULL, null=True)
-
-
-class AsignacionTarea(models.Model):
-    tarea = models.ForeignKey(Tarea, on_delete=models.CASCADE)
-    empleado = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    empleados_asignados = models.ManyToManyField(Empleado)
