@@ -18,10 +18,14 @@ class Empleado(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
 
 
+class TipoEquipo(models.Model):
+    nombre = models.CharField(max_length=100)
+
+
 class Equipo(models.Model):
     marca = models.CharField(max_length=100)
     modelo = models.CharField(max_length=100)
-    tipo = models.CharField(max_length=100)
+    tipo = models.ForeignKey(TipoEquipo, on_delete=models.SET_NULL, null=True)
     fecha_adquisicion = models.DateField()
     fecha_instalacion = models.DateField()
     fecha_ultimo_mantenimiento = models.DateField()
