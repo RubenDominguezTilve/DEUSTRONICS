@@ -1,17 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <ul>
-      <li>{{tarea.Hora inicio}}</li>
-      <li>{{tarea.Hora fin}}</li>
-      <li>{{tarea.PROCESO_idPROCESO}}</li>
-      <li>{{tarea.EQUIPO_idEQUIPO}}</li>
-      <li>{{tarea.PEDIDO_idPEDIDO}}</li>
-    </ul>
-  </body>
-</html>
+{%extends 'base.html'%} {% block content%}
+<ul>
+  <li>{{tarea.Hora inicio}}</li>
+  <li>{{tarea.Hora fin}}</li>
+  <li>{{tarea.PROCESO_idPROCESO}}</li>
+  <li>{{tarea.EQUIPO_idEQUIPO}}</li>
+  <li>{{tarea.PEDIDO_idPEDIDO}}</li>
+</ul>
+{%endblock%}
