@@ -1,1 +1,4 @@
-otra cosa mariposa
+abrir consola 
+hacer cd hasta carpeta deustronics
+hacer workon deustronics
+py manage.py runserver
