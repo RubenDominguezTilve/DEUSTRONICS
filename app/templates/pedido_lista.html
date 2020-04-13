@@ -8,7 +8,7 @@
   <body>
     <ul>
       {%for pedido in pedidos%}
-      <li>{{pedido.Planificado}}: {{pedido.Producido}}: {{pedido.Cantidad}}<a href="{%url 'pedido_detalle' pedido.id %}"> ver detalle</a></li>
+      <li>{{pedido.planificado}}: {{pedido.producido}}: {{pedido.cantidad}} --> {{pedido.cliente.nombre}}<a href="{%url 'pedido_detalle' pedido.id %}"> ver detalle</a></li>
       {%endfor%}
     </ul>
   </body>
