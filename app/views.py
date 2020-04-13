@@ -27,7 +27,7 @@ class EquipoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EquipoDetailView, self).get_context_data(**kwargs)
-        context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles del Producto'
         return context
 
 
@@ -49,5 +49,45 @@ class PedidoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
+        #context['titulo_pagina'] = 'Detalles del Producto'
+        return context
+
+class ProcesoListView(ListView):
+    model = Proceso
+    template_name = 'proceso_lista.html'
+    queryset = Proceso.objects.all()
+    context_object_name = 'procesos'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProcesoListView, self).get_context_data(**kwargs)
+        # context['titulo_pagina'] = 'Productos'
+        return context
+    
+class ProcesoDetailView(DetailView):
+    model = Proceso
+    template_name = 'proceso_detalle.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(ProcesoDetailView, self).get_context_data(**kwargs)
+        #context['titulo_pagina'] = 'Detalles del Producto'
+        return context
+
+class TareaListView(ListView):
+    model = Tarea
+    template_name = 'tarea_lista.html'
+    queryset = Tarea.objects.all()
+    context_object_name = 'tareas'
+
+    def get_context_data(self, **kwargs):
+        context = super(TareaListView, self).get_context_data(**kwargs)
+        # context['titulo_pagina'] = 'Productos'
+        return context
+
+class TareaDetailView(DetailView):
+    model = Tarea
+    template_name = 'tarea_detalle.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(TareaDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Producto'
         return context
