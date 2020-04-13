@@ -1,7 +1,7 @@
 {%extends 'base.html'%} {% block content%}
 <ul>
   {%for tarea in tareas%}
-  <li>{{tarea.Hora inicio}}: {{tarea.Hora fin}}: {{tarea.PROCESO_idPROCESO}}: {{tarea.EQUIPO_idEQUIPO}}:
+  <li>{{tarea.hora_inicio}}: {{tarea.hora_fin}}: {{tarea.PROCESO_idPROCESO}}: {{tarea.EQUIPO_idEQUIPO}}:
     {{tarea.PEDIDO_idPEDIDO}}<a href="{%url 'tarea_detalle' tarea.id %}"> ver detalle</a></li>
   {%endfor%}
 </ul>
