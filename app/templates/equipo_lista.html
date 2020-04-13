@@ -1,4 +1,4 @@
-{%extends base.html%} {% block content%}
+{%extends 'base.html'%} {% block content%}
 <ul>
   {%for equipo in equipos%}
   <li>{{equipo.marca}}: {{equipo.modelo}} <a href="{%url 'equipo_detalle' equipo.id %}"> ver detalle</a></li>
