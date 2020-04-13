@@ -1,7 +1,7 @@
 {%extends 'base.html'%} {% block content%}
 <ul>
   {%for proceso in procesos%}
-  <li>{{proceso.Nombre}}<a href="{%url 'proceso_detalle' proceso.id %}"> ver detalle</a></li>
+  <li>{{proceso.nombre}}<a href="{%url 'proceso_detalle' proceso.id %}"> ver detalle</a></li>
   {%endfor%}
 </ul>
 {%endblock%}

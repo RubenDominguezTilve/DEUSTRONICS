@@ -1,7 +1,7 @@
 {%extends 'base.html'%} {% block content%}
 <ul>
   {%for empleado in empleados%}
-  <li>{{empleado.DNI}}: {{empleado.Nombre}}: {{empleado.Apellido1}}: {{empleado.Apellido2}}: {{empleado.Telefono}}<a
+  <li>{{empleado.dni}}: {{empleado.nombre}}: {{empleado.apellido1}}: {{empleado.apellido2}}: {{empleado.telefono}}<a
       href="{%url 'empleado_detalle' empleado.id %}"> ver detalle</a></li>
   {%endfor%}
 </ul>
