@@ -16,7 +16,7 @@ class EquipoListView(ListView):
     context_object_name = 'equipos'
 
     def get_context_data(self, **kwargs):
-        context = super(EquiposListView, self).get_context_data(**kwargs)
+        context = super(EquipoListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Productos'
         return context
 
