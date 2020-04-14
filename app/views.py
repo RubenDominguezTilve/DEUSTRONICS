@@ -52,6 +52,7 @@ class PedidoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Producto'
         return context
 
+
 class ProcesoListView(ListView):
     model = Proceso
     template_name = 'proceso_lista.html'
@@ -62,7 +63,8 @@ class ProcesoListView(ListView):
         context = super(ProcesoListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Productos'
         return context
-    
+
+
 class ProcesoDetailView(DetailView):
     model = Proceso
     template_name = 'proceso_detalle.html'
@@ -71,6 +73,7 @@ class ProcesoDetailView(DetailView):
         context = super(ProcesoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Producto'
         return context
+
 
 class TareaListView(ListView):
     model = Tarea
@@ -82,6 +85,7 @@ class TareaListView(ListView):
         context = super(TareaListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Productos'
         return context
+
 
 class TareaDetailView(DetailView):
     model = Tarea
