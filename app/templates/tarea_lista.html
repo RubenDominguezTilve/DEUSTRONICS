@@ -1,8 +1,31 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Hora Inicio</th>
+        <th scope="col">Hora Final</th>
+        <th scope="col">(Proceso)</th>
+        <th scope="col">(Equipo)</th>
+        <th scope="col">(Pedido)</th>
+      </tr>
+    </thead>
+    <tbody>
   {%for tarea in tareas%}
+      <tr>
+        <th scope="row">{{tarea.id}}</th>
+        <td>{{tarea.hora_inicio}}</td>
+        <td>{{tarea.hora_fin}}</td>
+        <td>{{tarea.PROCESO_idPROCESO}}</td>
+        <td>{{tarea.EQUIPO_idEQUIPO}}</td>
+        <td>{{tarea.PEDIDO_idPEDIDO}}</td>
+        <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
+      </tr>
+<!--
   <li>{{tarea.hora_inicio}}: {{tarea.hora_fin}}: {{tarea.PROCESO_idPROCESO}}: {{tarea.EQUIPO_idEQUIPO}}:
     {{tarea.PEDIDO_idPEDIDO}}<a href="{%url 'tarea_detalle' tarea.id %}"> ver detalle</a></li>
+    -->
   {%endfor%}
-</ul>
+    </tbody>
+  </table>
 {%endblock%}

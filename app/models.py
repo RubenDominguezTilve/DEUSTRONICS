@@ -7,7 +7,8 @@ class Usuario(models.Model):
     contrasena = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     username = models.CharField(max_length=255)
-
+    def __str__(self):
+       return self.username
 
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
@@ -16,10 +17,14 @@ class Empleado(models.Model):
     apellido2 = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    def __str__(self):
+       return self.nombre
 
 
 class TipoEquipo(models.Model):
     nombre = models.CharField(max_length=100)
+    def __str__(self):
+       return self.nombre
 
 
 class Equipo(models.Model):
@@ -30,18 +35,30 @@ class Equipo(models.Model):
     fecha_instalacion = models.DateField()
     fecha_ultimo_mantenimiento = models.DateField()
 
+    #Revisar
+    def __str__(self):
+       return (f"{self.marca}: {self.modelo}")
+
 
 class Proceso(models.Model):
     nombre = models.CharField(max_length=100)
+    def __str__(self):
+       return self.nombre
 
 
 class Catalogo(models.Model):
     descripcion = models.CharField(max_length=250)
+    def __str__(self):
+
+    #Revisar
+       return self.descripcion
 
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    def __str__(self):
+       return self.nombre
 
 
 class Pedido(models.Model):
@@ -52,6 +69,10 @@ class Pedido(models.Model):
     catalogo = models.ForeignKey(
         Catalogo, on_delete=models.SET_NULL, null=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True)
+        
+    #Revisar
+    def __str__(self):
+       return str(self.cantidad)
 
 
 class Tarea(models.Model):
@@ -61,3 +82,7 @@ class Tarea(models.Model):
     proceso = models.ForeignKey(Proceso, on_delete=models.SET_NULL, null=True)
     pedido = models.ForeignKey(Pedido, on_delete=models.SET_NULL, null=True)
     empleados_asignados = models.ManyToManyField(Empleado)
+    
+    #Revisar
+    def __str__(self):
+       return self.equipo
