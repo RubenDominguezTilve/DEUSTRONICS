@@ -26,4 +26,9 @@
     {%endfor%}
   </tbody>
 </table>
+<form action="{% url 'tarea_lista' %}" method="POST">
+  {% csrf_token%}
+  <input type="text" name="text" id="" />
+  <input type="submit" value="Enviar" />
+</form>
 {%endblock%}
