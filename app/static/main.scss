@@ -8,16 +8,54 @@ $light: #f1f2f6;
 $dark: #2f3542;
 
 /* Carousel del Bootsnipp */
-.MultiCarousel { float: left; overflow: hidden; padding: 15px; width: 100%; position:relative; }
-    .MultiCarousel .MultiCarousel-inner { transition: 1s ease all; float: left; }
-        .MultiCarousel .MultiCarousel-inner .item { float: left;}
-        .MultiCarousel .MultiCarousel-inner .item > div { text-align: center; padding:10px; margin:10px; background:#f1f1f1; color:#666;}
-    .MultiCarousel .leftLst, .MultiCarousel .rightLst { position:absolute; border-radius:50%;top:calc(50% - 20px); }
-    .MultiCarousel .leftLst { left:0; }
-    .MultiCarousel .rightLst { right:0; }
-    
-        .MultiCarousel .leftLst.over, .MultiCarousel .rightLst.over { pointer-events: none; background:#ccc; }
+.MultiCarousel {
+  float: left;
+  overflow: hidden;
+  padding: 15px;
+  width: 100%;
+  position: relative;
+}
+.MultiCarousel .MultiCarousel-inner {
+  transition: 1s ease all;
+  float: left;
+}
+.MultiCarousel .MultiCarousel-inner .item {
+  float: left;
+}
+.MultiCarousel .MultiCarousel-inner .item > div {
+  text-align: center;
+  padding: 10px;
+  margin: 10px;
+  background: #f1f1f1;
+  color: #666;
+}
+.MultiCarousel .leftLst,
+.MultiCarousel .rightLst {
+  position: absolute;
+  border-radius: 50%;
+  top: calc(50% - 20px);
+}
+.MultiCarousel .leftLst {
+  left: 0;
+}
+.MultiCarousel .rightLst {
+  right: 0;
+}
+
+.MultiCarousel .leftLst.over,
+.MultiCarousel .rightLst.over {
+  pointer-events: none;
+  background: #ccc;
+}
 @import "node_modules/bootstrap/scss/bootstrap";
 #logo {
   height: 50px;
 }
+
+.item img {
+  height: 150px;
+}
+
+// .catalog-item:hover {
+//   box-shadow: 6px 6px 7px black;
+// }
