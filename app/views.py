@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
+from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
@@ -17,7 +17,7 @@ class EmpleadoListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EmpleadoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Productos'
+        # context['titulo_pagina'] = 'Empleados'
         return context
 
 
@@ -27,7 +27,7 @@ class EmpleadoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles del Empleado'
         return context
 
 
@@ -39,7 +39,7 @@ class EquipoListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(EquipoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Productos'
+        # context['titulo_pagina'] = 'Equipos'
         return context
 
 
@@ -49,7 +49,7 @@ class EquipoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EquipoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles del Equipo'
         return context
 
 
@@ -61,7 +61,7 @@ class PedidoListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(PedidoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Productos'
+        # context['titulo_pagina'] = 'Pedidos'
         return context
 
 
@@ -71,7 +71,7 @@ class PedidoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles del Pedido'
         return context
 
 
@@ -83,7 +83,7 @@ class ProcesoListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ProcesoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Productos'
+        # context['titulo_pagina'] = 'Procesos'
         return context
 
 
@@ -93,7 +93,7 @@ class ProcesoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(ProcesoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles del Proceso'
         return context
 
 
@@ -105,7 +105,7 @@ class TareaListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super(TareaListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Productos'
+        # context['titulo_pagina'] = 'Tareas'
         return context
 
 
@@ -115,5 +115,17 @@ class TareaDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TareaDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Producto'
+        #context['titulo_pagina'] = 'Detalles de la Tarea'
+        return context
+
+
+class CatalogoListView(ListView):
+    model = Catalogo
+    template_name = 'catalogo_lista.html'
+    queryset = Catalogo.objects.all()
+    context_object_name = 'catalogo'
+
+    def get_context_data(self, **kwargs):
+        context = super(CatalogoListView, self).get_context_data(**kwargs)
+        # context['titulo_pagina'] = 'Catalogos'
         return context

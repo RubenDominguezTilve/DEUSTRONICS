@@ -14,6 +14,7 @@ urlpatterns = [
          name='proceso_detalle'),
     path('tareas/', views.TareaListView.as_view(), name='tarea_lista'),
     path('tarea/<int:pk>/', views.TareaDetailView.as_view(), name='tarea_detalle'),
+    path('catalogo/', views.CatalogoListView.as_view(), name='catalogo_lista'),
 
 
 ]
