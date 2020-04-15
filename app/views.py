@@ -123,7 +123,7 @@ class CatalogoListView(ListView):
     model = Catalogo
     template_name = 'catalogo_lista.html'
     queryset = Catalogo.objects.all()
-    context_object_name = 'catalogo'
+    context_object_name = 'catalogos'
 
     def get_context_data(self, **kwargs):
         context = super(CatalogoListView, self).get_context_data(**kwargs)

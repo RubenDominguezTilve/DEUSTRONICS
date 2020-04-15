@@ -48,10 +48,10 @@ class Proceso(models.Model):
 
 class Catalogo(models.Model):
     descripcion = models.CharField(max_length=250)
+    nombre = models.CharField(max_length=100, default="NombreDefault")
+    precio = models.FloatField(default = 0.0)
     def __str__(self):
-
-    #Revisar
-       return self.descripcion
+       return self.nombre
 
 
 class Cliente(models.Model):
