@@ -1,8 +1,29 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
-  {%for pedido in pedidos%}
-  <li>{{pedido.planificado}}: {{pedido.producido}}: {{pedido.cantidad}} --> {{pedido.cliente.nombre}}<a
-      href="{%url 'pedido_detalle' pedido.id %}"> ver detalle</a></li>
-  {%endfor%}
-</ul>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Planificado</th>
+      <th scope="col">Producido</th>
+      <th scope="col">Cantidad</th>
+      <th scope="col">Referencia Catálogo</th>
+      <th scope="col">Cliente</th>
+      <th scope="col">Ver detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for pedido in pedidos%}
+    <tr>
+      <th scope="row">{{pedido.id}}</th>
+      <td>{{pedido.planificado}}</td>
+      <td>{{pedido.producido}}</td>
+      <td>{{pedido.cantidad}}</td>
+      <td>{{pedido.catalogo}}</td>
+      <td>{{pedido.cliente.nombre}}</td>
+      <td><a href="{%url 'pedido_detalle' pedido.id %}"> Ver detalle</a></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
 {%endblock%}
