@@ -1,0 +1,12 @@
+$primary: #1e90ff;
+$secondary: #ced6e0;
+$success: #2ed573;
+$info: #70a1ff;
+$warning: #ffa502;
+$danger: #ff4757;
+$light: #f1f2f6;
+$dark: #2f3542;
+@import "node_modules/bootstrap/scss/bootstrap";
+#logo {
+  height: 50px;
+}
