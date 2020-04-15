@@ -1,29 +1,29 @@
 {%extends 'base.html'%} {% block content%}
 
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Hora Inicio</th>
-        <th scope="col">Hora Final</th>
-        <th scope="col">(Proceso)</th>
-        <th scope="col">(Equipo)</th>
-        <th scope="col">(Pedido)</th>
-        <th scope="col">Ver detalle</th>
-      </tr>
-    </thead>
-    <tbody>
-  {%for tarea in tareas%}
-      <tr>
-        <th scope="row">{{tarea.id}}</th>
-        <td>{{tarea.hora_inicio}}</td>
-        <td>{{tarea.hora_fin}}</td>
-        <td>{{tarea.PROCESO_idPROCESO}}</td>
-        <td>{{tarea.EQUIPO_idEQUIPO}}</td>
-        <td>{{tarea.PEDIDO_idPEDIDO}}</td>
-        <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
-      </tr>
-  {%endfor%}
-    </tbody>
-  </table>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Hora Inicio</th>
+      <th scope="col">Hora Final</th>
+      <th scope="col">(Proceso)</th>
+      <th scope="col">(Equipo)</th>
+      <th scope="col">(Pedido)</th>
+      <th scope="col">Ver detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for tarea in tareas%}
+    <tr>
+      <th scope="row">{{tarea.id}}</th>
+      <td>{{tarea.hora_inicio}}</td>
+      <td>{{tarea.hora_fin}}</td>
+      <td>{{tarea.PROCESO_idPROCESO}}</td>
+      <td>{{tarea.EQUIPO_idEQUIPO}}</td>
+      <td>{{tarea.PEDIDO_idPEDIDO}}</td>
+      <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
 {%endblock%}
