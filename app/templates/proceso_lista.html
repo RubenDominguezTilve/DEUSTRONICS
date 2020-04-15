@@ -1,7 +1,21 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
-  {%for proceso in procesos%}
-  <li>{{proceso.nombre}}<a href="{%url 'proceso_detalle' proceso.id %}"> ver detalle</a></li>
-  {%endfor%}
-</ul>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Proceso</th>
+      <th scope="col">Ver detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for proceso in procesos%}
+    <tr>
+      <th scope="row">{{proceso.id}}</th>
+      <td>{{proceso.nombre}}</td>
+      <td><a href="{%url 'proceso_detalle' proceso.id %}"> Ver detalle</a></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
 {%endblock%}

@@ -62,7 +62,7 @@ class Cliente(models.Model):
 
 
 class Pedido(models.Model):
-    planifiado = models.BooleanField()
+    planificado = models.BooleanField()
     producido = models.BooleanField()
     cantidad = models.IntegerField()
     # SET_NULL, null=True por si ya no fabricamos esta pieza, para poder comunicarlo

@@ -1,12 +1,34 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Equipo, Proceso, Pedido, Proceso, Tarea
+from .models import Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView
 # Create your views here.
 
 
 def index(req):
     return HttpResponse("funciono de forma moito gostosa!")
+
+
+class EmpleadoListView(ListView):
+    model = Empleado
+    template_name = 'empleado_lista.html'
+    queryset = Empleado.objects.all()
+    context_object_name = 'empleados'
+
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadoListView, self).get_context_data(**kwargs)
+        # context['titulo_pagina'] = 'Productos'
+        return context
+
+
+class EmpleadoDetailView(DetailView):
+    model = Empleado
+    template_name = 'empleado_detalle.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
+        #context['titulo_pagina'] = 'Detalles del Producto'
+        return context
 
 
 class EquipoListView(ListView):
