@@ -104,7 +104,8 @@ class TareaListView(ListView):
     context_object_name = 'tareas'
 
     def post(self, req):
-        print("llego aqui")
+        print(req.POST["text"])
+        
         return HttpResponse("todo OK jose luis")
     def get_context_data(self, **kwargs):
         context = super(TareaListView, self).get_context_data(**kwargs)
