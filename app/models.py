@@ -37,7 +37,7 @@ class Equipo(models.Model):
 
     #Revisar
     def __str__(self):
-       return (f"{self.marca}: {self.modelo}")
+       return str(f"{self.marca}: {self.modelo}")
 
 
 class Proceso(models.Model):
@@ -85,4 +85,4 @@ class Tarea(models.Model):
     
     #Revisar
     def __str__(self):
-       return self.equipo
+       return str(f"{self.equipo}: {self.proceso} -> de: {self.hora_inicio} a {self.hora_fin}")

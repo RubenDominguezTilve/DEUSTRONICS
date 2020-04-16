@@ -6,9 +6,9 @@
       <th scope="col">#</th>
       <th scope="col">Hora Inicio</th>
       <th scope="col">Hora Final</th>
-      <th scope="col">(Proceso)</th>
-      <th scope="col">(Equipo)</th>
-      <th scope="col">(Pedido)</th>
+      <th scope="col">Proceso</th>
+      <th scope="col">Equipo</th>
+      <th scope="col">Pedido</th>
       <th scope="col">Ver detalle</th>
     </tr>
   </thead>
@@ -18,9 +18,9 @@
       <th scope="row">{{tarea.id}}</th>
       <td>{{tarea.hora_inicio}}</td>
       <td>{{tarea.hora_fin}}</td>
-      <td>{{tarea.PROCESO_idPROCESO}}</td>
-      <td>{{tarea.EQUIPO_idEQUIPO}}</td>
-      <td>{{tarea.PEDIDO_idPEDIDO}}</td>
+      <td>{{tarea.proceso}}</td>
+      <td>{{tarea.equipo}}</td>
+      <td>{{tarea.pedido}}</td>
       <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
@@ -30,6 +30,6 @@
   {% csrf_token%}
   <input type="text" name="text" id="" />
   <input type="submit" value="Enviar" />
-  <input type="reset" value="Borrar datos">
+  <input type="reset" value="Borrar datos"/>
 </form>
 {%endblock%}
