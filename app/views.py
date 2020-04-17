@@ -6,7 +6,7 @@ from django.views.generic import ListView, DetailView
 
 
 def index(req):
-    return HttpResponse("funciono de forma moito gostosa!")
+    return render(req,"index.html")
 
 
 class EmpleadoListView(ListView):
