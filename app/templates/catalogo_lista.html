@@ -9,11 +9,13 @@
         <div class="item catalog-item mb-2 col-sm-3">
           <div class="pad15">
             <!-- Imagen del producto -->
-            <img src="https://dummyimage.com/600x400/000/fff" />
+            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo"/>
             <!-- Nombre del producto -->
             <p class="lead mt-2">{{catalogo.nombre}}</p>
-            <!-- Descripción del producto -->
-            <p>Descripción: {{catalogo.descripcion}}</p>
+            <!-- Descripción del producto 
+            <p>Descripción: {{catalogo.descripcion}}</p>-->
+            <!-- Detalle del producto -->
+            <a href="{%url 'catalogo_detalle' catalogo.id %}"> Ver detalle</a>
             <!-- Precio del producto por unidad -->
             <p>Precio: {{catalogo.precio}} €</p>
             <!-- Cantidad de unidades a pedir -->

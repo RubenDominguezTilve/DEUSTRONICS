@@ -47,13 +47,16 @@ $dark: #2f3542;
   pointer-events: none;
   background: #ccc;
 }
+
+
 @import "node_modules/bootstrap/scss/bootstrap";
 #logo {
   height: 50px;
 }
 
+
 .item img {
-  min-width: 100%;
+   min-width: 100%;
 }
 
 .fill {
@@ -87,6 +90,10 @@ $dark: #2f3542;
   }
 }
 
+
+
 // .catalog-item:hover {
 //   box-shadow: 6px 6px 7px black;
 // }
+
+
