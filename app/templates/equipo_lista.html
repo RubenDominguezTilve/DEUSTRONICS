@@ -5,6 +5,9 @@
       <th scope="col">#</th>
       <th scope="col">Marca</th>
       <th scope="col">Modelo</th>
+      <th scope="col">Fecha Adquisición</th>
+      <th scope="col">Fecha Instalación</th>
+      <th scope="col">Fecha Último Mantenimiento</th>
       <th scope="col">Ver detalle</th>
     </tr>
   </thead>
@@ -14,6 +17,11 @@
       <th scope="row">{{equipo.id}}</th>
       <td>{{equipo.marca}}</td>
       <td>{{equipo.modelo}}</td>
+
+      <!-- Revisar mostrar hora -->
+      <td>{{equipo.fecha_adquisicion}}</td>
+      <td>{{equipo.fecha_instalacion}}</td>
+      <td>{{equipo.fecha_ultimo_mantenimiento}}</td>
       <td><a href="{%url 'equipo_detalle' equipo.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}

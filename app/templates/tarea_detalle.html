@@ -1,9 +1,50 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
-  <li>{{tarea.hora_inicio}}</li>
-  <li>{{tarea.hora_fin}}</li>
-  <li>{{tarea.proceso_idproceso}}</li>
-  <li>{{tarea.equipo_idequipo}}</li>
-  <li>{{tarea.pedido_idpedido}}</li>
-</ul>
+
+<div class="mt-2">
+
+  <h1>
+    Tarea {{tarea.id}}
+  </h1>
+
+  <form action="{%url 'tarea_detalle' tarea.id %}" method="POST">
+    {% csrf_token%}
+    <div class="form-group row mt-4">
+
+      <!-- Revisar formato DATE -->
+      <label for="HoraInicioTarea" class="col-sm-2 col-form-label ">Hora de Inicio: </label>
+      <div class="col-sm-10">
+        <input type="date" class="form-control ml-2" id="HoraInicioTarea" value={{tarea.hora_inicio}}>
+      </div>
+
+      <!-- Revisar formato DATE -->
+      <label for="HoraFinTarea" class="col-sm-2 col-form-label ">Hora de Fin: </label>
+      <div class="col-sm-10">
+        <input type="time" class="form-control ml-2" id="HoraFinTarea" value={{tarea.hora_fin}}>
+      </div>
+
+      <label for="tareaIDProceso" class="col-sm-2 col-form-label ">Proceso: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="tareaIDProceso" value={{tarea.proceso}}>
+      </div>
+
+      <!-- Revisar texto acortado -->
+      <label for="tareaIDEquipo" class="col-sm-2 col-form-label ">Equipo: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="tareaIDEquipo" value={{tarea.equipo}}>
+      </div>
+
+      <label for="tareaIDPedido" class="col-sm-2 col-form-label ">Pedido: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="tareaIDPedido" value={{tarea.pedido}}>
+      </div>
+
+
+    </div>
+    <input type="submit" class="btn btn-secondary" value="Guardar">
+  </form>
+
+</div>
+
+
+
 {%endblock%}

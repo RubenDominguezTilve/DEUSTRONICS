@@ -1,11 +1,49 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
-  <li>{{equipo.marca}}</li>
-  <li>{{equipo.modelo}}</li>
-  <!-- <li>{{equipo.tipo}}</li> -->
 
-  <li>{{equipo.fecha_adquisicion}}</li>
-  <li>{{equipo.fecha_instalacion}}</li>
-  <li>{{equipo.fecha_ultimo_mantenimiento}}</li>
-</ul>
+<div class="mt-2">
+
+  <h1>
+    Equipo {{equipo.id}}
+  </h1>
+
+  <form action="{%url 'equipo_detalle' equipo.id %}" method="POST">
+    {% csrf_token%}
+    <div class="form-group row mt-4">
+
+      <label for="equipoMarca" class="col-sm-2 col-form-label ">Marca: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="equipoMarca" value={{equipo.marca}}>
+      </div>
+
+      <label for="equipoModelo" class="col-sm-2 col-form-label ">Modelo: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="equipoModelo" value={{equipo.modelo}}>
+      </div>
+
+      <!-- Revisar formato DATE -->
+      <label for="equipoAdquisicion" class="col-sm-2 col-form-label ">Fecha de Adquisición: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="equipoAdquisicion" value={{equipo.fecha_adquisicion}}>
+      </div>
+
+      <!-- Revisar formato DATE -->
+      <label for="equipoInstalacion" class="col-sm-2 col-form-label ">Fecha de Instalación: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="equipoInstalacion" value={{equipo.fecha_instalacion}}>
+      </div>
+
+      <!-- Revisar formato DATE -->
+      <label for="equipoMantenimiento" class="col-sm-2 col-form-label ">Fecha de Último Mantenimiento: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="equipoMantenimiento"
+          value={{equipo.fecha_ultimo_mantenimiento}}>
+      </div>
+
+
+    </div>
+    <input type="submit" class="btn btn-secondary" value="Guardar">
+  </form>
+
+</div>
+
 {%endblock%}

@@ -1,9 +1,45 @@
 {%extends 'base.html'%} {% block content%}
-<ul>
-  <li>{{empleado.dni}}</li>
-  <li>{{empleado.nombre}}</li>
-  <li>{{empleado.apellido1}}</li>
-  <li>{{empleado.apellido2}}</li>
-  <li>{{empleado.telefono}}</li>
-</ul>
+
+<div class="mt-2">
+
+  <h1>
+    Empleado {{empleado.id}}
+  </h1>
+
+  <form action="{%url 'empleado_detalle' empleado.id %}" method="POST">
+    {% csrf_token%}
+    <div class="form-group row mt-4">
+
+      <label for="empleadoDNI" class="col-sm-2 col-form-label ">DNI: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="empleadoDNI" value={{empleado.dni}}>
+      </div>
+
+      <label for="empleadoNombre" class="col-sm-2 col-form-label ">Nombre: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="empleadoNombre" value={{empleado.nombre}}>
+      </div>
+
+      <label for="empleadoApellido1" class="col-sm-2 col-form-label ">Apellido 1: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="empleadoApellido1" value={{empleado.apellido1}}>
+      </div>
+
+      <label for="empleadoApellido2" class="col-sm-2 col-form-label ">Apellido 2: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="empleadoApellido2" value={{empleado.apellido2}}>
+      </div>
+
+      <label for="empleadoTelefono" class="col-sm-2 col-form-label ">Teléfono: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="empleadoTelefono" value={{empleado.telefono}}>
+      </div>
+
+
+    </div>
+    <input type="submit" class="btn btn-secondary" value="Guardar">
+  </form>
+
+</div>
+
 {%endblock%}
