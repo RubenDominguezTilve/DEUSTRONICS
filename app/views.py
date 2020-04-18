@@ -146,3 +146,13 @@ class CatalogoListView(ListView):
         context = super(CatalogoListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Catalogos'
         return context
+
+
+class CatalogoDetailView(DetailView):
+    model = Catalogo
+    template_name = 'catalogo_detalle.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(CatalogoDetailView, self).get_context_data(**kwargs)
+        #context['titulo_pagina'] = 'Detalles del catalogo'
+        return context
