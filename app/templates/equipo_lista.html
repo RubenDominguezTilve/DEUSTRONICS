@@ -27,4 +27,7 @@
     {%endfor%}
   </tbody>
 </table>
+<form action="{%url 'equipo_lista' %}">
+  {%csrf_token%} {{equipos.form.as_p}}
+</form>
 {%endblock%}

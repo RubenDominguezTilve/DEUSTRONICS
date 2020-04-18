@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView,View
+from app.forms import EquipoForm
 # Create your views here.
 
 
@@ -36,13 +37,16 @@ class EquipoListView(ListView):
     template_name = 'equipo_lista.html'
     queryset = Equipo.objects.all()
     context_object_name = 'equipos'
+    context={}
+    context["equipos"]=Equipo.objects.all()
+    context['form'] = EquipoForm()
 
-    def get_context_data(self, **kwargs):
-        context = super(EquipoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Equipos'
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(EquipoListView, self).get_context_data(**kwargs)
+    #     context['form'] = EquipoForm()
+    #     context['text'] ="buenardo"
 
-
+    #     return context
 class EquipoDetailView(DetailView):
     model = Equipo
     template_name = 'equipo_detalle.html'
@@ -51,6 +55,15 @@ class EquipoDetailView(DetailView):
         context = super(EquipoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Equipo'
         return context
+class EquipoCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = EquipoForm()
+        context = {
+            'form': form,
+            'titulo_pagina': 'Crear nuevo producto'
+        }
+        return render(request, 'equipo_create.html', context)
+
 
 
 class PedidoListView(ListView):
