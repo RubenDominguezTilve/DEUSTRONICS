@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView,View
-from app.forms import EquipoForm
+from app.forms import EquipoForm, TareaForm
 # Create your views here.
 
 
@@ -124,16 +124,23 @@ class ProcesoDetailView(DetailView):
         return context
 
 
-class TareaListView(ListView):
+class TareaListView(View):
     model = Tarea
     template_name = 'tarea_lista.html'
     queryset = Tarea.objects.all()
     context_object_name = 'tareas'
+    
+    def get(self, req, *args, **kwargs):
+        form =TareaForm()
+        data=Tarea.objects.all()
+        context={'form':form,'tareas':data}
+        return render(req, 'tarea_lista.html', context)
 
     def post(self, req):
-        print(req.POST["text"])
-        
-        return HttpResponse("todo OK jose luis")
+        form =TareaForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+        return redirect('tarea_lista')
     def get_context_data(self, **kwargs):
         context = super(TareaListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Tareas'
