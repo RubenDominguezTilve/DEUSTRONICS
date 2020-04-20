@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView,View
@@ -32,15 +32,29 @@ class EmpleadoDetailView(DetailView):
         return context
 
 
-class EquipoListView(ListView):
-    model = Equipo
-    template_name = 'equipo_lista.html'
-    queryset = Equipo.objects.all()
-    context_object_name = 'equipos'
-    context={}
-    context["equipos"]=Equipo.objects.all()
-    context['form'] = EquipoForm()
+class EquipoListView(View):
+    # model = Equipo
+    # template_name = 'equipo_lista.html'
+    # queryset = Equipo.objects.all()
+    # context_object_name = 'equipos'
+    # context={}
+    # context["equipos"]=Equipo.objects.all()
+    # context['form'] = EquipoForm()
 
+
+    def get(self, request, *args, **kwargs):   
+        context = {
+            'equipos': Equipo.objects.all(),
+            'form': EquipoForm()
+        }
+        return render(request, "equipo_lista.html", context)
+
+    def post(self, request, *args, **kwargs): 
+        form=EquipoForm(request.POST)
+        if form.is_valid():
+           form.save()
+        return redirect('equipo_lista')
+    
     # def get_context_data(self, **kwargs):
     #     context = super(EquipoListView, self).get_context_data(**kwargs)
     #     context['form'] = EquipoForm()
