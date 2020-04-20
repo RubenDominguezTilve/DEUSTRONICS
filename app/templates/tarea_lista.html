@@ -27,9 +27,7 @@
   </tbody>
 </table>
 <form action="{% url 'tarea_lista' %}" method="POST">
-  {% csrf_token%}
-  <input type="text" name="text" id="" />
+  {% csrf_token%} {{form}}
   <input type="submit" value="Enviar" />
-  <input type="reset" value="Borrar datos" />
 </form>
 {%endblock%}
