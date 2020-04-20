@@ -9979,3 +9979,13 @@ h3 {
   align-self: center;
   margin-top: 5px;
 }
+.index-card .my-col {
+  margin: 20px;
+}
+.index-card .my-row {
+  margin: 20px;
+  padding: 20px;
+}
+.index-card .index-card:hover {
+  background-color: grey;
+}
