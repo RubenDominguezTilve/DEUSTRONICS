@@ -140,7 +140,12 @@ class TareaListView(View):
         form =TareaForm(req.POST)
         if(form.is_valid()):
             form.save()        
-        return redirect('tarea_lista')
+            return redirect('tarea_lista')
+        else:
+            
+            data=Tarea.objects.all()
+            context={'form':form,'tareas':data}
+            return render(req, 'tarea_lista.html', context)
     def get_context_data(self, **kwargs):
         context = super(TareaListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Tareas'
