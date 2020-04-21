@@ -63,7 +63,7 @@ $dark: #2f3542;
 }
 
 #index-cards {
-  width: 100%;
+  width: 80%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -75,6 +75,7 @@ $dark: #2f3542;
 .index-card {
   height: 150px;
   display: flex;
+
   flex-direction: column;
   border: solid 1px $dark;
   padding: 15px;
@@ -91,11 +92,11 @@ $dark: #2f3542;
     margin-top: 5px;
   }
   .my-col {
-    margin: 20px;
+    // margin: 20px;
   }
   .my-row {
-    margin: 20px;
-    padding: 20px;
+    // margin: 20px;
+    // padding: 20px;
   }
 }
 a.index-card:hover {
