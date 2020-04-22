@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView,View
+from django.urls import reverse
 from app.forms import EquipoForm, TareaForm
 # Create your views here.
 
@@ -128,12 +129,12 @@ class TareaListView(View):
     model = Tarea
     template_name = 'tarea_lista.html'
     queryset = Tarea.objects.all()
-    context_object_name = 'tareas'
-    
+    context_object_name = 'tareas'  
+
     def get(self, req, *args, **kwargs):
         form =TareaForm()
         data=Tarea.objects.all()
-        context={'form':form,'tareas':data}
+        context={'form':form,'tareas':data, 'urlBotonFlotante':reverse('tarea_create')}
         return render(req, 'tarea_lista.html', context)
 
     def post(self, req):

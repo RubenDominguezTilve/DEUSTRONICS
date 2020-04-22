@@ -105,3 +105,35 @@ a.index-card:hover {
   transform: scale(1.2);
   // box-shadow: 6px 9px 20px $primary;
 }
+
+//Boton Flotante:
+$dimensionBoton: 50px;
+
+#botonFlotante{
+  border-radius: 50%;
+  position: fixed;
+  right: 5%;
+  bottom: 5%;
+  height: $dimensionBoton;
+  width: $dimensionBoton;
+  background-color: $primary;
+  color: $secondary;
+}
+
+.botonFlotantePadre{
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.botonFlotanteHijo{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%); 
+}
+
+#iconoAñadir{
+  height: 100%;
+  width: 100%;
+}
