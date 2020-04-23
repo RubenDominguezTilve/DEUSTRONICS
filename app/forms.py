@@ -1,6 +1,6 @@
 from django import forms
 from .models import Equipo, TipoEquipo,Tarea
-
+from django.contrib.auth.models import User
 class EquipoForm(forms.ModelForm):
     # marca=forms.CharField(max_length=100)
     # modelo=forms.CharField(max_length=100)
@@ -17,3 +17,8 @@ class TareaForm(forms.ModelForm):
     class Meta:
         model=Tarea
         fields = '__all__'
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model=User
+        fields = ('username','password','email')

@@ -24,4 +24,11 @@ urlpatterns = [
     #Catalogos
     path('catalogo/', views.CatalogoListView.as_view(), name='catalogo_lista'),
     path('catalogo/<int:pk>/', views.CatalogoDetailView.as_view(), name='catalogo_detalle'),
+    path('catalogo/<int:pk>/', views.CatalogoDetailView.as_view(), name='catalogo_detalle'),
+
+    #Login
+    path('login/', views.get_login, name='get_login'),
+     path('register/', views.register, name='register'),
+
+
 ]

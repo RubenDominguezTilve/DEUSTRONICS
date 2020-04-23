@@ -3,13 +3,25 @@ from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
-from app.forms import EquipoForm, TareaForm
+from app.forms import EquipoForm, TareaForm, UserForm
 # Create your views here.
 
 
-def index(req):
+def index(req):    
     return render(req,"index.html")
 
+def get_login(req):
+    data="texto"
+    context={'usuarios':data, 'form':UserForm}
+    return render(req,"login.html", context)
+def register(req):
+    form=UserForm(req.POST)
+    if(form.is_valid):
+        form.save()
+        print("valido")
+    print("no valido")
+
+    return redirect('index')
 
 class EmpleadoListView(ListView):
     model = Empleado
@@ -183,3 +195,5 @@ class CatalogoDetailView(DetailView):
         context = super(CatalogoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del catalogo'
         return context
+
+
