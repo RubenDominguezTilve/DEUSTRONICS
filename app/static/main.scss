@@ -100,16 +100,23 @@ $dark: #2f3542;
   }
 }
 a.index-card:hover {
-  background-color: $info;
+  background-color: $primary;
   color: $secondary;
   transform: scale(1.2);
+  fill: $light;
+  path {
+    fill: $secondary;
+  }
   // box-shadow: 6px 9px 20px $primary;
+}
+svg {
+  max-width: 100%;
 }
 
 //Boton Flotante:
 $dimensionBoton: 50px;
 
-#botonFlotante{
+#botonFlotante {
   border-radius: 50%;
   position: fixed;
   right: 5%;
@@ -120,20 +127,20 @@ $dimensionBoton: 50px;
   color: $secondary;
 }
 
-.botonFlotantePadre{
+.botonFlotantePadre {
   height: 100%;
   width: 100%;
   position: relative;
 }
 
-.botonFlotanteHijo{
+.botonFlotanteHijo {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); 
+  transform: translate(-50%, -50%);
 }
 
-#iconoAñadir{
+#iconoAñadir {
   height: 100%;
   width: 100%;
 }
