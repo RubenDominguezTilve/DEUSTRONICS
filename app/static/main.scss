@@ -7,6 +7,11 @@ $danger: #ff4757;
 $light: #f1f2f6;
 $dark: #2f3542;
 
+@import "node_modules/bootstrap/scss/bootstrap";
+body {
+  min-height: 100vh;
+  background: red;
+}
 /* Carousel del Bootsnipp */
 .MultiCarousel {
   float: left;
@@ -48,7 +53,6 @@ $dark: #2f3542;
   background: #ccc;
 }
 
-@import "node_modules/bootstrap/scss/bootstrap";
 #logo {
   height: 50px;
 }
@@ -143,4 +147,14 @@ $dimensionBoton: 50px;
 #iconoAñadir {
   height: 100%;
   width: 100%;
+}
+
+.login-wrapper {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background-color: $secondary;
+  padding: 15px;
+  box-shadow: 0px 0px 12px black;
+  transform: translate(-50%, -50%);
 }

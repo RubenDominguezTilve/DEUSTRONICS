@@ -10,10 +10,10 @@ from app.forms import EquipoForm, TareaForm, UserForm
 def index(req):    
     return render(req,"index.html")
 
-def get_login(req):
-    data="texto"
-    context={'usuarios':data, 'form':UserForm}
+def get_login(req):   
+    context={'form':UserForm}
     return render(req,"login.html", context)
+    
 def register(req):
     form=UserForm(req.POST)
     if(form.is_valid):
