@@ -152,6 +152,10 @@ def crear_pedido(req):
     pedido.save() 
     return redirect('catalogo_lista')
     #obj = Class.objects.get(pk=this_object_id)
+def mis_pedidos(req):
+    pedidos=Pedido.object.filter(getLoggedCliente(req))
+    context={'pedidos':pedidos}
+    return render(req,'pedidos_lista.html',context)
 class ProcesoListView(ListView):
     model = Proceso
     template_name = 'proceso_lista.html'
