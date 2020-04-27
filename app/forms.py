@@ -24,9 +24,11 @@ class RegisterForm(forms.ModelForm):
         fields = ('username','password','email')
 
 class LoginForm(forms.Form):
+    # Usuario
     username=forms.CharField(max_length=100)
     
+    # Contraseña
     attrs = {
-        "type": "password"
+        "type": "password" # Atributo para mostrarlo como contraseña
     }
     password = forms.CharField(widget=forms.TextInput(attrs=attrs))
