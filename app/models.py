@@ -1,14 +1,14 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
-class Usuario(models.Model):
-    contrasena = models.CharField(max_length=255)
-    email = models.CharField(max_length=255)
-    username = models.CharField(max_length=255)
-    def __str__(self):
-       return self.username
+# class Usuario(models.Model):
+#     contrasena = models.CharField(max_length=255)
+#     email = models.CharField(max_length=255)
+#     username = models.CharField(max_length=255)
+#     def __str__(self):
+#        return self.username
 
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
@@ -16,7 +16,7 @@ class Empleado(models.Model):
     apellido1 = models.CharField(max_length=100)
     apellido2 = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
        return self.nombre
 
@@ -56,7 +56,7 @@ class Catalogo(models.Model):
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
-    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
        return self.nombre
 

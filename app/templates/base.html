@@ -62,6 +62,15 @@
           </div>
         </div>
         <a class="nav-item nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
+        <a class="nav-item nav-link" href="{%url 'logout' %}">Logout</a>
+
+        
+{% if user.is_authenticated %}
+<span class="nav-item nav-link">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
+{% else %}
+<span class="nav-item nav-link">Welcome, new user. Please log in.</span>
+{% endif %}
+
         <!--
         <a class="nav-item nav-link" href="#">Visualizar</a>
         <a class="nav-item nav-link" href="#">Gestionar</a>
@@ -89,6 +98,7 @@
     </div>
   </a>
 {%endif%}
+
 
 </body>
 

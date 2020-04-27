@@ -8305,8 +8305,7 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6; } }
 
 body {
-  min-height: 100vh;
-  background: red; }
+  min-height: 100vh; }
 
 /* Carousel del Bootsnipp */
 .MultiCarousel {
@@ -8380,11 +8379,11 @@ body {
   border: solid 1px #2f3542;
   padding: 15px;
   border-radius: 5px;
-  -webkit-transition: background-color 0.5s ease, color 0.3s ease-out, -webkit-transform 0.3s ease-out;
-  transition: background-color 0.5s ease, color 0.3s ease-out, -webkit-transform 0.3s ease-out;
-  -o-transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out;
-  transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out;
-  transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out, -webkit-transform 0.3s ease-out; }
+  -webkit-transition: background-color 0.5s ease, color 0.3s ease-out, fill 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  transition: background-color 0.5s ease, color 0.3s ease-out, fill 0.3s ease-out, -webkit-transform 0.3s ease-out;
+  -o-transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out, fill 0.3s ease-out;
+  transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out, fill 0.3s ease-out;
+  transition: background-color 0.5s ease, color 0.3s ease-out, transform 0.3s ease-out, fill 0.3s ease-out, -webkit-transform 0.3s ease-out; }
   .index-card .card-icon {
     -ms-flex-item-align: center;
     -ms-grid-row-align: center;

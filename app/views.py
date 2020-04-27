@@ -3,7 +3,8 @@ from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
-from app.forms import EquipoForm, TareaForm, UserForm
+from app.forms import EquipoForm, TareaForm, UserForm, LoginForm
+from django.contrib.auth import authenticate,login,logout
 # Create your views here.
 
 
@@ -11,17 +12,40 @@ def index(req):
     return render(req,"index.html")
 
 def get_login(req):   
-    context={'form':UserForm}
+    context={'form':UserForm, 'login':LoginForm}
     return render(req,"login.html", context)
+    
+def do_login(req):
+    print('lego aqui')
+    username = req.POST['username']
+    password = req.POST['password']
+    user = authenticate(req, username=username, password=password)
+    if user is not None:
+        login(req, user)
+        print('bien')
+        print(req.GET)
+        return redirect('index')
+    else:
+        print('mal')
+        return redirect('get_login')
+def do_logout(req):
+    logout(req)
+    return redirect('get_login')
+
     
 def register(req):
     form=UserForm(req.POST)
     if(form.is_valid):
         form.save()
+        # user=authenticate(req,username=form.cleaned_data['username'],password=form.cleaned_data['password'])
+        # if user is not None:
+        #     login(req, user)
         print("valido")
-    print("no valido")
-
-    return redirect('index')
+        return redirect('index')
+    else:
+        print("no valido")
+        return redirect('get_login')
+   
 
 class EmpleadoListView(ListView):
     model = Empleado

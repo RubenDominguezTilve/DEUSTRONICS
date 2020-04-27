@@ -9,8 +9,7 @@
         <div class="item catalog-item mb-2 col-sm-3">
           <div class="pad15">
             <!-- Imagen del producto -->
-            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block"
-              alt="Imagen de catálogo" />
+            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />
             <!-- Nombre del producto -->
             <p class="lead mt-2">{{catalogo.nombre}}</p>
             <!-- Descripción del producto 
@@ -24,12 +23,15 @@
               <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Cantidad</span>
               </div>
-              <input type="number" class="form-control" aria-label="Sizing example input"
-                aria-describedby="inputGroup-sizing-default" />
-              <!-- Apéndice para el botón de realizar pedido -->
-              <div class="input-group-append">
-                <button class="btn btn-outline-dark bg-secondary" type="button" id="button-addon1">Pedir</button>
-              </div>
+              <form action="">
+                {%csrf_token%}
+                <input type="hidden" name="producto" value="{{catalogo.pk}}" />
+                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="cantidad" />
+                <!-- Apéndice para el botón de realizar pedido -->
+                <div class="input-group-append">
+                  <button class="btn btn-outline-dark bg-secondary" type="submit" id="button-addon1">Pedir</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

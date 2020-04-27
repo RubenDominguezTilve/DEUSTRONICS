@@ -2,9 +2,14 @@
 <div class="login-wrapper">
   <h1>registrarse</h1>
 
-  <form action="{%url 'register'%}" method="POST">
+  <form action="{%url 'do_register'%}" method="POST">
     {%csrf_token%}
     <label for="">username</label>{{form.username}} <label for="">password</label><input type="password" name="password" /> <label for="">Repeat password</label><input type="password" name="password1" />
+    <input type="submit" value="enviar" />
+  </form>
+
+  <form action="{%url 'do_login'%}" method="POST">
+    {%csrf_token%} {{login.as_p}}
     <input type="submit" value="enviar" />
   </form>
 </div>

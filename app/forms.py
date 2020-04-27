@@ -22,3 +22,11 @@ class UserForm(forms.ModelForm):
     class Meta:
         model=User
         fields = ('username','password','email')
+
+class LoginForm(forms.Form):
+    username=forms.CharField(max_length=100)
+    
+    attrs = {
+        "type": "password"
+    }
+    password = forms.CharField(widget=forms.TextInput(attrs=attrs))
