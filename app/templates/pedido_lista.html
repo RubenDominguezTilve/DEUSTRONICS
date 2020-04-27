@@ -1,4 +1,8 @@
 {%extends 'base.html'%} {% block content%}
+<h1>
+  Listado de pedidos
+</h1>
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -19,7 +23,7 @@
       <td>{{pedido.producido}}</td>
       <td>{{pedido.cantidad}}</td>
       <td>{{pedido.catalogo}}</td>
-      <td>{{pedido.cliente.nombre}}</td>
+      <td>{{pedido.cliente}}</td>
       <td><a href="{%url 'pedido_detalle' pedido.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
