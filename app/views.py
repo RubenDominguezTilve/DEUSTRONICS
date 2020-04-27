@@ -3,11 +3,10 @@ from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea,Cliente
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
-from app.forms import EquipoForm, TareaForm, RegisterForm, LoginForm
+from app.forms import EmpleadoForm, EquipoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 from .sessionHandler import getLoggedCliente,getLoggedEmpleado
-# Create your views here.
 
 # Pagina principal
 def index(req):    
@@ -34,11 +33,12 @@ def do_login(req):
         print('mal')
         return redirect('get_login')
 
-# -Funcion para hacerel logout
+# -Funcion para hacer el logout
 def do_logout(req):
     logout(req)
     return redirect('get_login')
 
+# -Funcion para hacer el registro
 def register(req):
     form=RegisterForm(req.POST)
     if(form.is_valid):
@@ -53,17 +53,27 @@ def register(req):
         return redirect('get_login')
    
 # Empleados
-class EmpleadoListView(ListView):
-    model = Empleado
-    template_name = 'empleado_lista.html'
-    queryset = Empleado.objects.all()
-    context_object_name = 'empleados'
+# -Lista
+class EmpleadoListView(View):
+    # model = Empleado
+    # template_name = 'empleado_lista.html'
+    # queryset = Empleado.objects.all()
+    # context_object_name = 'empleados'
 
-    def get_context_data(self, **kwargs):
-        context = super(EmpleadoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Empleados'
-        return context
+    # def get_context_data(self, **kwargs):
+    #     context = super(EmpleadoListView, self).get_context_data(**kwargs)
+    #     # context['titulo_pagina'] = 'Empleados'
+    #     return context
+    
+    def get(self, request, *args, **kwargs):
+        context = {
+            'empleados': Empleado.objects.all(),
+            'urlBotonFlotante':reverse('empleado_create')
+        }
+        return render(request, "empleado_lista.html", context)
 
+
+# -Detalle
 class EmpleadoDetailView(DetailView):
     model = Empleado
     template_name = 'empleado_detalle.html'
@@ -72,8 +82,19 @@ class EmpleadoDetailView(DetailView):
         context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Empleado'
         return context
+# -Crear
+class EmpleadoCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = EmpleadoForm() #Probablemente no importado
+        context = {
+            'form': form
+        }
+        return render(request, 'empleado_create.html', context)
 
 
+
+# Equipos
+# -Lista
 class EquipoListView(View):
     def get(self, request, *args, **kwargs):   
         context = {
@@ -82,14 +103,14 @@ class EquipoListView(View):
         }
         return render(request, "equipo_lista.html", context)
 
+    # El método post deberá ir en el detalle (?)
     def post(self, request, *args, **kwargs): 
         form=EquipoForm(request.POST)
         if form.is_valid():
            form.save()
         return redirect('equipo_lista')
         
-
-# Equipos        
+# -Detalle       
 class EquipoDetailView(DetailView):
     model = Equipo
     template_name = 'equipo_detalle.html'
@@ -98,17 +119,19 @@ class EquipoDetailView(DetailView):
         context = super(EquipoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Equipo'
         return context
+
+# -Crear
 class EquipoCreateView(View):
     def get(self, request, *args, **kwargs):
         form = EquipoForm()
         context = {
-            'form': form,
-            'titulo_pagina': 'Crear nuevo producto'
+            'form': form
         }
         return render(request, 'equipo_create.html', context)
 
 
-
+# Pedidos
+# -Lista
 class PedidoListView(ListView):
     model = Pedido
     template_name = 'pedido_lista.html'
@@ -120,7 +143,7 @@ class PedidoListView(ListView):
         # context['titulo_pagina'] = 'Pedidos'
         return context
 
-
+# -Detalle
 class PedidoDetailView(DetailView):
     model = Pedido
     template_name = 'pedido_detalle.html'
@@ -130,6 +153,7 @@ class PedidoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Pedido'
         return context
 
+# -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
 def crear_pedido(req):
     pedido=Pedido()
     pedido.planificado=False
@@ -142,10 +166,15 @@ def crear_pedido(req):
     pedido.save() 
     return redirect('catalogo_lista')
     #obj = Class.objects.get(pk=this_object_id)
+
+# -Muestra pedidos filtrando para el cliente logueado
 def mis_pedidos(req):
     pedidos=Pedido.objects.filter(cliente=getLoggedCliente(req).id)
     context={'pedidos':pedidos}
     return render(req,'pedido_lista.html',context)
+
+# Procesos
+# -Lista    
 class ProcesoListView(ListView):
     model = Proceso
     template_name = 'proceso_lista.html'
@@ -157,7 +186,7 @@ class ProcesoListView(ListView):
         # context['titulo_pagina'] = 'Procesos'
         return context
 
-
+# -Detalle
 class ProcesoDetailView(DetailView):
     model = Proceso
     template_name = 'proceso_detalle.html'
@@ -166,8 +195,11 @@ class ProcesoDetailView(DetailView):
         context = super(ProcesoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Proceso'
         return context
+# -Crear
+# [Crear]
 
-
+# Tareas
+# -Lista
 class TareaListView(View):
     model = Tarea
     template_name = 'tarea_lista.html'
@@ -195,7 +227,7 @@ class TareaListView(View):
         # context['titulo_pagina'] = 'Tareas'
         return context
 
-
+# -Detalle
 class TareaDetailView(DetailView):
     model = Tarea
     template_name = 'tarea_detalle.html'
@@ -204,8 +236,12 @@ class TareaDetailView(DetailView):
         context = super(TareaDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles de la Tarea'
         return context
+# -Crear
+# [Crear]
 
 
+# Catalogos
+# -Lista
 class CatalogoListView(ListView):
     model = Catalogo
     template_name = 'catalogo_lista.html'
@@ -217,7 +253,7 @@ class CatalogoListView(ListView):
         # context['titulo_pagina'] = 'Catalogos'
         return context
 
-
+# -Detalle
 class CatalogoDetailView(DetailView):
     model = Catalogo
     template_name = 'catalogo_detalle.html'
@@ -226,5 +262,8 @@ class CatalogoDetailView(DetailView):
         context = super(CatalogoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del catalogo'
         return context
+# -Crear
+# [Crear]
+
 
 

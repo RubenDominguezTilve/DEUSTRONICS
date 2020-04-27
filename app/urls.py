@@ -8,7 +8,8 @@ urlpatterns = [
     #Empleados
     path('empleados/', login_required(views.EmpleadoListView.as_view()), name='empleado_lista'),
     path('empleado/<int:pk>/', login_required(views.EmpleadoDetailView.as_view()), name='empleado_detalle'),
-    #Equipos
+    path('empleado/create/', login_required(views.EmpleadoCreateView.as_view()), name='empleado_create'),
+    #Equipos 
     path('equipos/', login_required(views.EquipoListView.as_view()), name='equipo_lista'),
     path('equipo/<int:pk>/', login_required(views.EquipoDetailView.as_view()), name='equipo_detalle'),
     path('equipo/create/', login_required(views.EquipoCreateView.as_view()), name='equipo_create'),
