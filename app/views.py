@@ -5,6 +5,7 @@ from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
 from app.forms import EquipoForm, TareaForm, UserForm, LoginForm
 from django.contrib.auth import authenticate,login,logout
+from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 # Create your views here.
 
 
