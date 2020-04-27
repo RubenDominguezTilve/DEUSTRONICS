@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea,Cliente
+from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
-from app.forms import EmpleadoForm, EquipoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
+from app.forms import EmpleadoForm, EquipoForm, CatalogoForm, ProcesoForm, PedidoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 from .sessionHandler import getLoggedCliente,getLoggedEmpleado
@@ -54,7 +54,8 @@ def register(req):
    
 # Empleados
 # -Lista
-class EmpleadoListView(View):    
+class EmpleadoListView(View):
+    # --La funcion get crea la vista    
     def get(self, request, *args, **kwargs):
         context = {
             'empleados': Empleado.objects.all(),
@@ -74,13 +75,15 @@ class EmpleadoDetailView(DetailView):
 
 # -Crear
 class EmpleadoCreateView(View):
+    # --La funcion get crea la vista
     def get(self, request, *args, **kwargs):
-        form = EmpleadoForm() #Probablemente no importado
+        form = EmpleadoForm()
         context = {
             'form': form
         }
         return render(request, 'empleado_create.html', context)
-
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
     def post(self, req):
         form =EmpleadoForm(req.POST)
         if(form.is_valid()):
@@ -96,10 +99,14 @@ class EmpleadoCreateView(View):
 # Equipos
 # -Lista
 class EquipoListView(View):
+    # --La funcion get crea la vista
     def get(self, request, *args, **kwargs):   
         context = {
             'equipos': Equipo.objects.all(),
-            'form': EquipoForm()
+
+            'form': EquipoForm(),  #Borrar
+            
+            'urlBotonFlotante':reverse('equipo_create')
         }
         return render(request, "equipo_lista.html", context)
 
@@ -122,26 +129,36 @@ class EquipoDetailView(DetailView):
 
 # -Crear
 class EquipoCreateView(View):
+    # --La funcion get crea la vista
     def get(self, request, *args, **kwargs):
         form = EquipoForm()
         context = {
             'form': form
         }
         return render(request, 'equipo_create.html', context)
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
+    def post(self, req):
+        form = EquipoForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('equipo_lista')
+        else:
+            data = Equipo.objects.all()
+            context = {'form':form,'Equipos':data}
+            return render(req, 'equipo_lista.html', context)
 
 
 # Pedidos
 # -Lista
-class PedidoListView(ListView):
-    model = Pedido
-    template_name = 'pedido_lista.html'
-    queryset = Pedido.objects.all()
-    context_object_name = 'pedidos'
-
-    def get_context_data(self, **kwargs):
-        context = super(PedidoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Pedidos'
-        return context
+class PedidoListView(View):
+    # --La funcion get crea la vista    
+    def get(self, request, *args, **kwargs):
+        context = {
+            'pedidos': Pedido.objects.all(),
+            'urlBotonFlotante':reverse('pedido_create')
+        }
+        return render(request, "pedido_lista.html", context)
 
 # -Detalle
 class PedidoDetailView(DetailView):
@@ -175,16 +192,14 @@ def mis_pedidos(req):
 
 # Procesos
 # -Lista    
-class ProcesoListView(ListView):
-    model = Proceso
-    template_name = 'proceso_lista.html'
-    queryset = Proceso.objects.all()
-    context_object_name = 'procesos'
-
-    def get_context_data(self, **kwargs):
-        context = super(ProcesoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Procesos'
-        return context
+class ProcesoListView(View):
+    # --La funcion get crea la vista    
+    def get(self, request, *args, **kwargs):
+        context = {
+            'procesos': Proceso.objects.all(),
+            'urlBotonFlotante':reverse('proceso_create')
+        }
+        return render(request, "proceso_lista.html", context)        
 
 # -Detalle
 class ProcesoDetailView(DetailView):
@@ -196,16 +211,30 @@ class ProcesoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Proceso'
         return context
 # -Crear
-# [Crear]
+class ProcesoCreateView(View):
+    # --La funcion get crea la vista
+    def get(self, request, *args, **kwargs):
+        form = ProcesoForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'proceso_create.html', context)
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
+    def post(self, req):
+        form = ProcesoForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('proceso_lista')
+        else:
+            data = Proceso.objects.all()
+            context = {'form':form,'Procesos':data}
+            return render(req, 'proceso_lista.html', context)
 
 # Tareas
 # -Lista
 class TareaListView(View):
-    model = Tarea
-    template_name = 'tarea_lista.html'
-    queryset = Tarea.objects.all()
-    context_object_name = 'tareas'  
-
+    # --La funcion get crea la vista
     def get(self, req, *args, **kwargs):
         form =TareaForm()
         data=Tarea.objects.all()
@@ -222,7 +251,7 @@ class TareaListView(View):
             data=Tarea.objects.all()
             context={'form':form,'tareas':data}
             return render(req, 'tarea_lista.html', context)
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, **kwargs):                                   #Prescindible
         context = super(TareaListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Tareas'
         return context
@@ -238,26 +267,37 @@ class TareaDetailView(DetailView):
         return context
 # -Crear
 class TareaCreateView(View):
+    # --La funcion get crea la vista
     def get(self, request, *args, **kwargs):
-        form = TareaForm() #Probablemente no importado
+        form = TareaForm()
         context = {
             'form': form
         }
         return render(request, 'tarea_create.html', context)
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
+    def post(self, req):
+        form = TareaForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('tarea_lista')
+        else:
+            data = Tarea.objects.all()
+            context = {'form':form,'Tareas':data}
+            return render(req, 'tarea_lista.html', context)
+
 
 
 # Catalogos
 # -Lista
-class CatalogoListView(ListView):
-    model = Catalogo
-    template_name = 'catalogo_lista.html'
-    queryset = Catalogo.objects.all()
-    context_object_name = 'catalogos'
-
-    def get_context_data(self, **kwargs):
-        context = super(CatalogoListView, self).get_context_data(**kwargs)
-        # context['titulo_pagina'] = 'Catalogos'
-        return context
+class CatalogoListView(View):
+    # --La funcion get crea la vista    
+    def get(self, request, *args, **kwargs):
+        context = {
+            'catalogos': Catalogo.objects.all(),
+            'urlBotonFlotante':reverse('catalogo_create')
+        }
+        return render(request, "catalogo_lista.html", context) 
 
 # -Detalle
 class CatalogoDetailView(DetailView):
@@ -269,7 +309,25 @@ class CatalogoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del catalogo'
         return context
 # -Crear
-# [Crear]
+class CatalogoCreateView(View):
+    # --La funcion get crea la vista
+    def get(self, request, *args, **kwargs):
+        form = CatalogoForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'catalogo_create.html', context)
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
+    def post(self, req):
+        form = CatalogoForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('catalogo_lista')
+        else:
+            data = Catalogo.objects.all()
+            context = {'form':form,'Catalogos':data}
+            return render(req, 'catalogo_lista.html', context)
 
 
 
