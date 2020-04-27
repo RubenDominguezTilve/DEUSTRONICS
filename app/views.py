@@ -6,6 +6,7 @@ from django.urls import reverse
 from app.forms import EquipoForm, TareaForm, RegisterForm, LoginForm
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
+from .sessioHandler import getLoggedCliente,getLoggedEmpleado
 # Create your views here.
 
 
@@ -145,7 +146,7 @@ def crear_pedido(req):
     pedido.producido=False
     pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])
     print(pedido.catalogo.precio)
-    pedido.cliente=Cliente.objects.filter(usuario=req.user.id)[0]
+    pedido.cliente=getLoggedCliente(req)
     pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
     pedido.cantidad=int(req.POST['cantidad'])
     pedido.save() 
