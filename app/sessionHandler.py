@@ -1,5 +1,8 @@
 from .models import Empleado, Cliente
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
+
+
+   
 def getLoggedEmpleado(req):
     return Empleado.objects.filter(usuario=req.user.id)[0]
 

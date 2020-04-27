@@ -1,4 +1,5 @@
 {%load static %}
+{% load sesion_tags  %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -81,6 +82,14 @@
       </div>
   </nav>
   {%endblock%}
+
+  {% if request.user|has_group:"EMPLEADO" %} 
+  empleado
+  {% elif request.user|has_group:"CLIENTE" %} 
+CLIENTE
+  {% elif request.user|has_group:"RESPONSABLE" %} 
+  RESPONSABLE
+  {%endif%}
   <div class="container fill">
     <div class="row">
       {%block content %} {%endblock%}
