@@ -4,12 +4,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 
-# class Usuario(models.Model):
-#     contrasena = models.CharField(max_length=255)
-#     email = models.CharField(max_length=255)
-#     username = models.CharField(max_length=255)
-#     def __str__(self):
-#        return self.username
 
 class Empleado(models.Model):
     dni = models.CharField(max_length=9)
@@ -70,7 +64,7 @@ class Pedido(models.Model):
     catalogo = models.ForeignKey(
         Catalogo, on_delete=models.SET_NULL, null=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.SET_NULL, null=True)
-        
+    importe=models.FloatField()
     #Revisar
     def __str__(self):
        return str(self.cantidad)

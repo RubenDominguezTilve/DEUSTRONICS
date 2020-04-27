@@ -139,7 +139,8 @@ class PedidoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Pedido'
         return context
 
-
+def crear_pedido(req):
+    
 class ProcesoListView(ListView):
     model = Proceso
     template_name = 'proceso_lista.html'
