@@ -140,7 +140,11 @@ class PedidoDetailView(DetailView):
         return context
 
 def crear_pedido(req):
-    
+    print(req.POST)
+    prod = Catalogo.objects.get(pk=req.POST['producto'])
+    print(prod.precio)
+    return redirect('catalogo_lista')
+    #obj = Class.objects.get(pk=this_object_id)
 class ProcesoListView(ListView):
     model = Proceso
     template_name = 'proceso_lista.html'

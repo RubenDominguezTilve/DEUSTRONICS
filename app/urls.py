@@ -15,6 +15,7 @@ urlpatterns = [
     #Pedidos
     path('pedidos/', login_required(views.PedidoListView.as_view()), name='pedido_lista'),
     path('pedido/<int:pk>/', login_required(views.PedidoDetailView.as_view()), name='pedido_detalle'),
+    path('pedido/create/', login_required(views.crear_pedido), name='pedido_create'),
     #Procesos
     path('procesos/', login_required(views.ProcesoListView.as_view()), name='proceso_lista'),
     path('proceso/<int:pk>/', login_required(views.ProcesoDetailView.as_view()),name='proceso_detalle'),
