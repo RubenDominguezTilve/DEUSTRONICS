@@ -6,17 +6,20 @@ from django.urls import reverse
 from app.forms import EquipoForm, TareaForm, RegisterForm, LoginForm
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
-from .sessioHandler import getLoggedCliente,getLoggedEmpleado
+from .sessionHandler import getLoggedCliente,getLoggedEmpleado
 # Create your views here.
 
-
+# Pagina principal
 def index(req):    
     return render(req,"index.html")
 
+# Sesiones
+# -Pagina de login
 def get_login(req):   
     context={'form':RegisterForm, 'login':LoginForm}
     return render(req,"login.html", context)
     
+# -Funcion para hacer el login
 def do_login(req):
     print('lego aqui')
     username = req.POST['username']
@@ -30,11 +33,12 @@ def do_login(req):
     else:
         print('mal')
         return redirect('get_login')
+
+# -Funcion para hacerel logout
 def do_logout(req):
     logout(req)
     return redirect('get_login')
 
-    
 def register(req):
     form=RegisterForm(req.POST)
     if(form.is_valid):
@@ -48,7 +52,7 @@ def register(req):
         print("no valido")
         return redirect('get_login')
    
-
+# Empleados
 class EmpleadoListView(ListView):
     model = Empleado
     template_name = 'empleado_lista.html'
@@ -59,7 +63,6 @@ class EmpleadoListView(ListView):
         context = super(EmpleadoListView, self).get_context_data(**kwargs)
         # context['titulo_pagina'] = 'Empleados'
         return context
-
 
 class EmpleadoDetailView(DetailView):
     model = Empleado
@@ -72,15 +75,6 @@ class EmpleadoDetailView(DetailView):
 
 
 class EquipoListView(View):
-    # model = Equipo
-    # template_name = 'equipo_lista.html'
-    # queryset = Equipo.objects.all()
-    # context_object_name = 'equipos'
-    # context={}
-    # context["equipos"]=Equipo.objects.all()
-    # context['form'] = EquipoForm()
-
-
     def get(self, request, *args, **kwargs):   
         context = {
             'equipos': Equipo.objects.all(),
@@ -93,13 +87,9 @@ class EquipoListView(View):
         if form.is_valid():
            form.save()
         return redirect('equipo_lista')
-    
-    # def get_context_data(self, **kwargs):
-    #     context = super(EquipoListView, self).get_context_data(**kwargs)
-    #     context['form'] = EquipoForm()
-    #     context['text'] ="buenardo"
+        
 
-    #     return context
+# Equipos        
 class EquipoDetailView(DetailView):
     model = Equipo
     template_name = 'equipo_detalle.html'
