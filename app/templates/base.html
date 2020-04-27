@@ -7,7 +7,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Deustronics - App</title>
-  <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}"/>
+  <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}" />
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
     integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
     crossorigin="anonymous"></script>
@@ -65,12 +65,12 @@
         <a class="nav-item nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
         <a class="nav-item nav-link" href="{%url 'logout' %}">Logout</a>
         <a class="nav-item nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
-        
-{% if user.is_authenticated %}
-<span class="nav-item nav-link">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
-{% else %}
-<span class="nav-item nav-link">Welcome, new user. Please log in.</span>
-{% endif %}
+
+        {% if user.is_authenticated %}
+        <span class="nav-item nav-link">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
+        {% else %}
+        <span class="nav-item nav-link">Welcome, new user. Please log in.</span>
+        {% endif %}
 
         <!--
         <a class="nav-item nav-link" href="#">Visualizar</a>
@@ -96,9 +96,9 @@ CLIENTE
     </div>
   </div>
 
-<!-- Boton Flotante -->
+  <!-- Boton Flotante -->
 
-{%if urlBotonFlotante%}
+  {%if urlBotonFlotante%}
   <a id="botonFlotante" href="{{urlBotonFlotante}}">
     <div class="botonFlotantePadre">
       <span class="botonFlotanteHijo">
@@ -106,7 +106,7 @@ CLIENTE
       </span>
     </div>
   </a>
-{%endif%}
+  {%endif%}
 
 
 </body>

@@ -31,6 +31,8 @@
     {%endfor%}
   </tbody>
 </table>
+
+<!-- No va aquí, pero por ahora, funciona -->
 <form action="{%url 'equipo_lista' %}" method="POST">
   {%csrf_token%} {{form.as_p}}
   <input type="submit" value="Enviar" />
