@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea
+from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea,Cliente
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
 from app.forms import EquipoForm, TareaForm, UserForm, LoginForm
@@ -140,9 +140,15 @@ class PedidoDetailView(DetailView):
         return context
 
 def crear_pedido(req):
-    print(req.POST)
-    prod = Catalogo.objects.get(pk=req.POST['producto'])
-    print(prod.precio)
+    pedido=Pedido()
+    pedido.planificado=False
+    pedido.producido=False
+    pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])
+    print(pedido.catalogo.precio)
+    pedido.cliente=Cliente.objects.filter(usuario=req.user.id)[0]
+    pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
+    pedido.cantidad=int(req.POST['cantidad'])
+    pedido.save() 
     return redirect('catalogo_lista')
     #obj = Class.objects.get(pk=this_object_id)
 class ProcesoListView(ListView):
