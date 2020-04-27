@@ -26,8 +26,20 @@
         <input type="text" class="form-control ml-2" id="pedidoCantidad" value={{pedido.cantidad}}>
       </div>
 
+      <label for="pedidoReferencia" class="col-sm-2 col-form-label ">Referencia: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="pedidoReferencia" value={{pedido.catalogo}}>
+      </div>
+
+      <label for="pedidoCliente" class="col-sm-2 col-form-label ">Cliente: </label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control ml-2" id="pedidoCliente" value={{pedido.cliente}}>
+      </div>
+
     </div>
     <input type="submit" class="btn btn-secondary" value="Guardar">
+
+    <input type="submit" class="btn btn-secondary" value="Eliminar"> <!--Aun sin programar-->
   </form>
 
 </div>
