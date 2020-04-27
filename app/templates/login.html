@@ -1,11 +1,10 @@
-{%extends 'base.html'%} {%block nav%}{%endblock%} {%block content%}
+{%extends 'base.html'%} {%block nav%}{%endblock%} {%block content%} {%load static %}
 <div class="login-wrapper">
-  
-  
+  <video src="{% static 'Tubos.mp4' %}" id="video_login"></video>
+
   <h2>Iniciar sesión</h2>
   <form action="{%url 'do_login'%}" method="POST">
-    {%csrf_token%} 
-    {{login.as_p}}
+    {%csrf_token%} {{login.as_p}}
     <input type="submit" value="Iniciar Sesión" />
   </form>
 
@@ -14,13 +13,10 @@
   <h2>Registrarse</h2>
   <form action="{%url 'do_register'%}" method="POST">
     {%csrf_token%}
-    <label for="">Usuario: </label>{{form.username}} <br>
-    <label for="">Contraseña: </label><input type="password" name="password" /> <br>
-    <label for="">Repite la contraseña: </label><input type="password" name="password1" /> <br>
+    <label for="">Usuario: </label>{{form.username}} <br />
+    <label for="">Contraseña: </label><input type="password" name="password" /> <br />
+    <label for="">Repite la contraseña: </label><input type="password" name="password1" /> <br />
     <input type="submit" value="Registrarse" />
   </form>
-
-  
-
 </div>
 {%endblock%}

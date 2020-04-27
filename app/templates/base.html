@@ -63,7 +63,7 @@
         </div>
         <a class="nav-item nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
         <a class="nav-item nav-link" href="{%url 'logout' %}">Logout</a>
-
+        <a class="nav-item nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
         
 {% if user.is_authenticated %}
 <span class="nav-item nav-link">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
