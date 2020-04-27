@@ -18,7 +18,7 @@ class TareaForm(forms.ModelForm):
         model=Tarea
         fields = '__all__'
 
-class UserForm(forms.ModelForm):
+class RegisterForm(forms.ModelForm):
     class Meta:
         model=User
         fields = ('username','password','email')

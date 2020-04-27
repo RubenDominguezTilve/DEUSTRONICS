@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea,Cliente
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
-from app.forms import EquipoForm, TareaForm, UserForm, LoginForm
+from app.forms import EquipoForm, TareaForm, RegisterForm, LoginForm
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 # Create your views here.
@@ -13,7 +13,7 @@ def index(req):
     return render(req,"index.html")
 
 def get_login(req):   
-    context={'form':UserForm, 'login':LoginForm}
+    context={'form':RegisterForm, 'login':LoginForm}
     return render(req,"login.html", context)
     
 def do_login(req):
@@ -35,7 +35,7 @@ def do_logout(req):
 
     
 def register(req):
-    form=UserForm(req.POST)
+    form=RegisterForm(req.POST)
     if(form.is_valid):
         form.save()
         # user=authenticate(req,username=form.cleaned_data['username'],password=form.cleaned_data['password'])
