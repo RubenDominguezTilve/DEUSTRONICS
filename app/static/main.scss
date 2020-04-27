@@ -161,7 +161,20 @@ $dimensionBoton: 50px;
 }
 
 #video_login {
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+  &::after {
+    position: absolute;
+    content: "";
+    background-color: $primary;
+    opacity: 0.9;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+  }
 }

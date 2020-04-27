@@ -1,7 +1,6 @@
 {%extends 'base.html'%} {%block nav%}{%endblock%} {%block content%} {%load static %}
+<video src="{% static 'Tubos.mp4' %}" id="video_login" autoplay muted></video>
 <div class="login-wrapper">
-  <video src="{% static 'Tubos.mp4' %}" id="video_login"></video>
-
   <h2>Iniciar sesión</h2>
   <form action="{%url 'do_login'%}" method="POST">
     {%csrf_token%} {{login.as_p}}
