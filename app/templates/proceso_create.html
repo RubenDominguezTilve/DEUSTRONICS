@@ -4,7 +4,7 @@
     Añadir empleados
   </h1>
 
-  <form action="{%url 'empleado_create'%}" method="POST">
+  <form action="{%url 'equipo_create'%}" method="POST">
     {%csrf_token%}
     {{form.as_p}}
     <input type="submit" value="Añadir" />

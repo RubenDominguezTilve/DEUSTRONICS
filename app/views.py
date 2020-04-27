@@ -54,24 +54,13 @@ def register(req):
    
 # Empleados
 # -Lista
-class EmpleadoListView(View):
-    # model = Empleado
-    # template_name = 'empleado_lista.html'
-    # queryset = Empleado.objects.all()
-    # context_object_name = 'empleados'
-
-    # def get_context_data(self, **kwargs):
-    #     context = super(EmpleadoListView, self).get_context_data(**kwargs)
-    #     # context['titulo_pagina'] = 'Empleados'
-    #     return context
-    
+class EmpleadoListView(View):    
     def get(self, request, *args, **kwargs):
         context = {
             'empleados': Empleado.objects.all(),
             'urlBotonFlotante':reverse('empleado_create')
         }
         return render(request, "empleado_lista.html", context)
-
 
 # -Detalle
 class EmpleadoDetailView(DetailView):
@@ -82,6 +71,7 @@ class EmpleadoDetailView(DetailView):
         context = super(EmpleadoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Empleado'
         return context
+
 # -Crear
 class EmpleadoCreateView(View):
     def get(self, request, *args, **kwargs):
@@ -90,6 +80,16 @@ class EmpleadoCreateView(View):
             'form': form
         }
         return render(request, 'empleado_create.html', context)
+
+    def post(self, req):
+        form =EmpleadoForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('empleado_lista')
+        else:
+            data=Empleado.objects.all()
+            context={'form':form,'Empleados':data}
+            return render(req, 'empleado_lista.html', context)
 
 
 
@@ -237,7 +237,13 @@ class TareaDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles de la Tarea'
         return context
 # -Crear
-# [Crear]
+class TareaCreateView(View):
+    def get(self, request, *args, **kwargs):
+        form = TareaForm() #Probablemente no importado
+        context = {
+            'form': form
+        }
+        return render(request, 'tarea_create.html', context)
 
 
 # Catalogos
