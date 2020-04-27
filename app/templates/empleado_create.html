@@ -1,13 +1,13 @@
 {%extends 'base.html'%} {% block content%}
 <div id="divCrearEmpleados">
-<h1>
-  Añadir empleados
-</h1>
+  <h1>
+    Añadir empleados
+  </h1>
 
-<form action="{%url 'equipo_create'%}" method="POST">
-  {%csrf_token%}
-  {{form.as_p}}
-  <input type="submit" value="Añadir" />
-</form>
+  <form action="{%url 'equipo_create'%}" method="POST">
+    {%csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Añadir" />
+  </form>
 </div>
 {%endblock%}
