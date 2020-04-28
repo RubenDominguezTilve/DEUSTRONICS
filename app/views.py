@@ -239,28 +239,6 @@ class ProcesoDetailView(DetailView):
         procesoUpdate.save()
         return redirect('proceso_lista')
 
-#Copiado, borrar:
-def crear_pedido(req):
-    pedido=Pedido()
-    pedido.planificado=False
-    pedido.producido=False
-    pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])      #Equivale a pedido.catalogo = catalogo where id == producto(value)
-    pedido.cliente=getLoggedCliente(req)
-    pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
-    pedido.cantidad=int(req.POST['cantidad'])
-    pedido.save() 
-    return redirect('catalogo_lista')
-
-
-
-
-
-
-
-
-
-
-
 # -Crear
 class ProcesoCreateView(View):
     # --La funcion get crea la vista
@@ -335,8 +313,6 @@ class TareaCreateView(View):
             data = Tarea.objects.all()
             context = {'form':form,'Tareas':data}
             return render(req, 'tarea_lista.html', context)
-
-
 
 # Catalogos
 # -Lista
