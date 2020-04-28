@@ -73,6 +73,19 @@ class EmpleadoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Empleado'
         return context
 
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        empeladoUpdate = Empleado()
+        empleadoUpdate.dni = str(req.POST['dni'])
+        empleadoUpdate.nombre = str(req.POST['nombre'])
+        empleadoUpdate.apellido1 = str(req.POST['apellido1'])
+        empleadoUpdate.apellido2 = str(req.POST['apellido2'])
+        empleadoUpdate.telefono = str(req.POST['telefono'])
+        empleadoUpdate.usuario = str(req.POST['usuario'])
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
+        empleadoUpdate.save()
+        return redirect('empleado_lista')
+
 # -Crear
 class EmpleadoCreateView(View):
     # --La funcion get crea la vista
@@ -127,6 +140,19 @@ class EquipoDetailView(DetailView):
         #context['titulo_pagina'] = 'Detalles del Equipo'
         return context
 
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        equipoUpdate = Equipo()
+        equipoUpdate.marca = str(req.POST['marca'])
+        equipoUpdate.modelo = str(req.POST['modelo'])
+        equipoUpdate.tipo = str(req.POST['tipo'])
+        equipoUpdate.fecha_adquisicion = req.POST['fecha_adquisicion']
+        equipoUpdate.fecha_instalacion = req.POST['fecha_instalacion']
+        equipoUpdate.fecha_ultimo_mantenimiento = req.POST['fecha_ultimo_mantenimiento']
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
+        equipoUpdate.save()
+        return redirect('equipo_lista')
+
 # -Crear
 class EquipoCreateView(View):
     # --La funcion get crea la vista
@@ -169,6 +195,19 @@ class PedidoDetailView(DetailView):
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Pedido'
         return context
+
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        pedidoUpdate = Pedido()
+        pedidoUpdate.planificado = bool(req.POST['planificado'])
+        pedidoUpdate.producido = bool(req.POST['producido'])
+        pedidoUpdate.cantidad = int(req.POST['cantidad'])
+        pedidoUpdate.catalogo = Catalogo.objects.get(pk=int(req.POST['catalogo']))
+        pedidoUpdate.cliente = Cliente.objects.get(pk=int(req.POST['cliente']))
+        pedidoUpdate.importe = pedidoUpdate.cantidad *pedidoUpdate.catalogo.precio
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
+        pedidoUpdate.save()
+        return redirect('pedido_lista')
 
 # -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
 def crear_pedido(req):
@@ -293,6 +332,21 @@ class TareaDetailView(DetailView):
         context = super(TareaDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles de la Tarea'
         return context
+
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        tareaUpdate = Tarea()
+        tareaUpdate.id = int(req.POST['idTarea'])
+        tareaUpdate.hora_inicio = req.POST['hora_inicio']
+        tareaUpdate.hora_fin = req.POST['hora_fin']
+        tareaUpdate.equipo = str(req.POST['equipo'])
+        tareaUpdate.proceso = str(req.POST['proceso'])
+        tareaUpdate.pedido = str(req.POST['pedido'])
+        tareaUpdate.empleados_asignados = str(req.POST['empleados_asignados'])
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
+        tareaUpdate.save()
+        return redirect('tarea_lista')
+
 # -Crear
 class TareaCreateView(View):
     # --La funcion get crea la vista
@@ -334,6 +388,18 @@ class CatalogoDetailView(DetailView):
         context = super(CatalogoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del catalogo'
         return context
+
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        catalogoUpdate = Catalogo()
+        catalogoUpdate.id = int(req.POST['catalogoID'])
+        catalogoUpdate.descripcion = str(req.POST['catalogoDescripcion'])
+        catalogoUpdate.nombre = str(req.POST['catalogoNombre'])
+        catalogoUpdate.precio = float(req.POST['catalogoPrecio'])
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
+        catalogoUpdate.save()
+        return redirect('catalogo_lista')
+
 # -Crear
 class CatalogoCreateView(View):
     # --La funcion get crea la vista
