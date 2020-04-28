@@ -86,7 +86,7 @@
   {% if request.user|has_group:"EMPLEADO" %} 
   empleado
   {% elif request.user|has_group:"CLIENTE" %} 
-CLIENTE
+  CLIENTE
   {% elif request.user|has_group:"RESPONSABLE" %} 
   RESPONSABLE
   {%endif%}
