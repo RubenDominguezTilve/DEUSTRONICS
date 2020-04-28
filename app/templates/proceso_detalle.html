@@ -12,7 +12,8 @@
         <input type="text" class="form-control ml-2" id="NombreProceso" value="{{proceso.nombre}}" />
       </div>
     </div>
-    <input type="submit" class="btn btn-secondary" value="Guardar" />
+    <input type="hidden" name="idProceso" value={{proceso.id}}>
+    <input type="submit" class="btn btn-secondary" value="Guardar">
 
     <input type="submit" class="btn btn-secondary" value="Eliminar" />
     <!--Aun sin programar-->

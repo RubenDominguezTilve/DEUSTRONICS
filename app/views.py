@@ -175,8 +175,7 @@ def crear_pedido(req):
     pedido=Pedido()
     pedido.planificado=False
     pedido.producido=False
-    pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])
-    print(pedido.catalogo.precio)
+    pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])      #Equivale a pedido.catalogo = catalogo where id == producto(value)
     pedido.cliente=getLoggedCliente(req)
     pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
     pedido.cantidad=int(req.POST['cantidad'])
@@ -230,6 +229,22 @@ class ProcesoDetailView(DetailView):
         context = super(ProcesoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Proceso'
         return context
+
+    # --Funcion para actualizar un elemento en la BBDD
+    def post(self, req, *args, **kwargs):
+        print ('printado FIABLE')
+        print (req.POST)
+        procesoUpdate = Proceso()
+        #procesoUpdate.id = Proceso.objects.get(pk=req.POST['idProceso'])
+        procesoUpdate.id = int(req.POST['idProceso'])
+        #procesoUpdate.nombre = Proceso.objects.get(req.POST['NombreProceso'])
+        procesoUpdate.nombre = str(req.POST['NombreProceso'])
+        procesoUpdate.save()
+
+
+        return redirect('proceso_lista')
+
+
 # -Crear
 class ProcesoCreateView(View):
     # --La funcion get crea la vista
