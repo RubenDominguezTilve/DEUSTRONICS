@@ -9,6 +9,7 @@
       <th scope="col">#</th>
       <th scope="col">Marca</th>
       <th scope="col">Modelo</th>
+      <th scope="col">Tipo</th>
       <th scope="col">Fecha Adquisición</th>
       <th scope="col">Fecha Instalación</th>
       <th scope="col">Fecha Último Mantenimiento</th>
@@ -21,6 +22,7 @@
       <th scope="row">{{equipo.id}}</th>
       <td>{{equipo.marca}}</td>
       <td>{{equipo.modelo}}</td>
+      <td>{{equipo.tipo}}</td>
 
       <!-- Revisar mostrar hora -->
       <td>{{equipo.fecha_adquisicion}}</td>
@@ -32,9 +34,9 @@
   </tbody>
 </table>
 
-<!-- No va aquí, pero por ahora, funciona -->
+<!-- No va aquí, pero por ahora, funciona 
 <form action="{%url 'equipo_lista' %}" method="POST">
   {%csrf_token%} {{form.as_p}}
   <input type="submit" value="Enviar" />
-</form>
+</form>-->
 {%endblock%}

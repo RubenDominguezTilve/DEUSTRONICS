@@ -156,7 +156,7 @@ class PedidoListView(View):
     def get(self, request, *args, **kwargs):
         context = {
             'pedidos': Pedido.objects.all(),
-            'urlBotonFlotante':reverse('pedido_create')
+            'urlBotonFlotante':reverse('pedido_create_manual')
         }
         return render(request, "pedido_lista.html", context)
 
@@ -183,6 +183,26 @@ def crear_pedido(req):
     pedido.save() 
     return redirect('catalogo_lista')
     #obj = Class.objects.get(pk=this_object_id)
+
+class PedidoCreateView(View):
+    # --La funcion get crea la vista
+    def get(self, request, *args, **kwargs):
+        form = PedidoForm()
+        context = {
+            'form': form
+        }
+        return render(request, 'pedido_create.html', context)
+        
+    # --La funcion post permite que el formulario envie los datos y redirija despues
+    def post(self, req):
+        form = PedidoForm(req.POST)
+        if(form.is_valid()):
+            form.save()        
+            return redirect('pedido_lista')
+        else:
+            data = Pedido.objects.all()
+            context = {'form':form,'Pedidos':data}
+            return render(req, 'pedido_lista.html', context)
 
 # -Muestra pedidos filtrando para el cliente logueado
 def mis_pedidos(req):
@@ -247,7 +267,6 @@ class TareaListView(View):
             form.save()        
             return redirect('tarea_lista')
         else:
-            
             data=Tarea.objects.all()
             context={'form':form,'tareas':data}
             return render(req, 'tarea_lista.html', context)

@@ -4,7 +4,7 @@
     Añadir pedidos
   </h1>
 
-  <form action="{%url 'pedido_create'%}" method="POST">
+  <form action="{%url 'pedido_create_manual'%}" method="POST">
     {%csrf_token%}
     {{form.as_p}}
     <input type="submit" value="Añadir" />

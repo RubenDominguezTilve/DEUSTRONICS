@@ -13,7 +13,7 @@ class Empleado(models.Model):
     telefono = models.CharField(max_length=15)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
-       return self.nombre
+       return str(f"{self.nombre} {self.apellido1}")
 
 
 class TipoEquipo(models.Model):
@@ -67,7 +67,7 @@ class Pedido(models.Model):
     importe=models.FloatField()
     #Revisar
     def __str__(self):
-       return str(self.cantidad)
+       return str(f"REF: {self.cliente.id}.{self.id}")
 
 
 class Tarea(models.Model):

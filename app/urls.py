@@ -20,6 +20,7 @@ urlpatterns = [
     path('pedidos/', login_required(views.PedidoListView.as_view()), name='pedido_lista'),
     path('pedido/<int:pk>/', login_required(views.PedidoDetailView.as_view()), name='pedido_detalle'),
     path('pedido/create/', login_required(views.crear_pedido), name='pedido_create'),
+    path('pedido/create_manual/', login_required(views.PedidoCreateView.as_view()), name='pedido_create_manual'),
     path('misPedidos/', login_required(views.mis_pedidos), name='mis_pedidos'),
 
     #Procesos
