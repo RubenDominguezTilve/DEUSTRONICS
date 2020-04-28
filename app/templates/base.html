@@ -74,13 +74,13 @@
 
 
         {% if request.user|has_group:"EMPLEADO" %} 
-          <span class="nav-item nav-link ml-auto">empleado</span>
+          <span class="nav-item nav-link ml-auto"><img class="user-type-icon"  src="{%static 'icons/Operario.png'%}" alt=""></span>
         {% elif request.user|has_group:"CLIENTE" %} 
-        <span class="nav-item nav-link ml-auto"> CLIENTE</span>
+        <span class="nav-item nav-link ml-auto"> <img class="user-type-icon"  src="{%static 'icons/Cliente.png'%}" alt=""></span>
         {% elif request.user|has_group:"RESPONSABLE" %} 
-        <span class="nav-item nav-link ml-auto"></span>  RESPONSABLE</span>
+        <span class="nav-item nav-link ml-auto"></span>  <img  class="user-type-icon" src="{%static 'icons/Responsable.png'%}" alt=""></span>
         {%else%}
-        <span class="nav-item nav-link ml-auto"></span>  OTRO</span>
+        <span class="nav-item nav-link ml-auto"></span>  <img  class="user-type-icon" src="{%static 'icons/Admin.png'%}" alt=""></span>
         {%endif%}
         
         <!--
