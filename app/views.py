@@ -224,7 +224,7 @@ class ProcesoListView(View):
 class ProcesoDetailView(DetailView):
     model = Proceso
     template_name = 'proceso_detalle.html'
-
+    # --Funcion para generar la vista con contenido 
     def get_context_data(self, **kwargs):
         context = super(ProcesoDetailView, self).get_context_data(**kwargs)
         #context['titulo_pagina'] = 'Detalles del Proceso'
@@ -232,17 +232,33 @@ class ProcesoDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
-        print ('printado FIABLE')
-        print (req.POST)
         procesoUpdate = Proceso()
-        #procesoUpdate.id = Proceso.objects.get(pk=req.POST['idProceso'])
         procesoUpdate.id = int(req.POST['idProceso'])
-        #procesoUpdate.nombre = Proceso.objects.get(req.POST['NombreProceso'])
         procesoUpdate.nombre = str(req.POST['NombreProceso'])
+       # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         procesoUpdate.save()
-
-
         return redirect('proceso_lista')
+
+#Copiado, borrar:
+def crear_pedido(req):
+    pedido=Pedido()
+    pedido.planificado=False
+    pedido.producido=False
+    pedido.catalogo= Catalogo.objects.get(pk=req.POST['producto'])      #Equivale a pedido.catalogo = catalogo where id == producto(value)
+    pedido.cliente=getLoggedCliente(req)
+    pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
+    pedido.cantidad=int(req.POST['cantidad'])
+    pedido.save() 
+    return redirect('catalogo_lista')
+
+
+
+
+
+
+
+
+
 
 
 # -Crear
