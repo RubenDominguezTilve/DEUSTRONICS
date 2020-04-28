@@ -8466,3 +8466,6 @@ svg {
   height: 100%;
   -o-object-fit: cover;
   object-fit: cover; }
+
+.user-type-icon {
+  height: 40px; }

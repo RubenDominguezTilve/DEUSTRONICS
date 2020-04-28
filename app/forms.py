@@ -1,7 +1,7 @@
 from django import forms
 from .models import Equipo, TipoEquipo, Tarea, Empleado, Proceso, Catalogo, Cliente, Pedido
 from django.contrib.auth.models import User
-
+from app.widgets.formWidgets import DateInput
 
 
 # Formulario crear Empleados
@@ -16,7 +16,7 @@ class EquipoForm(forms.ModelForm):
     class Meta:
         model=Equipo
         fields = '__all__'
-
+        widgets = { 'fecha_adquisicion' : DateInput(),'fecha_instalacion':DateInput(),'fecha_ultimo_mantenimiento':DateInput()} 
 
 # Formulario crear Tareas
 class TareaForm(forms.ModelForm):
