@@ -10,6 +10,8 @@
     {% csrf_token%}
     <div class="form-group row mt-4">
 
+      <input type="hidden" class="form-control ml-2" id="tareaID" name="tareaID" value={{tarea.id}}>
+
       <!-- Revisar formato DATE -->
       <label for="HoraInicioTarea" class="col-sm-2 col-form-label ">Hora de Inicio: </label>
       <div class="col-sm-10">

@@ -143,12 +143,12 @@ class EquipoDetailView(DetailView):
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
         equipoUpdate = Equipo()
-        equipoUpdate.marca = str(req.POST['marca'])
-        equipoUpdate.modelo = str(req.POST['modelo'])
-        equipoUpdate.tipo = str(req.POST['tipo'])
-        equipoUpdate.fecha_adquisicion = req.POST['fecha_adquisicion']
-        equipoUpdate.fecha_instalacion = req.POST['fecha_instalacion']
-        equipoUpdate.fecha_ultimo_mantenimiento = req.POST['fecha_ultimo_mantenimiento']
+        equipoUpdate.marca = str(req.POST['equipoMarca'])
+        equipoUpdate.modelo = str(req.POST['equipoModelo'])
+        equipoUpdate.tipo = TipoEquipo.objects.get(pk=req.POST['equipoTipo'])
+        equipoUpdate.fecha_adquisicion = req.POST['equipoAdquisicion']
+        equipoUpdate.fecha_instalacion = req.POST['equipoInstalacion']
+        equipoUpdate.fecha_ultimo_mantenimiento = req.POST['equipoMantenimiento']
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         equipoUpdate.save()
         return redirect('equipo_lista')
@@ -199,12 +199,12 @@ class PedidoDetailView(DetailView):
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
         pedidoUpdate = Pedido()
-        pedidoUpdate.planificado = bool(req.POST['planificado'])
-        pedidoUpdate.producido = bool(req.POST['producido'])
-        pedidoUpdate.cantidad = int(req.POST['cantidad'])
-        pedidoUpdate.catalogo = Catalogo.objects.get(pk=int(req.POST['catalogo']))
-        pedidoUpdate.cliente = Cliente.objects.get(pk=int(req.POST['cliente']))
-        pedidoUpdate.importe = pedidoUpdate.cantidad *pedidoUpdate.catalogo.precio
+        pedidoUpdate.planificado = bool(req.POST['pedidoPlanificado'])
+        pedidoUpdate.producido = bool(req.POST['pedidoProducido'])
+        pedidoUpdate.cantidad = int(req.POST['pedidoCantidad'])
+        pedidoUpdate.catalogo = Catalogo.objects.get(pk=int(req.POST['pedidoReferencia']))
+        pedidoUpdate.cliente = Cliente.objects.get(pk=int(req.POST['pedidoCliente']))
+        pedidoUpdate.importe = pedidoUpdate.cantidad * pedidoUpdate.catalogo.precio
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         pedidoUpdate.save()
         return redirect('pedido_lista')
@@ -336,13 +336,13 @@ class TareaDetailView(DetailView):
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
         tareaUpdate = Tarea()
-        tareaUpdate.id = int(req.POST['idTarea'])
-        tareaUpdate.hora_inicio = req.POST['hora_inicio']
-        tareaUpdate.hora_fin = req.POST['hora_fin']
-        tareaUpdate.equipo = str(req.POST['equipo'])
-        tareaUpdate.proceso = str(req.POST['proceso'])
-        tareaUpdate.pedido = str(req.POST['pedido'])
-        tareaUpdate.empleados_asignados = str(req.POST['empleados_asignados'])
+        tareaUpdate.id = int(req.POST['tareaID'])
+        tareaUpdate.hora_inicio = req.POST['HoraInicioTarea']
+        tareaUpdate.hora_fin = req.POST['HoraFinTarea']
+        tareaUpdate.equipo = str(req.POST['tareaIDEquipo'])
+        tareaUpdate.proceso = str(req.POST['tareaIDProceso'])
+        tareaUpdate.pedido = str(req.POST['tareaIDPedido'])
+    # tareaUpdate.empleados_asignados = req.POST['empleados_asignados']
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()
         return redirect('tarea_lista')
