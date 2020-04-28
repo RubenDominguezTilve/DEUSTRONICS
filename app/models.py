@@ -11,7 +11,7 @@ class Empleado(models.Model):
     apellido1 = models.CharField(max_length=100)
     apellido2 = models.CharField(max_length=100)
     telefono = models.CharField(max_length=15)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,unique=True)
     def __str__(self):
        return self.nombre
 
@@ -51,7 +51,7 @@ class Catalogo(models.Model):
 
 class Cliente(models.Model):
     nombre = models.CharField(max_length=100)
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE,unique=True)
     def __str__(self):
        return self.nombre
 
