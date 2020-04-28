@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente
+from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
 from app.forms import EmpleadoForm, EquipoForm, CatalogoForm, ProcesoForm, PedidoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
@@ -75,13 +76,13 @@ class EmpleadoDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
-        empeladoUpdate = Empleado()
-        empleadoUpdate.dni = str(req.POST['dni'])
-        empleadoUpdate.nombre = str(req.POST['nombre'])
-        empleadoUpdate.apellido1 = str(req.POST['apellido1'])
-        empleadoUpdate.apellido2 = str(req.POST['apellido2'])
-        empleadoUpdate.telefono = str(req.POST['telefono'])
-        empleadoUpdate.usuario = str(req.POST['usuario'])
+        empleadoUpdate = Empleado()
+        empleadoUpdate.dni = str(req.POST['empleadoDNI'])
+        empleadoUpdate.nombre = str(req.POST['empleadoNombre'])
+        empleadoUpdate.apellido1 = str(req.POST['empleadoApellido1'])
+        empleadoUpdate.apellido2 = str(req.POST['empleadoApellido2'])
+        empleadoUpdate.telefono = str(req.POST['empleadoTelefono'])
+        empleadoUpdate.usuario = User.objects.get(pk=req.POST['empleadoUsuario'])
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         empleadoUpdate.save()
         return redirect('empleado_lista')
