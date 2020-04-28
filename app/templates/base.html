@@ -67,11 +67,22 @@
         <a class="nav-item nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
 
         {% if user.is_authenticated %}
-        <span class="nav-item nav-link">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
+        <span class="nav-item nav-link ml-auto">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
         {% else %}
-        <span class="nav-item nav-link">Welcome, new user. Please log in.</span>
+        <span class="nav-item nav-link ml-auto">Welcome, new user. Please log in.</span>
         {% endif %}
 
+
+        {% if request.user|has_group:"EMPLEADO" %} 
+          <span class="nav-item nav-link ml-auto">empleado</span>
+        {% elif request.user|has_group:"CLIENTE" %} 
+        <span class="nav-item nav-link ml-auto"> CLIENTE</span>
+        {% elif request.user|has_group:"RESPONSABLE" %} 
+        <span class="nav-item nav-link ml-auto"></span>  RESPONSABLE</span>
+        {%else%}
+        <span class="nav-item nav-link ml-auto"></span>  OTRO</span>
+        {%endif%}
+        
         <!--
         <a class="nav-item nav-link" href="#">Visualizar</a>
         <a class="nav-item nav-link" href="#">Gestionar</a>
@@ -83,13 +94,7 @@
   </nav>
   {%endblock%}
 
-  {% if request.user|has_group:"EMPLEADO" %} 
-  empleado
-  {% elif request.user|has_group:"CLIENTE" %} 
-  CLIENTE
-  {% elif request.user|has_group:"RESPONSABLE" %} 
-  RESPONSABLE
-  {%endif%}
+  
   <div class="container fill">
     <div class="row">
       {%block content %} {%endblock%}
