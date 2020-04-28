@@ -1,10 +1,10 @@
 {%extends 'base.html'%} {% block content%}
-<div id="divCrearEmpleados">
+<div id="divCrearProcesos">
   <h1>
-    Añadir empleados
+    Añadir procesos
   </h1>
 
-  <form action="{%url 'equipo_create'%}" method="POST">
+  <form action="{%url 'proceso_create'%}" method="POST">
     {%csrf_token%}
     {{form.as_p}}
     <input type="submit" value="Añadir" />

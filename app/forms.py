@@ -25,6 +25,27 @@ class TareaForm(forms.ModelForm):
         fields = '__all__'
 
 
+# Formulario crear Catalogos
+class CatalogoForm(forms.ModelForm):
+    class Meta:
+        model=Catalogo
+        fields = '__all__'
+
+
+# Formulario crear Pedidos
+class PedidoForm(forms.ModelForm):
+    class Meta:
+        model=Pedido
+        fields = '__all__'
+
+
+# Formulario crear Procesos
+class ProcesoForm(forms.ModelForm):
+    class Meta:
+        model=Proceso
+        fields = '__all__'
+
+
 # Formulario de Registro
 class RegisterForm(forms.ModelForm):
     class Meta:
