@@ -235,6 +235,7 @@ def PedidoDelete(req):
     pedidoBorrar.id = int(req.POST['idPedido'])
     pedidoBorrar.delete()
     return redirect('pedido_lista')
+    TareaDelete
 
 
 # -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
@@ -381,6 +382,14 @@ class TareaDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()
         return redirect('tarea_lista')
+
+# -Funcion para borrar un elemento en la BBDD
+def TareaDelete(req):
+    tareaBorrar = Tarea()
+    tareaBorrar.id = int(req.POST['idTarea'])
+    tareaBorrar.delete()
+    return redirect('tarea_lista')
+    
 
 # -Crear
 class TareaCreateView(View):

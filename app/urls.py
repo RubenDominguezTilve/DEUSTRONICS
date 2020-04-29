@@ -36,7 +36,7 @@ urlpatterns = [
     path('tareas/', login_required(views.TareaListView.as_view()), name='tarea_lista'),
     path('tarea/<int:pk>/', login_required(views.TareaDetailView.as_view()), name='tarea_detalle'),
     path('tarea/create/', login_required(views.TareaCreateView.as_view()), name='tarea_create'),
-    # path('tarea/delete/', login_required(views.TareaDelete), name='tarea_delete'),
+    path('tarea/delete/', login_required(views.TareaDelete), name='tarea_delete'),
 
     #Catalogos
     path('catalogo/', login_required(views.CatalogoListView.as_view()), name='catalogo_lista'),
