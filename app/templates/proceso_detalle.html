@@ -9,7 +9,8 @@
     <div class="form-group row mt-4">
       <label for="NombreProceso" class="col-sm-2 col-form-label">Nombre: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="NombreProceso" name="NombreProceso" value="{{proceso.nombre}}" />
+        <input type="text" class="form-control ml-2" id="NombreProceso" name="NombreProceso"
+          value="{{proceso.nombre}}" />
       </div>
     </div>
     <input type="hidden" name="idProceso" value="{{proceso.id}}">
@@ -22,6 +23,6 @@
     <input type="hidden" name="idProceso" value="{{proceso.id}}">
     <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
-    
+
 </div>
 {%endblock%}
