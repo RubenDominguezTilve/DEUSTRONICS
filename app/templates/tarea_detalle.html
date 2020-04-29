@@ -12,11 +12,23 @@
 
       <input type="hidden" class="form-control ml-2" id="tareaID" name="tareaID" value={{tarea.id}}>
 
-      <!-- Revisar formato DATE -->
+      <!-- TODO Revisar formato DATE -->
       <label for="HoraInicioTarea" class="col-sm-2 col-form-label ">Hora de Inicio: </label>
       <div class="col-sm-10">
         <input type="date" class="form-control ml-2" id="HoraInicioTarea" name="HoraInicioTarea"
-          value={{tarea.hora_inicio}}>
+          value="{{tarea.hora_inicio|date:'yy-m-d'}}">
+          Año: {{tarea.hora_inicio.year}}
+          <br>
+          Fecha: {{tarea.hora_inicio.year}}/{{tarea.hora_inicio.month}}/{{tarea.hora_inicio.day}}
+          <br>
+          Hora: {{tarea.hora_inicio.time}}
+          <br>
+          Horas: {{tarea.hora_inicio.hour}}
+          <br>
+          Minutos: {{tarea.hora_inicio.minute}}
+          <br>
+          Segundos: {{tarea.hora_inicio.second}}
+          <br>
       </div>
 
       <!-- Revisar formato DATE -->
