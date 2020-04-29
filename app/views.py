@@ -229,6 +229,14 @@ class PedidoDetailView(DetailView):
         pedidoUpdate.save()
         return redirect('pedido_lista')
 
+# -Funcion para borrar un elemento en la BBDD
+def PedidoDelete(req):
+    pedidoBorrar = Pedido()
+    pedidoBorrar.id = int(req.POST['idPedido'])
+    pedidoBorrar.delete()
+    return redirect('pedido_lista')
+
+
 # -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
 def crear_pedido(req):
     pedido=Pedido()

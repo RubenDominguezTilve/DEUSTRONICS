@@ -5,7 +5,7 @@
     Pedido {{pedido.id}}
   </h1>
 
-  <form action="{%url 'pedido_detalle' pedido.id %}" method="POST">
+  <form action="{%url 'pedido_detalle' pedido.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <!-- Revisar formato BOOL -->
@@ -48,9 +48,12 @@
     </div>
     <input type="hidden" name="id" value={{pedido.id}}>
     <input type="submit" class="btn btn-secondary" value="Guardar" />
+  </form>
 
-
-    <!--Aun sin programar-->
+  <form action="{%url 'pedido_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idPedido" value="{{pedido.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 </div>
 {%endblock%}
