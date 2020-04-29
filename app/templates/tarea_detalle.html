@@ -5,15 +5,30 @@
     Tarea {{tarea.id}}
   </h1>
 
-  <form action="{%url 'tarea_detalle' tarea.id %}" method="POST">
+  <form action="{%url 'tarea_detalle' tarea.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <input type="hidden" class="form-control ml-2" id="tareaID" name="tareaID" value="{{tarea.id}}" />
 
-      <!-- Revisar formato DATE -->
-      <label for="HoraInicioTarea" class="col-sm-2 col-form-label">Hora de Inicio: </label>
+      <input type="hidden" class="form-control ml-2" id="tareaID" name="tareaID" value={{tarea.id}}>
+
+      <!-- TODO Revisar formato DATE -->
+      <label for="HoraInicioTarea" class="col-sm-2 col-form-label ">Hora de Inicio: </label>
       <div class="col-sm-10">
-        <input type="date" class="form-control ml-2" id="HoraInicioTarea" name="HoraInicioTarea" value="{{tarea.hora_inicio|date:'yy-m-d'}}" />
+        <input type="date" class="form-control ml-2" id="HoraInicioTarea" name="HoraInicioTarea"
+          value="{{tarea.hora_inicio|date:'yy-m-d'}}">
+          Año: {{tarea.hora_inicio.year}}
+          <br>
+          Fecha: {{tarea.hora_inicio.year}}/{{tarea.hora_inicio.month}}/{{tarea.hora_inicio.day}}
+          <br>
+          Hora: {{tarea.hora_inicio.time}}
+          <br>
+          Horas: {{tarea.hora_inicio.hour}}
+          <br>
+          Minutos: {{tarea.hora_inicio.minute}}
+          <br>
+          Segundos: {{tarea.hora_inicio.second}}
+          <br>
       </div>
 
       <!-- Revisar formato DATE -->
@@ -37,12 +52,15 @@
       <div class="col-sm-10">
         <input type="text" class="form-control ml-2" id="tareaIDPedido" name="tareaIDPedido" value="{{tarea.pedido}}" />
       </div>
-    </div>
-    <input type="submit" class="btn btn-secondary" value="Guardar" />
 
-    <input type="submit" class="btn btn-secondary" value="Eliminar" />
-    <!--Aun sin programar-->
+    </div>
+    <input type="submit" class="btn btn-secondary" value="Guardar">
+  </form>
+
+  <form action="{%url 'tarea_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idTarea" value="{{tarea.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 </div>
-
 {%endblock%}

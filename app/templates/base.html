@@ -25,41 +25,42 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="z-index:99">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Deustronics</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="//codeply.com">Codeply</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-        </ul>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Deustronics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="//codeply.com">Codeply</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
     </div>
     <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+      <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+      </button>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link" href="#"></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{%url 'logout' %}"><img class="user-type-icon"  src="{%static 'icons/Operario.png'%}" alt=""><span> Cerrar sesión </span></a>
-            </li>
-        </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="#"></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'logout' %}"><img class="user-type-icon" src="{%static 'icons/Operario.png'%}"
+              alt=""><span> Cerrar sesión </span></a>
+        </li>
+      </ul>
     </div>
-</nav>
+  </nav>
 
 
 
@@ -80,7 +81,7 @@
           <div class="dropdown mr-2">
             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Visualizar <img class="user-type-icon"  src="{%static 'icons/Operario.png'%}" alt="">
+              Visualizar <img class="user-type-icon" src="{%static 'icons/Operario.png'%}" alt="">
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
               <a class="dropdown-item" href="{%url 'empleado_lista' %}">Empleados</a>
@@ -115,16 +116,20 @@
         {% endif %}
 
 
-        {% if request.user|has_group:"EMPLEADO" %} 
-          <span class="nav-item nav-link ml-auto"><img class="user-type-icon"  src="{%static 'icons/Operario.png'%}" alt=""></span>
-        {% elif request.user|has_group:"CLIENTE" %} 
-        <span class="nav-item nav-link ml-auto"> <img class="user-type-icon"  src="{%static 'icons/Cliente.png'%}" alt=""></span>
-        {% elif request.user|has_group:"RESPONSABLE" %} 
-        <span class="nav-item nav-link ml-auto"></span>  <img  class="user-type-icon" src="{%static 'icons/Responsable.png'%}" alt=""></span>
+        {% if request.user|has_group:"EMPLEADO" %}
+        <span class="nav-item nav-link ml-auto"><img class="user-type-icon" src="{%static 'icons/Operario.png'%}"
+            alt=""></span>
+        {% elif request.user|has_group:"CLIENTE" %}
+        <span class="nav-item nav-link ml-auto"> <img class="user-type-icon" src="{%static 'icons/Cliente.png'%}"
+            alt=""></span>
+        {% elif request.user|has_group:"RESPONSABLE" %}
+        <span class="nav-item nav-link ml-auto"></span> <img class="user-type-icon"
+          src="{%static 'icons/Responsable.png'%}" alt=""></span>
         {%else%}
-        <span class="nav-item nav-link ml-auto"></span>  <img  class="user-type-icon" src="{%static 'icons/Admin.png'%}" alt=""></span>
+        <span class="nav-item nav-link ml-auto"></span> <img class="user-type-icon" src="{%static 'icons/Admin.png'%}"
+          alt=""></span>
         {%endif%}
-        
+
         <!--
         <a class="nav-item nav-link" href="#">Visualizar</a>
         <a class="nav-item nav-link" href="#">Gestionar</a>
@@ -136,7 +141,7 @@
   </nav>
   {%endblock%}
 
-  
+
   <div class="container fill">
     <div class="row">
       {%block content %} {%endblock%}

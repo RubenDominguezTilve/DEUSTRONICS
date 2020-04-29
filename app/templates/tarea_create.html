@@ -3,10 +3,10 @@
   <h1>
     Añadir tareas
   </h1>
-<form action="{% url 'tarea_lista' %}" method="POST">
-  {% csrf_token%} 
-  {{form.as_p}}
-  <input type="submit" value="Enviar" />
-</form>
+  <form action="{% url 'tarea_lista' %}" method="POST">
+    {% csrf_token%}
+    {{form.as_p}}
+    <input type="submit" value="Enviar" />
+  </form>
 </div>
 {%endblock%}

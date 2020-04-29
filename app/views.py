@@ -98,6 +98,14 @@ class EmpleadoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         empleadoUpdate.save()
         return redirect('empleado_lista')
+        
+# -Funcion para borrar un elemento en la BBDD
+def EmpleadoDelete(req):
+    empleadoBorrar = Empleado()
+    empleadoBorrar.id = int(req.POST['idEmpleado'])
+    empleadoBorrar.delete()
+    return redirect('empleado_lista')     
+
 
 # -Crear
 class EmpleadoCreateView(View):
@@ -167,6 +175,13 @@ class EquipoDetailView(DetailView):
         equipoUpdate.save()
         return redirect('equipo_lista')
 
+# -Funcion para borrar un elemento en la BBDD
+def EquipoDelete(req):
+    equipoBorrar = Equipo()
+    equipoBorrar.id = int(req.POST['idEquipo'])
+    equipoBorrar.delete()
+    return redirect('equipo_lista')
+
 # -Crear
 class EquipoCreateView(View):
     # --La funcion get crea la vista
@@ -225,6 +240,15 @@ class PedidoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         pedidoUpdate.save()
         return redirect('pedido_lista')
+
+# -Funcion para borrar un elemento en la BBDD
+def PedidoDelete(req):
+    pedidoBorrar = Pedido()
+    pedidoBorrar.id = int(req.POST['idPedido'])
+    pedidoBorrar.delete()
+    return redirect('pedido_lista')
+    TareaDelete
+
 
 # -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
 def crear_pedido(req):
@@ -371,6 +395,14 @@ class TareaDetailView(DetailView):
         tareaUpdate.save()
         return redirect('tarea_lista')
 
+# -Funcion para borrar un elemento en la BBDD
+def TareaDelete(req):
+    tareaBorrar = Tarea()
+    tareaBorrar.id = int(req.POST['idTarea'])
+    tareaBorrar.delete()
+    return redirect('tarea_lista')
+    
+
 # -Crear
 class TareaCreateView(View):
     # --La funcion get crea la vista
@@ -423,6 +455,14 @@ class CatalogoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         catalogoUpdate.save()
         return redirect('catalogo_lista')
+
+# -Funcion para borrar un elemento en la BBDD
+def CatalogoDelete(req):
+    catalogoBorrar = Catalogo()
+    catalogoBorrar.id = int(req.POST['idCatalogo'])
+    catalogoBorrar.delete()
+    return redirect('catalogo_lista')
+
 
 # -Crear
 class CatalogoCreateView(View):

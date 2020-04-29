@@ -5,7 +5,7 @@
     Pedido {{pedido.id}}
   </h1>
 
-  <form action="{%url 'pedido_detalle' pedido.id %}" method="POST">
+  <form action="{%url 'pedido_detalle' pedido.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <!-- Revisar formato BOOL -->
@@ -28,10 +28,11 @@
       <div class="col-sm-10">
         <select name="pedidoReferencia" id="" class="form-control">
           {%for prod in productos%}
-          <option value="{{prod.id}}" {% if pedido.catalogo.id == prod.id %} selected {%endif%}> {{prod.nombre}} </option>
+          <option value="{{prod.id}}" {% if pedido.catalogo.id == prod.id %} selected {%endif%}> {{prod.nombre}}
+          </option>
           {%endfor%}
         </select>
-        
+
       </div>
 
       <label for="pedidoCliente" class="col-sm-2 col-form-label">Cliente: </label>
@@ -47,9 +48,12 @@
     </div>
     <input type="hidden" name="id" value={{pedido.id}}>
     <input type="submit" class="btn btn-secondary" value="Guardar" />
+  </form>
 
-    
-    <!--Aun sin programar-->
+  <form action="{%url 'pedido_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idPedido" value="{{pedido.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 </div>
 {%endblock%}
