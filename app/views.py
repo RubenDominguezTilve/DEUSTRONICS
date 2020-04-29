@@ -86,6 +86,15 @@ class EmpleadoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         empleadoUpdate.save()
         return redirect('empleado_lista')
+        
+# -Funcion para borrar un elemento en la BBDD
+def EmpleadoDelete(req):
+    empleadoBorrar = Empleado()
+    empleadoBorrar.id = int(req.POST['idEmpleado'])
+    empleadoBorrar.delete()
+    return redirect('empleado_lista')
+
+
 
 # -Crear
 class EmpleadoCreateView(View):
@@ -154,6 +163,13 @@ class EquipoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         equipoUpdate.save()
         return redirect('equipo_lista')
+
+# -Funcion para borrar un elemento en la BBDD
+def EquipoDelete(req):
+    equipoBorrar = Equipo()
+    equipoBorrar.id = int(req.POST['idEquipo'])
+    equipoBorrar.delete()
+    return redirect('equipo_lista')
 
 # -Crear
 class EquipoCreateView(View):

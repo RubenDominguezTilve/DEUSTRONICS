@@ -10,13 +10,13 @@ urlpatterns = [
     path('empleados/', login_required(views.EmpleadoListView.as_view()), name='empleado_lista'),
     path('empleado/<int:pk>/', login_required(views.EmpleadoDetailView.as_view()), name='empleado_detalle'),
     path('empleado/create/', login_required(views.EmpleadoCreateView.as_view()), name='empleado_create'),
-    # path('empleado/delete/', login_required(views.EmpleadoDelete), name='empleado_delete'),
+    path('empleado/delete/', login_required(views.EmpleadoDelete), name='empleado_delete'),
 
     #Equipos 
     path('equipos/', login_required(views.EquipoListView.as_view()), name='equipo_lista'),
     path('equipo/<int:pk>/', login_required(views.EquipoDetailView.as_view()), name='equipo_detalle'),
     path('equipo/create/', login_required(views.EquipoCreateView.as_view()), name='equipo_create'),
-    # path('equipo/delete/', login_required(views.EquipoDelete), name='equipo_delete'),
+    path('equipo/delete/', login_required(views.EquipoDelete), name='equipo_delete'),
 
     #Pedidos
     path('pedidos/', login_required(views.PedidoListView.as_view()), name='pedido_lista'),

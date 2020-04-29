@@ -5,7 +5,7 @@
     Empleado {{empleado.id}}
   </h1>
 
-  <form action="{%url 'empleado_detalle' empleado.id %}" method="POST">
+  <form action="{%url 'empleado_detalle' empleado.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <label for="empleadoDNI" class="col-sm-2 col-form-label">DNI: </label>
@@ -41,9 +41,12 @@
         value="{{empleado.usuario.id}}" />
     </div>
     <input type="submit" class="btn btn-secondary" value="Guardar" />
+  </form>
 
-    <input type="submit" class="btn btn-secondary" value="Eliminar" />
-    <!--Aun sin programar-->
+  <form action="{%url 'empleado_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idEmpleado" value="{{empleado.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 </div>
 

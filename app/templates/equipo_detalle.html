@@ -5,7 +5,7 @@
     Equipo {{equipo.id}}
   </h1>
 
-  <form action="{%url 'equipo_detalle' equipo.id %}" method="POST">
+  <form action="{%url 'equipo_detalle' equipo.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <label for="equipoMarca" class="col-sm-2 col-form-label">Marca: </label>
@@ -33,27 +33,30 @@
       <label for="equipoAdquisicion" class="col-sm-2 col-form-label">Fecha de Adquisición: </label>
       <div class="col-sm-10">
         <input type="date" class="form-control ml-2" id="equipoAdquisicion" name="equipoAdquisicion"
-          value="{{equipo.fecha_adquisicion|date:"yy-m-d"}}" />
+          value="{{equipo.fecha_adquisicion|date:'yy-m-d'}}" />
       </div>
 
       <!-- Revisar formato DATE -->
       <label for="equipoInstalacion" class="col-sm-2 col-form-label">Fecha de Instalación: </label>
       <div class="col-sm-10">
         <input type="date" class="form-control ml-2" id="equipoInstalacion" name="equipoInstalacion"
-          value="{{equipo.fecha_instalacion|date:"yy-m-d"}}" />
+          value="{{equipo.fecha_instalacion|date:'yy-m-d'}}" />
       </div>
 
       <!-- Revisar formato DATE -->
       <label for="equipoMantenimiento" class="col-sm-2 col-form-label">Fecha de Último Mantenimiento: </label>
       <div class="col-sm-10">
         <input type="date" class="form-control ml-2" id="equipoMantenimiento" name="equipoMantenimiento"
-          value="{{equipo.fecha_ultimo_mantenimiento|date:"yy-m-d"}}" />
+          value="{{equipo.fecha_ultimo_mantenimiento|date:'yy-m-d'}}" />
       </div>
     </div>
-    <input type="submit" class="btn btn-secondary" value="Guardar" />
     <input type="hidden" value="{{equipo.id}}" name="id">
-    <input type="submit" class="btn btn-secondary" value="Eliminar" />
-    <!--Aun sin programar-->
+    <input type="submit" class="btn btn-secondary" value="Guardar" />
+  </form>
+  <form action="{%url 'equipo_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idEquipo" value="{{equipo.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 </div>
 
