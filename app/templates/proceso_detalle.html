@@ -4,7 +4,7 @@
     Proceso {{proceso.id}}
   </h1>
 
-  <form action="{%url 'proceso_detalle' proceso.id %}" method="POST">
+  <form action="{%url 'proceso_detalle' proceso.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <label for="NombreProceso" class="col-sm-2 col-form-label">Nombre: </label>
@@ -14,7 +14,14 @@
     </div>
     <input type="hidden" name="idProceso" value="{{proceso.id}}">
     <input type="submit" class="btn btn-secondary" value="Guardar">
-    <input type="submit" class="btn btn-secondary" value="Eliminar" />
-    </form>
+
+  </form>
+
+  <form action="{%url 'proceso_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idProceso" value="{{proceso.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
+  </form>
+    
 </div>
 {%endblock%}

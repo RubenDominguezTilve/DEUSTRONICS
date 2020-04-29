@@ -279,6 +279,13 @@ class ProcesoDetailView(DetailView):
         procesoUpdate.save()
         return redirect('proceso_lista')
 
+# -Funcion para borrar un elemento en la BBDD
+def ProcesoDelete(req):
+    procesoBorrar = Proceso()
+    procesoBorrar.id = int(req.POST['idProceso'])
+    procesoBorrar.delete()
+    return redirect('proceso_lista')
+
 # -Crear
 class ProcesoCreateView(View):
     # --La funcion get crea la vista
