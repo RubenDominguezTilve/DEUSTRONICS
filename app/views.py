@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente,TipoEquipo
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
 from app.forms import EmpleadoForm, EquipoForm, CatalogoForm, ProcesoForm, PedidoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
@@ -42,12 +42,24 @@ def do_logout(req):
 # -Funcion para hacer el registro
 def register(req):
     form=RegisterForm(req.POST)
-    if(form.is_valid):
-        form.save()
-        # user=authenticate(req,username=form.cleaned_data['username'],password=form.cleaned_data['password'])
-        # if user is not None:
-        #     login(req, user)
-        print("valido")
+  
+    if form.is_valid():
+        
+        if form.cleaned_data["password1"] != form.cleaned_data["password2"]:
+            return redirect('get_login')
+
+        usuario=User(username=form.cleaned_data["username"])
+        usuario.set_password(form.cleaned_data["password1"])
+        group = Group.objects.get(name=CLIENTE)
+        usuario.save()
+        usuario.groups.add(group)
+
+        usuario.save()
+        cliente=Cliente(nombre=form.cleaned_data["empresa"])
+        cliente.usuario=usuario
+        cliente.save()
+        user = authenticate(req, username=usuario.username, password=form.cleaned_data["password1"])
+        login(req, user)
         return redirect('index')
     else:
         print("no valido")

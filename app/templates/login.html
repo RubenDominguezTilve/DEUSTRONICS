@@ -15,8 +15,9 @@
   <form action="{%url 'do_register'%}" method="POST">
     {%csrf_token%}
     <label for="">Usuario: </label>{{form.username}} <br />
-    <label for="">Contraseña: </label><input type="password" name="password" /> <br />
+    <label for="">Contraseña: </label><input type="password" name="password2" /> <br />
     <label for="">Repite la contraseña: </label><input type="password" name="password1" /> <br />
+    <label for="">Nombre empresa: </label><input type="text" name="empresa" /> <br />
     <input type="submit" value="Registrarse" />
   </form>
 </div>

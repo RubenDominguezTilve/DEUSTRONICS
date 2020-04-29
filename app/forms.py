@@ -47,10 +47,12 @@ class ProcesoForm(forms.ModelForm):
 
 
 # Formulario de Registro
-class RegisterForm(forms.ModelForm):
-    class Meta:
-        model=User
-        fields = ('username','password','email')
+class RegisterForm(forms.Form):
+    username=forms.CharField(max_length=100)
+    password1 = forms.CharField(widget=forms.PasswordInput, required=True)
+    password2 = forms.CharField(widget=forms.PasswordInput, required=True)
+    empresa=forms.CharField(max_length=100)
+    
 
 
 # Formulario de Inicio de Sesion
