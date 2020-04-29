@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente
+from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente,TipoEquipo
 from django.contrib.auth.models import User
 from django.views.generic import ListView, DetailView,View
 from django.urls import reverse
@@ -76,7 +76,7 @@ class EmpleadoDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
-        empleadoUpdate = Empleado()
+        empleadoUpdate = Empleado.objects.get(pk=req.POST['id'])
         empleadoUpdate.dni = str(req.POST['empleadoDNI'])
         empleadoUpdate.nombre = str(req.POST['empleadoNombre'])
         empleadoUpdate.apellido1 = str(req.POST['empleadoApellido1'])
@@ -138,12 +138,13 @@ class EquipoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EquipoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Equipo'
+        context['tipos'] = TipoEquipo.objects.all()
         return context
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
         equipoUpdate = Equipo()
+        equipoUpdate.id = int(req.POST['id'])
         equipoUpdate.marca = str(req.POST['equipoMarca'])
         equipoUpdate.modelo = str(req.POST['equipoModelo'])
         equipoUpdate.tipo = TipoEquipo.objects.get(pk=req.POST['equipoTipo'])
@@ -194,12 +195,15 @@ class PedidoDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles del Pedido'
+        context["clientes"]=Cliente.objects.all()
+        context["productos"]=Catalogo.objects.all()
         return context
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
+        print(req.POST)
         pedidoUpdate = Pedido()
+        pedidoUpdate.id=int(req.POST["id"])
         pedidoUpdate.planificado = bool(req.POST['pedidoPlanificado'])
         pedidoUpdate.producido = bool(req.POST['pedidoProducido'])
         pedidoUpdate.cantidad = int(req.POST['pedidoCantidad'])

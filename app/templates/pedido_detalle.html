@@ -1,7 +1,6 @@
 {%extends 'base.html'%} {% block content%}
 
 <div class="mt-2">
-
   <h1>
     Pedido {{pedido.id}}
   </h1>
@@ -9,39 +8,48 @@
   <form action="{%url 'pedido_detalle' pedido.id %}" method="POST">
     {% csrf_token%}
     <div class="form-group row mt-4">
-
       <!-- Revisar formato BOOL -->
-      <label for="pedidoPlanificado" class="col-sm-2 col-form-label ">Planificado: </label>
+      <label for="pedidoPlanificado" class="col-sm-2 col-form-label">Planificado: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="pedidoPlanificado" name="pedidoPlanificado" value={{pedido.planificado}}>
+        <input type="checkbox" name="pedidoPlanificado" {% if pedido.planificado %} checked{% endif %} id="" />
       </div>
 
-      <label for="pedidoProducido" class="col-sm-2 col-form-label ">Producido: </label>
+      <label for="pedidoProducido" class="col-sm-2 col-form-label">Producido: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="pedidoProducido" name="pedidoProducido" value={{pedido.producido}}>
+        <input type="checkbox" name="pedidoProducido" {% if pedido.producido %} checked{% endif %} id="" />
       </div>
 
-      <label for="pedidoCantidad" class="col-sm-2 col-form-label ">Cantidad: </label>
+      <label for="pedidoCantidad" class="col-sm-2 col-form-label">Cantidad: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="pedidoCantidad" name="pedidoCantidad" value={{pedido.cantidad}}>
+        <input type="text" class="form-control" id="pedidoCantidad" name="pedidoCantidad" value="{{pedido.cantidad}}" />
       </div>
 
-      <label for="pedidoReferencia" class="col-sm-2 col-form-label ">Referencia: </label>
+      <label for="pedidoReferencia" class="col-sm-2 col-form-label">Referencia: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="pedidoReferencia" name="pedidoReferencia" value={{pedido.catalogo}}>
+        <select name="pedidoReferencia" id="" class="form-control">
+          {%for prod in productos%}
+          <option value="{{prod.id}}" {% if pedido.catalogo.id == prod.id %} selected {%endif%}> {{prod.nombre}} </option>
+          {%endfor%}
+        </select>
+        
       </div>
 
-      <label for="pedidoCliente" class="col-sm-2 col-form-label ">Cliente: </label>
+      <label for="pedidoCliente" class="col-sm-2 col-form-label">Cliente: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="pedidoCliente" name="pedidoCliente" value={{pedido.cliente}}>
-      </div>
+        <select name="pedidoCliente" id="" class="form-control">
+          {%for cl in clientes%}
+          <option value="{{cl.id}}" {% if pedido.cliente.id == cl.id %} selected {%endif%}>{{cl.nombre}} </option>
+          {%endfor%}
+        </select>
 
+        <!-- <input type="text" class="form-control" id="pedidoCliente" name="pedidoCliente" value="{{pedido.cliente}}" /> -->
+      </div>
     </div>
-    <input type="submit" class="btn btn-secondary" value="Guardar">
+    <input type="hidden" name="id" value={{pedido.id}}>
+    <input type="submit" class="btn btn-secondary" value="Guardar" />
 
-    <input type="submit" class="btn btn-secondary" value="Eliminar">
+    
     <!--Aun sin programar-->
   </form>
-
 </div>
 {%endblock%}
