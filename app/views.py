@@ -92,8 +92,7 @@ def EmpleadoDelete(req):
     empleadoBorrar = Empleado()
     empleadoBorrar.id = int(req.POST['idEmpleado'])
     empleadoBorrar.delete()
-    return redirect('empleado_lista')
-
+    return redirect('empleado_lista')     
 
 
 # -Crear
@@ -427,6 +426,14 @@ class CatalogoDetailView(DetailView):
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         catalogoUpdate.save()
         return redirect('catalogo_lista')
+
+# -Funcion para borrar un elemento en la BBDD
+def CatalogoDelete(req):
+    catalogoBorrar = Catalogo()
+    catalogoBorrar.id = int(req.POST['idCatalogo'])
+    catalogoBorrar.delete()
+    return redirect('catalogo_lista')
+
 
 # -Crear
 class CatalogoCreateView(View):

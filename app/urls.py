@@ -42,7 +42,7 @@ urlpatterns = [
     path('catalogo/', login_required(views.CatalogoListView.as_view()), name='catalogo_lista'),
     path('catalogo/<int:pk>/', login_required(views.CatalogoDetailView.as_view()), name='catalogo_detalle'),
     path('catalogo/create/', login_required(views.CatalogoCreateView.as_view()), name='catalogo_create'),
-    # path('catalogo/delete/', login_required(views.CatalogoDelete), name='catalogo_delete'),
+    path('catalogo/delete/', login_required(views.CatalogoDelete), name='catalogo_delete'),
   
 
     #Login

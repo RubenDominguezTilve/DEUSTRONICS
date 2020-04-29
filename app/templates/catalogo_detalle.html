@@ -6,7 +6,7 @@
     Artículo ID: {{catalogo.id}}
   </h1>
 
-  <form action="{%url 'catalogo_detalle' catalogo.id %}" method="POST">
+  <form action="{%url 'catalogo_detalle' catalogo.id %}" method="POST" class="formDetalle">
     {% csrf_token%}
     <div class="form-group row mt-4">
       <!-- Nombre del producto -->
@@ -44,9 +44,12 @@
 
     </div>
     <input type="submit" class="btn btn-secondary" value="Guardar">
+  </form>
 
-    <input type="submit" class="btn btn-secondary" value="Eliminar">
-    <!--Aun sin programar-->
+  <form action="{%url 'catalogo_delete'%}" method="POST" class="formDetalle">
+    {% csrf_token%}
+    <input type="hidden" name="idCatalogo" value="{{catalogo.id}}">
+    <input type="submit" class="btn btn-danger" value="Eliminar">
   </form>
 
 </div>
