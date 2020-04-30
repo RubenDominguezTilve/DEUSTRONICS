@@ -15,14 +15,14 @@
       <label for="HoraInicioTarea" class="col-sm-2 col-form-label ">Hora de Inicio: </label>
       <div class="col-sm-10">
         <input type="datetime" class="form-control ml-2" id="HoraInicioTarea" name="HoraInicioTarea"
-          value="{{tarea.hora_inicio|date:'Y-m-d H:mm'}}">
+          value="{{tarea.hora_inicio|date:'Y-m-d H:m'}}">
           
       </div>
 
       <!-- Revisar formato DATE -->
       <label for="HoraFinTarea" class="col-sm-2 col-form-label">Hora de Fin: </label>
       <div class="col-sm-10">
-        <input type="datetime" class="form-control ml-2" id="HoraFinTarea" name="HoraFinTarea" value="{{tarea.hora_fin|date:'Y-m-d H:mm'}}" />
+        <input type="datetime" class="form-control ml-2" id="HoraFinTarea" name="HoraFinTarea" value="{{tarea.hora_fin|date:'Y-m-d H:m'}}" />
       </div>
 
       <label for="tareaIDProceso" class="col-sm-2 col-form-label">Proceso: </label>
