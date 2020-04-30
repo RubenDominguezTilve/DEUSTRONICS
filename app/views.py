@@ -378,7 +378,10 @@ class TareaDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(TareaDetailView, self).get_context_data(**kwargs)
-        #context['titulo_pagina'] = 'Detalles de la Tarea'
+        context['procesos'] = Proceso.objects.all()
+        context["equipos"]=Equipo.objects.all()
+        context["pedidos"]=Pedido.objects.all()
+        context["empleados"]=Empleado.objects.all()
         return context
 
     # --Funcion para actualizar un elemento en la BBDD
@@ -387,9 +390,9 @@ class TareaDetailView(DetailView):
         tareaUpdate.id = int(req.POST['tareaID'])
         tareaUpdate.hora_inicio = req.POST['HoraInicioTarea']
         tareaUpdate.hora_fin = req.POST['HoraFinTarea']
-        tareaUpdate.equipo = str(req.POST['tareaIDEquipo'])
-        tareaUpdate.proceso = str(req.POST['tareaIDProceso'])
-        tareaUpdate.pedido = str(req.POST['tareaIDPedido'])
+        tareaUpdate.equipo = Equipo.objects.get(pk=req.POST['tareaIDEquipo'])
+        tareaUpdate.proceso = Proceso.objects.get(pk=req.POST['tareaIDProceso'])
+        tareaUpdate.pedido = Pedido.objects.get(pk=req.POST['tareaIDPedido'])
     # tareaUpdate.empleados_asignados = req.POST['empleados_asignados']
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()
