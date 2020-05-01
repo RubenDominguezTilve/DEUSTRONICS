@@ -71,6 +71,7 @@ class Pedido(models.Model):
 
 
 class Tarea(models.Model):
+    finalizada = models.BooleanField(default=False)
     hora_inicio = models.DateTimeField()
     hora_fin = models.DateTimeField()
     equipo = models.ForeignKey(Equipo, on_delete=models.SET_NULL, null=True)

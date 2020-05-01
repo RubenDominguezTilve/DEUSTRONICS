@@ -289,6 +289,12 @@ def mis_pedidos(req):
     context={'pedidos':pedidos}
     return render(req,'pedido_lista.html',context)
 
+# -Muestra pedidos filtrando los no planificados
+def nuevos_pedidos(req):
+    pedidos=Pedido.objects.filter(planificado = True)
+    context={'pedidos':pedidos}
+    return render(req,'pedido_lista.html',context)
+
 # Procesos
 # -Lista    
 class ProcesoListView(View):
