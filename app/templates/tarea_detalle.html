@@ -16,18 +16,19 @@
       <div class="col-sm-10">
         <input type="datetime" class="form-control ml-2" id="HoraInicioTarea" name="HoraInicioTarea"
           value="{{tarea.hora_inicio|date:'Y-m-d H:m'}}">
-          
+
       </div>
 
       <!-- Revisar formato DATE -->
       <label for="HoraFinTarea" class="col-sm-2 col-form-label">Hora de Fin: </label>
       <div class="col-sm-10">
-        <input type="datetime" class="form-control ml-2" id="HoraFinTarea" name="HoraFinTarea" value="{{tarea.hora_fin|date:'Y-m-d H:m'}}" />
+        <input type="datetime" class="form-control ml-2" id="HoraFinTarea" name="HoraFinTarea"
+          value="{{tarea.hora_fin|date:'Y-m-d H:m'}}" />
       </div>
 
       <label for="tareaIDProceso" class="col-sm-2 col-form-label">Proceso: </label>
       <div class="col-sm-10">
-        
+
         <select name="tareaIDProceso" id="" class="form-control ml-2">
           {%for proc in procesos%}
           <option value="{{proc.id}}" {% if tarea.proceso.id == proc.id %} selected {%endif%}> {{proc.nombre}}
@@ -39,7 +40,7 @@
       <!-- Revisar texto acortado -->
       <label for="tareaIDEquipo" class="col-sm-2 col-form-label">Equipo: </label>
       <div class="col-sm-10">
-        
+
         <select name="tareaIDEquipo" id="" class="form-control ml-2">
           {%for eq in equipos%}
           <option value="{{eq.id}}" {% if tarea.equipo.id == eq.id %} selected {%endif%}> {{eq}}
@@ -50,7 +51,7 @@
 
       <label for="tareaIDPedido" class="col-sm-2 col-form-label">Pedido: </label>
       <div class="col-sm-10">
-       
+
         <select name="tareaIDPedido" id="" class="form-control ml-2">
           {%for ped in pedidos%}
           <option value="{{ped.id}}" {% if tarea.pedido.id == ped.id %} selected {%endif%}> {{ped}}
@@ -60,8 +61,8 @@
       </div>
       <label for="tareaIDProceso" class="col-sm-2 col-form-label">Empleados: </label>
       <div class="col-sm-10">
-        
-        <select name="empladosAsignados" id="" class="form-control ml-2" multiple >
+
+        <select name="empladosAsignados" id="" class="form-control ml-2" multiple>
           {%for empl in empleados%}
           <option value="{{empl.id}}" {% if empl in tarea.empleados_asignados.all %} selected {%endif%}> {{empl}}
           </option>
