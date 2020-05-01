@@ -289,6 +289,12 @@ def mis_pedidos(req):
     context={'pedidos':pedidos}
     return render(req,'pedido_lista.html',context)
 
+# -Muestra pedidos filtrando los no planificados
+def nuevos_pedidos(req):
+    pedidos=Pedido.objects.filter(planificado = True)
+    context={'pedidos':pedidos}
+    return render(req,'pedido_lista.html',context)
+
 # Procesos
 # -Lista    
 class ProcesoListView(View):
@@ -393,6 +399,7 @@ class TareaDetailView(DetailView):
         tareaUpdate.equipo = Equipo.objects.get(pk=req.POST['tareaIDEquipo'])
         tareaUpdate.proceso = Proceso.objects.get(pk=req.POST['tareaIDProceso'])
         tareaUpdate.pedido = Pedido.objects.get(pk=req.POST['tareaIDPedido'])
+        tareaUpdate.finalizada = bool(req.POST.get('tareaFinalizada'))
     # tareaUpdate.empleados_asignados = req.POST['empleados_asignados']
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()

@@ -43,7 +43,7 @@
 
         {% elif request.user|has_group:"RESPONSABLE" %}
         <li class="nav-item">
-          <a class="nav-link" href="#">Nuevos Pedidos</a>
+          <a class="nav-link" href="{%url 'nuevos_pedidos' %}">Nuevos Pedidos</a>
         </li>
         {%endif%}
       </ul>

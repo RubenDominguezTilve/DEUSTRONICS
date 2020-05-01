@@ -37,7 +37,7 @@
         </select>
       </div>
 
-      <!-- Revisar texto acortado -->
+
       <label for="tareaIDEquipo" class="col-sm-2 col-form-label">Equipo: </label>
       <div class="col-sm-10">
 
@@ -70,6 +70,10 @@
         </select>
       </div>
 
+      <label for="tareaFinalizada" class="col-sm-2 col-form-label">Finalizada: </label>
+      <div class="col-sm-10">
+        <input type="checkbox" name="tareaFinalizada" id=""  {% if tarea.finalizada %} checked{% endif %}/>
+      </div>
     </div>
     <input type="submit" class="btn btn-secondary" value="Guardar">
   </form>
