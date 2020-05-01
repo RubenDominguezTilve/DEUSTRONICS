@@ -404,7 +404,15 @@ def TareaDelete(req):
     tareaBorrar.id = int(req.POST['idTarea'])
     tareaBorrar.delete()
     return redirect('tarea_lista')
+
     
+#Funcion para extraer las tareas asignadas del operario logeado    
+def mis_tareas(req):
+    empleadoTupla=(getLoggedEmpleado(req).id,)
+    tareas=Tarea.objects.filter(empleados_asignados__in=empleadoTupla)#pasamos una tupla porque es lo que pide el metodo
+    context={"tareas":tareas}
+    
+    return render(req,"tarea_lista.html",context)
 
 # -Crear
 class TareaCreateView(View):

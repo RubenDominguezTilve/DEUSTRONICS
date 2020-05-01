@@ -1,59 +1,12 @@
 {%extends 'base.html'%} {% block content%} {%load static %}
-<!--
-<style>
-  a {
-    background-color: yellow;
-  }
+{% load sesion_tags %}
 
-  .index-card {
-    border: 5px solid red;
-    position: relative;
-  }
-
-  .index-card a {
-    height: 100%;
-    width: 100%;
-  }
-
-  .my-container {
-    border: 2px solid green;
-  }
-
-  .my-row {
-    border: 3px solid blueviolet;
-  }
-
-  .my-col {
-    border: 1px solid blue;
-  }
-</style>
-
-<div id="index-cards">
-  <div class="index-card col-sm-6">
-    {%load static %}
-    <img src="{% static 'icons/company.png' %}" class="card-icon" alt="..." />
-    <span>Equipos</span>
-  </div>
-  <div class="index-card col-sm-6">
-    {%load static %}
-    <img src="{% static 'icons/company.png' %}" class="card-icon" alt="..." />
-    <span>Equipos</span>
-  </div>
-
-  <div class="index-card col-sm-6">
-    {%load static %}
-    <img src="{% static 'icons/company.png' %}" class="card-icon" alt="..." />
-    <span>Equipos</span>
-  </div>
-  <div class="index-card col-sm-6">
-    {%load static %}
-    <img src="{% static 'icons/company.png' %}" class="card-icon" alt="..." />
-    <span>Equipos</span>
-  </div>
-</div>
--->
 <div id="index-cards" class="content my-container">
-  <div class="row my-row">
+  <div class="row my-row d-flex justify-content-center" >
+    
+    {%if request.user|has_group:"CLIENTE" or request.user|has_group:"RESPONSABLE" %}
+    
+    <!--Catalogo-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'catalogo_lista' %}">
         <!-- <img src="{% static 'icons/Catalogo.png' %}" class="card-icon" alt="..." /> -->
@@ -90,6 +43,14 @@
         <span>Catálogo</span>
       </a>
     </div>
+{%endif%}
+
+
+
+
+
+{%if request.user|has_group:"OPERARIO" or request.user|has_group:"RESPONSABLE" %}
+<!--Empleados-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'empleado_lista' %}">
         <!-- <img src="{% static 'icons/Empleado.png' %}" class="card-icon" alt="..." /> -->
@@ -110,6 +71,11 @@
         <span>Empleados</span>
       </a>
     </div>
+
+{%endif%}
+
+{%if  request.user|has_group:"RESPONSABLE" %}
+<!--Pedidos-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'pedido_lista' %}">
         <!-- <img src="{% static 'icons/Pedido.png' %}" class="card-icon" alt="..." /> -->
@@ -146,6 +112,12 @@
         <span>Pedidos</span>
       </a>
     </div>
+
+{%endif%}
+
+    {%if request.user|has_group:"OPERARIO" or request.user|has_group:"RESPONSABLE" %}
+
+<!--Procesos-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'proceso_lista' %}">
         <!-- <img src="{% static 'icons/Proceso.png' %}" class="card-icon" alt="..." /> -->
@@ -195,9 +167,16 @@
       </a>
     </div>
 
+
+{%endif%}
+
+
+
+{%if  request.user|has_group:"OPERARIO" or request.user|has_group:"RESPONSABLE" %}
+<!--Tareas-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'tarea_lista' %}">
-        <!-- <img src="{% static 'icons/Tarea.svg' %}" class="card-icon" alt="..." /> -->
+       
 
         <!-- icono -->
         <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="512px"
@@ -254,13 +233,21 @@
           </g>
         </svg>
         <!-- fin de icono  -->
-
         <span>Tareas</span>
       </a>
     </div>
-    <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
+
+
+{%endif%}
+
+
+
+{%if request.user|has_group:"OPERARIO" or request.user|has_group:"RESPONSABLE" %}
+
+<!--Equipos-->
+     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
       <a class="index-card col-sm-6" href="{%url 'equipo_lista' %}">
-        <!-- <img src="{% static 'icons/Equipo.png' %}" class="card-icon" alt="..." /> -->
+      
         <svg xmlns="http://www.w3.org/2000/svg" height="512px" viewBox="0 0 60 61" width="512px">
           <g>
             <g id="025---Milling" transform="translate(-1)">
@@ -307,7 +294,8 @@
 
         <span>Equipos</span>
       </a>
-    </div>
+    </div> 
+    {%endif%}
   </div>
 
 </div>

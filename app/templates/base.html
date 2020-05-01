@@ -1,166 +1,90 @@
-{%load static %}
-{% load sesion_tags  %}
+{%load static %} {% load sesion_tags %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deustronics - App</title>
+    <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main.css'%}" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deustronics - App</title>
-  <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}" />
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{% static 'main.css'%}" />
-</head>
+  <body>
+    {% block nav%}
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary" id="navbar">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'index' %}">Deustronics</a>
+          </li>
+          {% if request.user|has_group:"OPERARIO" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'mis_tareas'%}">Mis tareas</a>
+          </li>
 
-<body>
-  {% block nav%}
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="z-index:99">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Deustronics</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="//codeply.com">Codeply</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-      </ul>
-    </div>
-    <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#"></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'logout' %}"><img class="user-type-icon" src="{%static 'icons/Operario.png'%}"
-              alt=""><span> Cerrar sesión </span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+          {% elif request.user|has_group:"CLIENTE" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
+          </li>
 
-
-
-
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
-      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-item nav-link active" href="{%url 'index' %}">Deustronics <span
-            class="sr-only">(current)</span></a>
-
-        <div class="btn-group">
-          <div class="dropdown mr-2">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Visualizar <img class="user-type-icon" src="{%static 'icons/Operario.png'%}" alt="">
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{%url 'empleado_lista' %}">Empleados</a>
-              <a class="dropdown-item" href="{%url 'equipo_lista' %}">Equipos</a>
-              <a class="dropdown-item" href="{%url 'pedido_lista' %}">Pedidos</a>
-              <a class="dropdown-item" href="{%url 'proceso_lista' %}">Procesos</a>
-              <a class="dropdown-item" href="{%url 'tarea_lista' %}">Tareas</a>
-            </div>
-          </div>
-          <div class="dropdown dropdown-dark">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Gestionar
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <a class="dropdown-item" href="{%url 'empleado_lista' %}">Empleados</a>
-              <a class="dropdown-item" href="{%url 'equipo_lista' %}">Equipos</a>
-              <a class="dropdown-item" href="{%url 'pedido_lista' %}">Pedidos</a>
-              <a class="dropdown-item" href="{%url 'proceso_lista' %}">Procesos</a>
-              <a class="dropdown-item" href="{%url 'tarea_lista' %}">Tareas</a>
-            </div>
-          </div>
-        </div>
-        <a class="nav-item nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
-        <a class="nav-item nav-link" href="{%url 'logout' %}">Logout</a>
-        <a class="nav-item nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
-
-        {% if user.is_authenticated %}
-        <span class="nav-item nav-link ml-auto">Welcome, {{ user.get_username }}. Thanks for logging in.</span>
-        {% else %}
-        <span class="nav-item nav-link ml-auto">Welcome, new user. Please log in.</span>
-        {% endif %}
-
-
-        {% if request.user|has_group:"EMPLEADO" %}
-        <span class="nav-item nav-link ml-auto"><img class="user-type-icon" src="{%static 'icons/Operario.png'%}"
-            alt=""></span>
-        {% elif request.user|has_group:"CLIENTE" %}
-        <span class="nav-item nav-link ml-auto"> <img class="user-type-icon" src="{%static 'icons/Cliente.png'%}"
-            alt=""></span>
-        {% elif request.user|has_group:"RESPONSABLE" %}
-        <span class="nav-item nav-link ml-auto"></span> <img class="user-type-icon"
-          src="{%static 'icons/Responsable.png'%}" alt=""></span>
-        {%else%}
-        <span class="nav-item nav-link ml-auto"></span> <img class="user-type-icon" src="{%static 'icons/Admin.png'%}"
-          alt=""></span>
-        {%endif%}
-
-        <!--
-        <a class="nav-item nav-link" href="#">Visualizar</a>
-        <a class="nav-item nav-link" href="#">Gestionar</a>
-        <a class="nav-item nav-link" href="#">Catálogo</a>
-        
-        <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Catálogo</a>
-        -->
+          {% elif request.user|has_group:"RESPONSABLE" %}
+          <li class="nav-item">
+            <a class="nav-link" href="#">Nuevos Pedidos</a>
+          </li>
+          {%endif%}
+        </ul>
       </div>
-  </nav>
-  {%endblock%}
+      <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout' %}">
+              {% if request.user|has_group:"OPERARIO" %}
+              <img class="user-type-icon" src="{%static 'icons/Operario.png'%}" alt="" />
+              {% elif request.user|has_group:"CLIENTE" %}
+              <img class="user-type-icon" src="{%static 'icons/Cliente.png'%}" alt="" />
+              {% elif request.user|has_group:"RESPONSABLE" %}
+              <img class="user-type-icon" src="{%static 'icons/Responsable.png'%}" alt="" />
+              {%else%}
+              <img class="user-type-icon" src="{%static 'icons/Admin.png'%}" alt="" />
+              {%endif%}
+              <span> Cerrar sesión </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
+    {%endblock%}
 
-  <div class="container fill">
-    <div class="row">
-      {%block content %} {%endblock%}
+    <div class="container fill">
+      <div class="row">
+        {%block content %} {%endblock%}
+      </div>
     </div>
-  </div>
 
-  <!-- Boton Flotante -->
+    <!-- Boton Flotante -->
 
-  {%if urlBotonFlotante%}
-  <a id="botonFlotante" href="{{urlBotonFlotante}}">
-    <div class="botonFlotantePadre">
-      <span class="botonFlotanteHijo">
-        <img id="iconoAñadir" src="{% static 'icons/ArturMas.png' %}" alt="Añadir">
-      </span>
-    </div>
-  </a>
-  {%endif%}
-
-
-</body>
-
+    {%if urlBotonFlotante%}
+    <a id="botonFlotante" href="{{urlBotonFlotante}}">
+      <div class="botonFlotantePadre">
+        <span class="botonFlotanteHijo">
+          <img id="iconoAñadir" src="{% static 'icons/ArturMas.png' %}" alt="Añadir" />
+        </span>
+      </div>
+    </a>
+    {%endif%}
+  </body>
 </html>

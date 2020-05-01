@@ -182,6 +182,11 @@ $dimensionBoton: 50px;
 }
 
 // Visualizacion de formularios
-.formDetalle{
+.formDetalle {
   display: inline;
- }
+}
+
+#navbar {
+  z-index: 99;
+  box-shadow: 0px 1px 8px black;
+}
