@@ -21,7 +21,7 @@
 
 <body>
   {% block nav%}
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary" id="navbar">
+  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3" id="navbar">
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
       <ul class="navbar-nav mr-auto">
@@ -82,8 +82,7 @@
   </div>
 
   <!-- Boton Flotante -->
-
-  {%if urlBotonFlotante%}
+  {%if urlBotonFlotante and request.user|has_group:"RESPONSABLE" %}
   <a id="botonFlotante" href="{{urlBotonFlotante}}">
     <div class="botonFlotantePadre">
       <span class="botonFlotanteHijo">

@@ -1,4 +1,5 @@
 {%extends 'base.html'%} {% block content%}
+{% load sesion_tags %}
 <h1>
   Catálogo 2020-2021
 </h1>
@@ -21,6 +22,7 @@
             <a href="{%url 'catalogo_detalle' catalogo.id %}"> Ver detalle</a>
             <!-- Precio del producto por unidad -->
             <p>Precio: {{catalogo.precio}} €</p>
+            {%if  request.user|has_group:"CLIENTE" %}
             <!-- Cantidad de unidades a pedir -->
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -35,8 +37,10 @@
                 <div class="input-group-append">
                   <button class="btn btn-outline-dark bg-secondary" type="submit" id="button-addon1">Pedir</button>
                 </div>
+                
               </form>
             </div>
+            {%endif%}
           </div>
         </div>
         {%endfor%}

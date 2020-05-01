@@ -230,7 +230,7 @@ class PedidoDetailView(DetailView):
     def post(self, req, *args, **kwargs):
         print(req.POST)
         pedidoUpdate = Pedido()
-        pedidoUpdate.id=int(req.POST["id"])
+        pedidoUpdate.id = int(req.POST["id"])
         pedidoUpdate.planificado = bool(req.POST['pedidoPlanificado'])
         pedidoUpdate.producido = bool(req.POST['pedidoProducido'])
         pedidoUpdate.cantidad = int(req.POST['pedidoCantidad'])
@@ -260,7 +260,7 @@ def crear_pedido(req):
     pedido.importe=pedido.catalogo.precio * int(req.POST["cantidad"])
     pedido.cantidad=int(req.POST['cantidad'])
     pedido.save() 
-    return redirect('catalogo_lista')
+    return redirect('mis_pedidos')
     #obj = Class.objects.get(pk=this_object_id)
 
 class PedidoCreateView(View):
