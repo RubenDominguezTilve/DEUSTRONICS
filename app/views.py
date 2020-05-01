@@ -386,6 +386,8 @@ class TareaDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
+      
+        tarea=Tarea.objects.get(pk=req.POST["tareaID"])                
         tareaUpdate = Tarea()
         tareaUpdate.id = int(req.POST['tareaID'])
         tareaUpdate.hora_inicio = req.POST['HoraInicioTarea']
@@ -393,7 +395,7 @@ class TareaDetailView(DetailView):
         tareaUpdate.equipo = Equipo.objects.get(pk=req.POST['tareaIDEquipo'])
         tareaUpdate.proceso = Proceso.objects.get(pk=req.POST['tareaIDProceso'])
         tareaUpdate.pedido = Pedido.objects.get(pk=req.POST['tareaIDPedido'])
-    # tareaUpdate.empleados_asignados = req.POST['empleados_asignados']
+        tareaUpdate.empleados_asignados.set(Empleado.objects.filter(id__in=req.POST.getlist("empleadosAsignados")))
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()
         return redirect('tarea_lista')
