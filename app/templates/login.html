@@ -7,6 +7,9 @@
   <form action="{%url 'do_login'%}" method="POST">
     {%csrf_token%} {{login.as_p}}
     <input type="submit" value="Iniciar Sesión" />
+    {%if LoginMessage %}
+    <div>{{LoginMessage}}</div>
+    {% endif %}
   </form>
 
   <div class="dropdown-divider"></div>
@@ -19,6 +22,9 @@
     <label for="">Repite la contraseña: </label><input type="password" name="password1" /> <br />
     <label for="">Nombre empresa: </label><input type="text" name="empresa" /> <br />
     <input type="submit" value="Registrarse" />
+    {{form.errors}} {%if RegisterMessage %}
+    <div>{{RegisterMessage}}</div>
+    {% endif %}
   </form>
 </div>
 {%endblock%}

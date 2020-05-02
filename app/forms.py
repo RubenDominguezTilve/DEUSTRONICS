@@ -23,7 +23,10 @@ class TareaForm(forms.ModelForm):
     class Meta:
         model=Tarea
         fields = '__all__'
-
+        widgets = {
+            'hora_inicio': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}"}),
+            'hora_fin': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}"}),
+        }
 
 # Formulario crear Catalogos
 class CatalogoForm(forms.ModelForm):
