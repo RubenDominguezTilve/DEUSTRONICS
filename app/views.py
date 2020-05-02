@@ -31,8 +31,9 @@ def do_login(req):
         print(req.GET)
         return redirect('index')
     else:
-        print('mal')
-        return redirect('get_login')
+        context={'form':RegisterForm, 'login':LoginForm, "LoginMessage":"Usuario y/o contraseña incorrectos"}
+        return render(req,"login.html", context)
+    
 
 # -Funcion para hacer el logout
 def do_logout(req):
@@ -46,7 +47,8 @@ def register(req):
     if form.is_valid():
         
         if form.cleaned_data["password1"] != form.cleaned_data["password2"]:
-            return redirect('get_login')
+            context={'form':RegisterForm, 'login':LoginForm, "RegisterMessage":"Contraseñas no coinciden"}
+            return render(req,"login.html", context)
 
         usuario=User(username=form.cleaned_data["username"])
         usuario.set_password(form.cleaned_data["password1"])
@@ -62,8 +64,8 @@ def register(req):
         login(req, user)
         return redirect('index')
     else:
-        print("no valido")
-        return redirect('get_login')
+        context={'form':form, 'login':LoginForm,"RegisterMessage":"Recuerda la contraseña debe tener al menos 8 caracteres y no pueden ser solo numeros"}
+        return render(req,"login.html", context)
    
 # Empleados
 # -Lista
