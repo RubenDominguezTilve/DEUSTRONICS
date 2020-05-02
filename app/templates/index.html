@@ -114,7 +114,7 @@
     </div>
 
     {%endif%}
-    
+
     {%if  request.user|has_group:"CLIENTE" %}
     <!--Mis Pedidos-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
@@ -216,7 +216,8 @@
     {%if  request.user|has_group:"OPERARIO" or request.user|has_group:"RESPONSABLE" %}
     <!--Tareas-->
     <div class="col my-col justify-content-center d-flex col-md-4 mt-4">
-      <a class="index-card col-sm-6" {%if  request.user|has_group:"OPERARIO" %} href="{%url 'mis_tareas' %}" {%endif%} {%if  request.user|has_group:"RESPONSABLE" %} href="{%url 'tarea_lista' %}" {%endif%}>
+      <a class="index-card col-sm-6" {%if  request.user|has_group:"OPERARIO" %} href="{%url 'mis_tareas' %}" {%endif%}
+        {%if  request.user|has_group:"RESPONSABLE" %} href="{%url 'tarea_lista' %}" {%endif%}>
 
         <!-- Icono -->
         <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="512px"
@@ -274,7 +275,7 @@
         </svg>
         <!-- fin de icono  -->
         <span>
-          {%if  request.user|has_group:"OPERARIO" %} 
+          {%if  request.user|has_group:"OPERARIO" %}
           Mis tareas
           {%endif%}
 
