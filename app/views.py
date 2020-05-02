@@ -7,7 +7,7 @@ from django.urls import reverse
 from app.forms import EmpleadoForm, EquipoForm, CatalogoForm, ProcesoForm, PedidoForm, TareaForm, RegisterForm, LoginForm    #Tendra que haber al menos uno por cada elemento a crear
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
-from .sessionHandler import getLoggedCliente,getLoggedEmpleado
+from .sessionHandler import getLoggedCliente, getLoggedEmpleado, getTipoUsuario
 
 # Pagina principal
 def index(req):    
@@ -402,9 +402,14 @@ class TareaDetailView(DetailView):
         tareaUpdate.proceso = Proceso.objects.get(pk=req.POST['tareaIDProceso'])
         tareaUpdate.pedido = Pedido.objects.get(pk=req.POST['tareaIDPedido'])
         tareaUpdate.empleados_asignados.set(Empleado.objects.filter(id__in=req.POST.getlist("empleadosAsignados")))
+        tareaUpdate.finalizada = bool(req.POST.get('tareaFinalizada'))
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         tareaUpdate.save()
-        return redirect('tarea_lista')
+        if (getTipoUsuario(req) == OPERARIO):
+            return redirect('mis_tareas')
+        else:
+            return redirect('tarea_lista')
+        
 
 # -Funcion para borrar un elemento en la BBDD
 def TareaDelete(req):
