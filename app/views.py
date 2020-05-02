@@ -291,7 +291,7 @@ def mis_pedidos(req):
 
 # -Muestra pedidos filtrando los no planificados
 def nuevos_pedidos(req):
-    pedidos=Pedido.objects.filter(planificado = True)
+    pedidos=Pedido.objects.filter(planificado = False)
     context={'pedidos':pedidos}
     return render(req,'pedido_lista.html',context)
 
