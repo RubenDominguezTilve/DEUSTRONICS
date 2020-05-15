@@ -1,96 +1,91 @@
 {%load static %} {% load sesion_tags %}
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Deustronics - App</title>
+    <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}" />
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'main.css'%}" />
+    <script src="{%static 'js/base.js' %}"></script>
+    <script src="{%static 'js/base2.js' %}"></script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Deustronics - App</title>
-  <link rel="icon" type="image/png" href="{% static 'Desuto5.png' %}" />
-  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-    crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="{% static 'main.css'%}" />
-</head>
+  <body>
+    {% block nav%}
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3" id="navbar">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="{%url 'index' %}">Deustronics</a>
+          </li>
+          {% if request.user|has_group:"OPERARIO" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'mis_tareas'%}">Mis tareas</a>
+          </li>
 
-<body>
-  {% block nav%}
-  <nav class="navbar navbar-expand-md navbar-dark bg-primary mb-3" id="navbar">
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <a class="navbar-brand" href="{%url 'index' %}"><img src="{% static 'Desuto5.png' %}" alt="" id="logo" /></a>
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="{%url 'index' %}">Deustronics</a>
-        </li>
-        {% if request.user|has_group:"OPERARIO" %}
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'mis_tareas'%}">Mis tareas</a>
-        </li>
+          {% elif request.user|has_group:"CLIENTE" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
+          </li>
 
-        {% elif request.user|has_group:"CLIENTE" %}
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'mis_pedidos' %}">Mis Pedidos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'catalogo_lista' %}">Catálogo</a>
-        </li>
+          {% elif request.user|has_group:"RESPONSABLE" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'nuevos_pedidos' %}">Nuevos Pedidos</a>
+          </li>
+          {%endif%}
+        </ul>
+      </div>
+      <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'logout' %}">
+              {% if request.user|has_group:"OPERARIO" %}
+              <img class="user-type-icon" src="{%static 'icons/Operario.png'%}" alt="" />
+              {% elif request.user|has_group:"CLIENTE" %}
+              <img class="user-type-icon" src="{%static 'icons/Cliente.png'%}" alt="" />
+              {% elif request.user|has_group:"RESPONSABLE" %}
+              <img class="user-type-icon" src="{%static 'icons/Responsable.png'%}" alt="" />
+              {%else%}
+              <img class="user-type-icon" src="{%static 'icons/Admin.png'%}" alt="" />
+              {%endif%}
+              <span> Cerrar sesión </span></a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-        {% elif request.user|has_group:"RESPONSABLE" %}
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'nuevos_pedidos' %}">Nuevos Pedidos</a>
-        </li>
-        {%endif%}
-      </ul>
+    {%endblock%}
+
+    <div class="container fill">
+      <div class="row">
+        {%block content %} {%endblock%}
+      </div>
     </div>
-    <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="#">{{user.get_username}}</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'logout' %}">
-            {% if request.user|has_group:"OPERARIO" %}
-            <img class="user-type-icon" src="{%static 'icons/Operario.png'%}" alt="" />
-            {% elif request.user|has_group:"CLIENTE" %}
-            <img class="user-type-icon" src="{%static 'icons/Cliente.png'%}" alt="" />
-            {% elif request.user|has_group:"RESPONSABLE" %}
-            <img class="user-type-icon" src="{%static 'icons/Responsable.png'%}" alt="" />
-            {%else%}
-            <img class="user-type-icon" src="{%static 'icons/Admin.png'%}" alt="" />
-            {%endif%}
-            <span> Cerrar sesión </span></a>
-        </li>
-      </ul>
-    </div>
-  </nav>
 
-  {%endblock%}
-
-  <div class="container fill">
-    <div class="row">
-      {%block content %} {%endblock%}
-    </div>
-  </div>
-
-  <!-- Boton Flotante -->
-  {%if urlBotonFlotante and request.user|has_group:"RESPONSABLE" %}
-  <a id="botonFlotante" href="{{urlBotonFlotante}}">
-    <div class="botonFlotantePadre">
-      <span class="botonFlotanteHijo">
-        <img id="iconoAñadir" src="{% static 'icons/ArturMas.png' %}" alt="Añadir" />
-      </span>
-    </div>
-  </a>
-  {%endif%}
-</body>
-
+    <!-- Boton Flotante -->
+    {%if urlBotonFlotante and request.user|has_group:"RESPONSABLE" %}
+    <a id="botonFlotante" href="{{urlBotonFlotante}}">
+      <div class="botonFlotantePadre">
+        <span class="botonFlotanteHijo">
+          <img id="iconoAñadir" src="{% static 'icons/ArturMas.png' %}" alt="Añadir" />
+        </span>
+      </div>
+    </a>
+    {%endif%}
+  </body>
 </html>
