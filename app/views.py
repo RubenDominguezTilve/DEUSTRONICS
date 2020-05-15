@@ -427,7 +427,7 @@ def mis_tareas(req):
     tareas=Tarea.objects.filter(empleados_asignados__in=empleadoTupla)#pasamos una tupla porque es lo que pide el metodo
     context={"tareas":tareas}
     
-    return render(req,"tarea_lista.html",context)
+    return render(req,"tarea_empleado_lista.html",context)
 
 # -Crear
 class TareaCreateView(View):

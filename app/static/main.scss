@@ -53,6 +53,10 @@ body {
   background: #ccc;
 }
 
+/**-----------------------------checkbox---------------*/
+
+/**-------------------fin ----------checkbox---------------*/
+
 #logo {
   height: 50px;
 }
@@ -189,4 +193,31 @@ $dimensionBoton: 50px;
 #navbar {
   z-index: 99;
   box-shadow: 0px 1px 8px black;
+}
+
+.finalizar-tarea {
+  position: relative;
+
+  height: 1.7em;
+  width: 100%;
+}
+
+.check-finalizar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.tarea-done {
+  animation: marcarTarea 2s cubic-bezier(0, -0.4, 0.76, 1.01);
+}
+
+@keyframes marcarTarea {
+  0% {
+    transform: translateX(0px);
+  }
+  100% {
+    transform: translateX(4000px);
+  }
 }

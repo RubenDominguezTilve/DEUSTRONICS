@@ -1,0 +1,50 @@
+{%extends 'base.html'%} 
+{%load static%}
+{% block content%}
+
+<h1>
+  Listado de tareas
+</h1>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Hora Inicio</th>
+      <th scope="col">Hora Final</th>
+      <th scope="col">Proceso</th>
+      <th scope="col">Equipo</th>
+      <th scope="col">Pedido</th>
+      <th scope="col">Operarios</th>
+      <th scope="col">Finalizada</th>
+      <th scope="col">Ver detalle</th>
+    </tr>
+  </thead>
+  <tbody>
+    {%for tarea in tareas%}
+    <tr>
+      <th scope="row">{{tarea.id}}</th>
+      <td>{{tarea.hora_inicio}}</td>
+      <td>{{tarea.hora_fin}}</td>
+      <td>{{tarea.proceso}}</td>
+      <td>{{tarea.equipo}}</td>
+      <td>{{tarea.pedido}}</td>
+      <td>
+        {{tarea.empleados_asignados.all|join:", "}}
+      </td>
+      <td>
+        <form action="" class="finalizar-tarea">
+          <input type="checkbox" name="finalizar" id="" {% if tarea.finalizada %} checked{% endif %} class="check-finalizar"/>
+          <input type="hidden" name="idtarea" value="{{tarea.id}}" >  
+        </form>
+        </div>
+      </td>
+      <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endblock%}
+{%block scripts%}
+<script src="{% static 'js/misTareas.js'%}"></script>
+{%endblock%}
