@@ -424,7 +424,8 @@ def TareaDelete(req):
 #Funcion para extraer las tareas asignadas del operario logeado    
 def mis_tareas(req):
     empleadoTupla=(getLoggedEmpleado(req).id,)
-    tareas=Tarea.objects.filter(empleados_asignados__in=empleadoTupla)#pasamos una tupla porque es lo que pide el metodo
+    tareas=Tarea.objects.filter(empleados_asignados__in=empleadoTupla).filter(finalizada = False)     #pasamos una tupla porque es lo que pide el metodo
+
     context={"tareas":tareas}
     
     return render(req,"tarea_empleado_lista.html",context)
