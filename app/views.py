@@ -227,6 +227,7 @@ class PedidoDetailView(DetailView):
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
         context["clientes"]=Cliente.objects.all()
         context["productos"]=Catalogo.objects.all()
+        context["tareas"]=Tarea.objects.filter(pedido=context["pedido"].id)
         return context
 
     # --Funcion para actualizar un elemento en la BBDD

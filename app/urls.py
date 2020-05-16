@@ -3,6 +3,8 @@ from . import views
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
+    #==========================   HTML   ==========================
+    
     #Pagina Principal
     path('', login_required(views.index), name='index'),
 
@@ -39,19 +41,38 @@ urlpatterns = [
     path('tarea/create/', login_required(views.TareaCreateView.as_view()), name='tarea_create'),
     path('tarea/delete/', login_required(views.TareaDelete), name='tarea_delete'),
     path('misTareas/', login_required(views.mis_tareas), name='mis_tareas'),
-    path('marcarTarea/', views.marcar_tarea, name='marcar_tarea'),
 
     #Catalogos
     path('catalogo/', login_required(views.CatalogoListView.as_view()), name='catalogo_lista'),
     path('catalogo/<int:pk>/', login_required(views.CatalogoDetailView.as_view()), name='catalogo_detalle'),
     path('catalogo/create/', login_required(views.CatalogoCreateView.as_view()), name='catalogo_create'),
     path('catalogo/delete/', login_required(views.CatalogoDelete), name='catalogo_delete'),
-  
 
     #Login
     path('login/', views.get_login, name='get_login'),
     path('register/', views.register, name='do_register'),
     path('logout/', views.do_logout, name='logout'),
     path('dologin/', views.do_login, name='do_login'),
+
+
+
+    #==========================   AJAX   ==========================
+
+    #Pagina Principal
+
+    #Empleados
+
+    #Equipos 
+
+    #Pedidos
+
+    #Procesos
+    
+    #Tareas
+    path('marcarTarea/', views.marcar_tarea, name='marcar_tarea'),
+
+    #Catalogos
+
+    #Login
 
 ]
