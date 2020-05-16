@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from .models import Catalogo, Empleado, Equipo, Proceso, Pedido, Proceso, Tarea, Cliente,TipoEquipo
 from django.contrib.auth.models import User,Group
 from django.views.generic import ListView, DetailView,View
@@ -8,6 +8,7 @@ from app.forms import EmpleadoForm, EquipoForm, CatalogoForm, ProcesoForm, Pedid
 from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 from .sessionHandler import getLoggedCliente, getLoggedEmpleado, getTipoUsuario
+from django.forms.models import model_to_dict
 
 # Pagina principal
 def index(req):    
@@ -430,6 +431,13 @@ def mis_tareas(req):
     
     return render(req,"tarea_empleado_lista.html",context)
 
+#Funcion para marcar tarea como realizada en la BBDD
+def marcar_tarea(req):
+    tarea=Tarea.objects.get(pk=req.POST["idtarea"])
+    #tarea.finalizada=True
+    tarea.save()    
+    #return JsonResponse(list(tarea.values()), safe=False)
+    return HttpResponse("ok")
 # -Crear
 class TareaCreateView(View):
     # --La funcion get crea la vista
