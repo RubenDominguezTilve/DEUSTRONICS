@@ -16,6 +16,7 @@
     </tr>
   </thead>
   <tbody>
+    {% if pedidos%}
     {%for pedido in pedidos%}
     <tr>
       <th scope="row">{{pedido.id}}</th>
@@ -27,6 +28,9 @@
       <td><a href="{%url 'pedido_detalle' pedido.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
+    {% else %}
+    No hay pedidos pendientes.
+    {% endif %}
   </tbody>
 </table>
 {%endblock%}

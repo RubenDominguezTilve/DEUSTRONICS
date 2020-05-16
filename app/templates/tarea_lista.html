@@ -18,6 +18,7 @@
     </tr>
   </thead>
   <tbody>
+    {% if tareas%}
     {%for tarea in tareas%}
     <tr>
       <th scope="row">{{tarea.id}}</th>
@@ -33,6 +34,9 @@
       <td><a href="{%url 'tarea_detalle' tarea.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
+    {% else %}
+    No hay tareas definidas.
+    {% endif %}
   </tbody>
 </table>
 {%endblock%}

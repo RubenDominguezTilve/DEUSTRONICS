@@ -17,6 +17,7 @@
     </tr>
   </thead>
   <tbody>
+    {% if equipos%}
     {%for equipo in equipos%}
     <tr>
       <th scope="row">{{equipo.id}}</th>
@@ -31,6 +32,9 @@
       <td><a href="{%url 'equipo_detalle' equipo.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
+    {% else %}
+    No hay equipos dados de alta.
+    {% endif %}
   </tbody>
 </table>
 

@@ -65,21 +65,21 @@
   </h2>
 
   {% if tareas %}
-    {%for tarea in tareas %}
-      <p>
-        {{tarea}}
-      </p>
-    {%endfor%}
-{% else %}
+  {%for tarea in tareas %}
+  <p>
+    {{tarea}}
+  </p>
+  {%endfor%}
+  {% else %}
   No hay tareas.
-{% endif %}
+  {% endif %}
 
-    
-    <form action="{%url 'tarea_create' %}" method="POST" class="formTareaDesdePedido">
-      {% csrf_token%}
-      <input type="hidden" name="idPedido" value="{{pedido.id}}">
-      <input type="submit" class="btn btn-secondary" value="Añadir tarea a este pedido">
-    </form>
+
+  <form action="{%url 'tarea_create' %}" method="POST" class="formTareaDesdePedido">
+    {% csrf_token%}
+    <input type="hidden" name="idPedido" value="{{pedido.id}}">
+    <input type="submit" class="btn btn-secondary" value="Añadir tarea a este pedido">
+  </form>
 
 </div>
 {%endblock%}

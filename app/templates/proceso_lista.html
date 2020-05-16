@@ -12,6 +12,7 @@
     </tr>
   </thead>
   <tbody>
+    {% if procesos%}
     {%for proceso in procesos%}
     <tr>
       <th scope="row">{{proceso.id}}</th>
@@ -19,6 +20,9 @@
       <td><a href="{%url 'proceso_detalle' proceso.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
+    {% else %}
+    No hay procesos definidos.
+    {% endif %}
   </tbody>
 </table>
 {%endblock%}
