@@ -1,4 +1,4 @@
-{%extends 'base.html'%} 
+{%extends 'base.html'%}
 {%load static%}
 {% block content%}
 
@@ -35,8 +35,9 @@
       </td>
       <td>
         <form action="" class="finalizar-tarea">
-          <input type="checkbox" name="finalizar" id="" {% if tarea.finalizada %} checked{% endif %} class="check-finalizar"/>
-          <input type="hidden" name="idtarea" value="{{tarea.id}}" >  
+          <input type="checkbox" name="finalizar" id="" {% if tarea.finalizada %} checked{% endif %}
+            class="check-finalizar" />
+          <input type="hidden" name="idtarea" value="{{tarea.id}}">
         </form>
         </div>
       </td>

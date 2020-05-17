@@ -8,6 +8,7 @@
   <div class="row">
     <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
       <div class="MultiCarousel-inner">
+
         <!-- Se ejecuta una vez por cada artículo en catálogo -->
         {% if catalogos%} {%for catalogo in catalogos%}
         <div class="item catalog-item mb-2 col-sm-3">
@@ -22,26 +23,48 @@
             <a href="{%url 'catalogo_detalle' catalogo.id %}"> Ver detalle</a>
             <!-- Precio del producto por unidad -->
             <p>Precio: {{catalogo.precio}} €</p>
-            {%if request.user|has_group:"CLIENTE" %}
+            {%if  request.user|has_group:"CLIENTE" %}
+
+
+
+
             <!-- Cantidad de unidades a pedir -->
             <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Cantidad</span>
-              </div>
               <form action="{%url 'pedido_create'%}" method="POST">
                 {%csrf_token%}
+                
+                <span class="input-group-text FormGroupPedido" >Cantidad</span>
+                
                 <input type="hidden" name="producto" value="{{catalogo.pk}}" />
-                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="cantidad" />
+                <input type="number" class="form-control FormGroupPedido" aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default" name="cantidad" />
                 <!-- Apéndice para el botón de realizar pedido -->
-                <div class="input-group-append">
-                  <button class="btn btn-outline-dark bg-secondary" type="submit" id="button-addon1">Pedir</button>
-                </div>
+                <button class="btn btn-outline-dark bg-secondary FormGroupPedido" type="submit" id="button-addon1">Pedir</button>
+                
+                <hr>
+                <!--
+                <span class="input-group-text FormGroupPedido" >Total:</span>
+                <input type="number" class="form-control FormGroupPedido disabled" aria-label="Sizing example input"
+                  aria-describedby="inputGroup-sizing-default" name="precioTotal" />   
+                <span class="input-group-text FormGroupPedido" >€</span>
+                -->
+                <p>Precio total: <span>{{catalogo.precio}}</span> €</p>
               </form>
             </div>
+
+
+
+
+
             {%endif%}
           </div>
         </div>
-        {%endfor%} {% else %} No hay productos a la venta. {% endif %}
+        {%endfor%}
+        {% else %}
+        No hay productos a la venta.
+        {% endif %}
+
+        
         <!--
             <button class="btn btn-primary leftLst"><</button>
             <button class="btn btn-primary rightLst">></button>

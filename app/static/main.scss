@@ -118,6 +118,23 @@ svg {
   max-width: 100%;
 }
 
+// -Para el pedido
+.FormGroupPedido{
+  display: inline;
+  float: left;
+  position: relative;
+  width: 33%;
+}
+
+.catalog-item{
+min-width: 350px;
+}
+
+form hr{
+  min-height: 25px;
+}
+
+
 //Boton Flotante:
 $dimensionBoton: 50px;
 
