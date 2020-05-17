@@ -1,5 +1,6 @@
-{%extends 'base.html'%} {% block content%}
-{% load sesion_tags %}
+{%extends 'base.html'%} {%load static%} {%block scripts%}
+<script src="{% static 'js/catalogo.js'%}"></script>
+{%endblock%} {% block content%} {% load sesion_tags %}
 <h1>
   Catálogo 2020-2021
 </h1>
@@ -8,13 +9,11 @@
     <div class="MultiCarousel" data-items="1,3,5,6" data-slide="1" id="MultiCarousel" data-interval="1000">
       <div class="MultiCarousel-inner">
         <!-- Se ejecuta una vez por cada artículo en catálogo -->
-        {% if catalogos%}
-        {%for catalogo in catalogos%}
+        {% if catalogos%} {%for catalogo in catalogos%}
         <div class="item catalog-item mb-2 col-sm-3">
           <div class="pad15">
             <!-- Imagen del producto -->
-            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block"
-              alt="Imagen de catálogo" />
+            <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />
             <!-- Nombre del producto -->
             <p class="lead mt-2">{{catalogo.nombre}}</p>
             <!-- Descripción del producto 
@@ -23,7 +22,7 @@
             <a href="{%url 'catalogo_detalle' catalogo.id %}"> Ver detalle</a>
             <!-- Precio del producto por unidad -->
             <p>Precio: {{catalogo.precio}} €</p>
-            {%if  request.user|has_group:"CLIENTE" %}
+            {%if request.user|has_group:"CLIENTE" %}
             <!-- Cantidad de unidades a pedir -->
             <div class="input-group mb-3">
               <div class="input-group-prepend">
@@ -32,22 +31,17 @@
               <form action="{%url 'pedido_create'%}" method="POST">
                 {%csrf_token%}
                 <input type="hidden" name="producto" value="{{catalogo.pk}}" />
-                <input type="number" class="form-control" aria-label="Sizing example input"
-                  aria-describedby="inputGroup-sizing-default" name="cantidad" />
+                <input type="number" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" name="cantidad" />
                 <!-- Apéndice para el botón de realizar pedido -->
                 <div class="input-group-append">
                   <button class="btn btn-outline-dark bg-secondary" type="submit" id="button-addon1">Pedir</button>
                 </div>
-
               </form>
             </div>
             {%endif%}
           </div>
         </div>
-        {%endfor%}
-        {% else %}
-        No hay productos a la venta.
-        {% endif %}
+        {%endfor%} {% else %} No hay productos a la venta. {% endif %}
         <!--
             <button class="btn btn-primary leftLst"><</button>
             <button class="btn btn-primary rightLst">></button>

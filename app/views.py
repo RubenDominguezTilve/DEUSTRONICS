@@ -432,13 +432,7 @@ def mis_tareas(req):
     
     return render(req,"tarea_empleado_lista.html",context)
 
-#Funcion para marcar tarea como realizada en la BBDD
-def marcar_tarea(req):
-    tarea=Tarea.objects.get(pk=req.POST["idtarea"])
-    #tarea.finalizada=True
-    tarea.save()    
-    #return JsonResponse(list(tarea.values()), safe=False)
-    return HttpResponse("ok")
+
 # -Crear
 class TareaCreateView(View):
     # --La funcion get crea la vista
