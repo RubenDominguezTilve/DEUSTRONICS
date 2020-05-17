@@ -10,11 +10,15 @@ from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 from .sessionHandler import getLoggedCliente, getLoggedEmpleado, getTipoUsuario
 from django.forms.models import model_to_dict
 
-
+#Catalogos
 #Funciones de catalogo
 def catalogo_lista_ajax(req):
     productos=Catalogo.objects.all() 
-    return JsonResponse(list(productos.values()), safe=False)
+    contexto = {
+        "productos" : list(productos.values()),
+        "cliente" : getTipoUsuario(req) == CLIENTE
+    }
+    return JsonResponse(contexto, safe=False)
 
 
 #Tareas
