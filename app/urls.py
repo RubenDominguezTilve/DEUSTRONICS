@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from . import api
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -69,9 +70,10 @@ urlpatterns = [
     #Procesos
     
     #Tareas
-    path('marcarTarea/', views.marcar_tarea, name='marcar_tarea'),
+    path('marcarTarea/', api.marcar_tarea, name='marcar_tarea'),
 
     #Catalogos
+    path('api/catalogo/', api.catalogo_lista_ajax, name="catalogo_lista_ajax")
 
     #Login
 
