@@ -33,6 +33,7 @@ body {
   margin: 10px;
   background: #f1f1f1;
   color: #666;
+  box-shadow: 0px 0px 9px black;
 }
 .MultiCarousel .leftLst,
 .MultiCarousel .rightLst {
@@ -119,21 +120,40 @@ svg {
 }
 
 // -Para el pedido
-.FormGroupPedido{
+.FormGroupPedido {
   display: inline;
   float: left;
   position: relative;
   width: 33%;
 }
+$initial-scale: 1;
+.catalog-item {
+  min-width: 350px;
+  animation: catalogoAparecer 0.75s ease-in;
 
-.catalog-item{
-min-width: 350px;
+  transform: scale($initial-scale);
+  animation-fill-mode: forwards;
+}
+/*$base-color: #036;
+@for $i from 1 through 5 {
+  .MultiCarousel-inner :nth-child(#{$i}) {
+    animation-delay: #{$i * 0.5}s;
+    background-color: lighten($base-color, $i * 5%);
+  }
+}*/
+
+@keyframes catalogoAparecer {
+  0% {
+    transform: scale($initial-scale);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-form hr{
+form hr {
   min-height: 25px;
 }
-
 
 //Boton Flotante:
 $dimensionBoton: 50px;
@@ -166,7 +186,6 @@ $dimensionBoton: 50px;
   height: 100%;
   width: 100%;
 }
-
 
 //Componentes del Login
 .login-wrapper {
@@ -211,7 +230,6 @@ $dimensionBoton: 50px;
   box-shadow: 0px 1px 8px black;
 }
 
-
 //Clases para el marcado de finalizar de tareas
 //Para el checkbox
 .finalizar-tarea {
@@ -241,10 +259,9 @@ $dimensionBoton: 50px;
   }
 }
 
-
 //Elementos genéricos
 //Títulos
-h2{
+h2 {
   padding-bottom: 20px;
   padding-top: 20px;
 }
