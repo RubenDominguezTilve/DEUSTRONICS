@@ -250,8 +250,10 @@ def PedidoDelete(req):
     pedidoBorrar = Pedido()
     pedidoBorrar.id = int(req.POST['idPedido'])
     pedidoBorrar.delete()
-    return redirect('pedido_lista')
-    TareaDelete
+    if (getTipoUsuario(req) == CLIENTE):
+        return redirect('mis_pedidos')
+    else:
+        return redirect('pedido_lista')
 
 
 # -Crear: Es diferente porque pedido se crea desde catálogo, por tanto es una función y no una nueva view.
