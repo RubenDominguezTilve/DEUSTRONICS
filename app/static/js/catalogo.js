@@ -4,7 +4,6 @@ var esCliente;
 var datajson;
 function lista_productos(data) {
   let cad = "";
-  //console.log(data.length);
 
   for (let i = 0; i < data.length; i++) {
     cad += template_catalogo(data[i], i);
@@ -63,7 +62,7 @@ function template_catalogo(producto, i) {
     <p>Precio: ${producto.precio} €</p>
     `
 
-    console.log("esCliente: "+ esCliente)
+    
     if (esCliente){
       retorno +=
       `

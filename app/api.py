@@ -11,7 +11,7 @@ from .sessionHandler import getLoggedCliente, getLoggedEmpleado, getTipoUsuario
 from django.forms.models import model_to_dict
 
 #Catalogos
-#Funciones de catalogo
+#Generar vista modificable de productos
 def catalogo_lista_ajax(req):
     productos=Catalogo.objects.all() 
     contexto = {
@@ -25,7 +25,7 @@ def catalogo_lista_ajax(req):
 #Funcion para marcar tarea como realizada en la BBDD
 def marcar_tarea(req):
     tarea=Tarea.objects.get(pk=req.POST["idtarea"])
-    #tarea.finalizada=True
+    tarea.finalizada=True
     tarea.save()    
     #return JsonResponse(list(tarea.values()), safe=False)
     return HttpResponse("ok")
