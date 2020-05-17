@@ -18,7 +18,7 @@ fetch("../api/catalogo")
     }
   })
   .then(function (data) {
-    document.getElementsByClassName("MultiCarousel-inner")[0].innerHTML = lista_productos(JSON.parse(data));
+    document.getElementById("productos-catalogo").innerHTML = lista_productos(JSON.parse(data));
     console.log(data);
   })
   .catch(function (error) {
@@ -27,7 +27,7 @@ fetch("../api/catalogo")
 
 function template_catalogo(producto, i) {
   return ` 
-      <div class="item catalog-item mb-2 col-sm-3" style="animation-delay:${0.2 * i}s;" >
+      <div class="item catalog-item mb-2 col-sm-3"  >
       <div class="pad15">
         <!-- Imagen del producto -->
         <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />

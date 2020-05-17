@@ -1,8 +1,7 @@
-{%extends 'base.html'%} {% block content%}
+{%extends 'base.html'%} {% block content%} {% if pedidos%}
 <h1>
   Listado de pedidos
 </h1>
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,7 +15,6 @@
     </tr>
   </thead>
   <tbody>
-    {% if pedidos%}
     {%for pedido in pedidos%}
     <tr>
       <th scope="row">{{pedido.id}}</th>
@@ -28,9 +26,9 @@
       <td><a href="{%url 'pedido_detalle' pedido.id %}"> Ver detalle</a></td>
     </tr>
     {%endfor%}
-    {% else %}
-    No hay pedidos pendientes.
-    {% endif %}
   </tbody>
 </table>
-{%endblock%}
+{% else %}
+<h2>No hay pedidos pendientes.</h2>
+
+{% endif %} {%endblock%}

@@ -8330,8 +8330,8 @@ body {
   margin: 10px;
   background: #f1f1f1;
   color: #666;
-  -webkit-box-shadow: 0px 0px 9px black;
-  box-shadow: 0px 0px 9px black; }
+  -webkit-box-shadow: 2px 4px 9px black;
+  box-shadow: 2px 4px 9px black; }
 
 .MultiCarousel .leftLst,
 .MultiCarousel .rightLst {
@@ -8420,59 +8420,50 @@ svg {
 
 .catalog-item {
   min-width: 350px;
-  -webkit-transform: scale(1);
-  -ms-transform: scale(1);
-  transform: scale(1);
+  -webkit-animation: catalogoAparecer 0.75s ease-in;
+  animation: catalogoAparecer 0.75s ease-in;
+  -webkit-transform: scale(0);
+  -ms-transform: scale(0);
+  transform: scale(0);
   -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards; }
 
+.MultiCarousel-inner :nth-child(0) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s; }
+
 .MultiCarousel-inner :nth-child(1) {
-  -webkit-animation: catalogoAparecer 0.75s ease-in;
-  animation: catalogoAparecer 0.75s ease-in;
   -webkit-animation-delay: 0.5s;
-  animation-delay: 0.5s;
-  background-color: #004080; }
+  animation-delay: 0.5s; }
 
 .MultiCarousel-inner :nth-child(2) {
-  -webkit-animation: catalogoAparecer 0.75s ease-in;
-  animation: catalogoAparecer 0.75s ease-in;
   -webkit-animation-delay: 1s;
-  animation-delay: 1s;
-  background-color: #004d99; }
+  animation-delay: 1s; }
 
 .MultiCarousel-inner :nth-child(3) {
-  -webkit-animation: catalogoAparecer 0.75s ease-in;
-  animation: catalogoAparecer 0.75s ease-in;
   -webkit-animation-delay: 1.5s;
-  animation-delay: 1.5s;
-  background-color: #0059b3; }
+  animation-delay: 1.5s; }
 
 .MultiCarousel-inner :nth-child(4) {
-  -webkit-animation: catalogoAparecer 0.75s ease-in;
-  animation: catalogoAparecer 0.75s ease-in;
   -webkit-animation-delay: 2s;
-  animation-delay: 2s;
-  background-color: #0066cc; }
+  animation-delay: 2s; }
 
 .MultiCarousel-inner :nth-child(5) {
-  -webkit-animation: catalogoAparecer 0.75s ease-in;
-  animation: catalogoAparecer 0.75s ease-in;
   -webkit-animation-delay: 2.5s;
-  animation-delay: 2.5s;
-  background-color: #0073e6; }
+  animation-delay: 2.5s; }
 
 @-webkit-keyframes catalogoAparecer {
   0% {
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+    -webkit-transform: scale(0);
+    transform: scale(0); }
   100% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
 
 @keyframes catalogoAparecer {
   0% {
-    -webkit-transform: scale(1);
-    transform: scale(1); }
+    -webkit-transform: scale(0);
+    transform: scale(0); }
   100% {
     -webkit-transform: scale(1);
     transform: scale(1); } }

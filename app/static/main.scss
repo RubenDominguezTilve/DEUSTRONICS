@@ -33,7 +33,7 @@ body {
   margin: 10px;
   background: #f1f1f1;
   color: #666;
-  box-shadow: 0px 0px 9px black;
+  box-shadow: 2px 4px 9px black;
 }
 .MultiCarousel .leftLst,
 .MultiCarousel .rightLst {
@@ -126,21 +126,20 @@ svg {
   position: relative;
   width: 33%;
 }
-$initial-scale: 1;
+$initial-scale: 0;
 .catalog-item {
   min-width: 350px;
-  animation: catalogoAparecer 0.75s ease-in;
 
+  animation: catalogoAparecer 0.75s ease-in;
   transform: scale($initial-scale);
   animation-fill-mode: forwards;
 }
-/*$base-color: #036;
-@for $i from 1 through 5 {
+
+@for $i from 0 through 5 {
   .MultiCarousel-inner :nth-child(#{$i}) {
     animation-delay: #{$i * 0.5}s;
-    background-color: lighten($base-color, $i * 5%);
   }
-}*/
+}
 
 @keyframes catalogoAparecer {
   0% {
