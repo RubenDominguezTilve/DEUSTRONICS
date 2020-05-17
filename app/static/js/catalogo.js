@@ -1,9 +1,10 @@
 var esCliente;
 
+
 var datajson;
 function lista_productos(data) {
   let cad = "";
-  console.log(data.length);
+  //console.log(data.length);
 
   for (let i = 0; i < data.length; i++) {
     cad += template_catalogo(data[i], i);
@@ -23,7 +24,24 @@ fetch("../api/catalogo")
     datos = JSON.parse(data);
     esCliente = datos.cliente;
     document.getElementById("productos-catalogo").innerHTML = lista_productos(datos.productos);
-    console.log(data);
+    
+    
+    var inputsCantidad = document.getElementsByClassName("inputCantidad");
+    for (var i = 0; i < inputsCantidad.length; i++) {
+      inputsCantidad[i].addEventListener("change", function (event) {
+        let newValue = event.target.value;
+        let form = event.target.parentNode;
+        let pedido = new FormData(form);
+        let nuevoPrecioTotal = newValue * pedido.get("precio");
+        //Recorremos el arbol para cambiar el valor del Span
+        let siguiente = form.nextElementSibling;
+        //HASTA AQUI TODO OK HORSELUIS siguiente ES PARRAFO <p>
+        let hijosiguiente = siguiente.children[0];
+        //HIJOSIGUIENTE ES EL SPAN
+        hijosiguiente.innerHTML = nuevoPrecioTotal;
+      }
+      );
+    }
   })
   .catch(function (error) {
     console.log(error);
@@ -57,15 +75,16 @@ function template_catalogo(producto, i) {
         <span class="input-group-text FormGroupPedido" >Cantidad</span>
         
         <input type="hidden" name="producto" value="${producto.id}" />
-        <input type="number" class="form-control FormGroupPedido" aria-label="Sizing example input"
+        <input type="hidden" name="precio" value="${producto.precio}" />
+        <input type="number" class="form-control FormGroupPedido inputCantidad" aria-label="Sizing example input"
           aria-describedby="inputGroup-sizing-default" name="cantidad" value="1" min="0"/>
         <!-- Apéndice para el botón de realizar pedido -->
         <button class="btn btn-outline-dark bg-secondary FormGroupPedido" type="submit" id="button-addon1">Pedir</button>
         
         <hr>
        
-        <p>Precio total: <span>${producto.precio}</span> €</p>
       </form>
+      <p class="mx-auto">Precio total: <span>${producto.precio}</span> €</p>
     </div>  
     `
     } 
@@ -79,3 +98,5 @@ function template_catalogo(producto, i) {
 
   return retorno
 }
+
+
