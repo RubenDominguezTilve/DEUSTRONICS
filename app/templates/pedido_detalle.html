@@ -1,4 +1,4 @@
-{%extends 'base.html'%} {% block content%}
+{%extends 'base.html'%} {% block content%} {%load static%}
 
 <div class="mt-2">
   <h1>
@@ -60,6 +60,7 @@
 
 
 <div>
+  <hr>
   <h2>
     Tareas de este pedido:
   </h2>
@@ -75,11 +76,25 @@
   {% endif %}
 
 
-  <form action="{%url 'tarea_create' %}" method="POST" class="formTareaDesdePedido">
-    {% csrf_token%}
-    <input type="hidden" name="idPedido" value="{{pedido.id}}">
-    <input type="submit" class="btn btn-secondary" value="Añadir tarea a este pedido">
-  </form>
 
+  <hr>
+  <h2>
+    Añadir tarea a este pedido:
+  </h2>
+  <form action="" id="formNuevaTarea">
+    {% csrf_token%}
+    <label for="">Finalizada: {{form.finalizada}}</label> <br>
+    <label for="">Hora inicio: {{form.hora_inicio}}</label> <br>
+    <label for="">Hora fin: {{form.hora_fin}}</label> <br>
+    <label for="">Equipo: {{form.equipo}}</label> <br>
+    <label for="">Proceso: {{form.proceso}}</label> <br>
+    <label for="">Empleados asignados: {{form.empleados_asignados}}</label> <br>
+    <input type="hidden" name="idPedido" value="{{pedido.id}}">
+    <button class="btn btn-secondary" name="btnAñadir" id="elBoton">Añadir tarea a este pedido</button>
+  </form>
 </div>
+{%endblock%}
+
+{%block scripts%}
+<script src="{% static 'js/pedido_detalle.js'%}"></script>
 {%endblock%}

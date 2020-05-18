@@ -29,3 +29,21 @@ def marcar_tarea(req):
     tarea.save()    
     #return JsonResponse(list(tarea.values()), safe=False)
     return HttpResponse("ok")
+
+#Funcion para añadir tareas a BBDD
+def añadir_tarea(req):
+    form =TareaForm(req.POST)
+    #falta aplicarle los valores del formulario (o no)
+
+    if(form.is_valid()):
+            form.save()        
+            
+    else:
+        #Error
+        print("Error en el formulario")
+
+
+    #tarea.finalizada=True
+    #tarea.save()    
+    #return JsonResponse(list(tarea.values()), safe=False)
+    return HttpResponse("ok")

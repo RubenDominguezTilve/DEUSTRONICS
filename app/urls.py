@@ -71,6 +71,7 @@ urlpatterns = [
     
     #Tareas
     path('marcarTarea/', api.marcar_tarea, name='marcar_tarea'),
+    path('añadirTarea/', api.añadir_tarea, name='añadir_tarea'),
 
     #Catalogos
     path('api/catalogo/', api.catalogo_lista_ajax, name="catalogo_lista_ajax")

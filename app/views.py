@@ -224,7 +224,9 @@ class PedidoDetailView(DetailView):
     template_name = 'pedido_detalle.html'
 
     def get_context_data(self, **kwargs):
+        form = TareaForm()
         context = super(PedidoDetailView, self).get_context_data(**kwargs)
+        context["form"]= form
         context["clientes"]=Cliente.objects.all()
         context["productos"]=Catalogo.objects.all()
         context["tareas"]=Tarea.objects.filter(pedido=context["pedido"].id)
