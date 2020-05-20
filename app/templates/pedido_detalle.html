@@ -72,30 +72,30 @@
     <thead>
       <tr>
         <th scope="col">Proceso</th>
-        <th scope="col">Equipo</th>      
-        
+        <th scope="col">Equipo</th>
+
         <th scope="col">Hora inicio</th>
         <th scope="col">Hora fin</th>
         <th scope="col">Detalle</th>
       </tr>
     </thead>
-    <tbody id="tareas-body">         
-  {%for tarea in tareas %}
-    <tr>
-      <td>{{tarea.proceso}}</td>
-      <td>{{tarea.equipo}}</td>
-      
-      <td>{{tarea.hora_inicio|date:'Y-m-d H:i'}}</td>
-      <td>{{tarea.hora_fin|date:'Y-m-d H:i'}}</td>
-      <td><a href="{% url 'tarea_detalle' tarea.id%}">Ver detalle</a></td>
-    </tr>
-   
-  {%endfor%}
-  </tbody>
-</table>
-{% else %}
-    No hay tareas.
-{% endif %}
+    <tbody id="tareas-body">
+      {%for tarea in tareas %}
+      <tr>
+        <td>{{tarea.proceso}}</td>
+        <td>{{tarea.equipo}}</td>
+
+        <td>{{tarea.hora_inicio|date:'Y-m-d H:i'}}</td>
+        <td>{{tarea.hora_fin|date:'Y-m-d H:i'}}</td>
+        <td><a href="{% url 'tarea_detalle' tarea.id%}">Ver detalle</a></td>
+      </tr>
+
+      {%endfor%}
+    </tbody>
+  </table>
+  {% else %}
+  No hay tareas.
+  {% endif %}
 
 
 
@@ -111,7 +111,7 @@
     <label for="">Equipo: {{form.equipo}}</label> <br>
     <label for="">Proceso: {{form.proceso}}</label> <br>
     <label for="">Empleados asignados: {{form.empleados_asignados}}</label> <br>
-    
+
     <input type="hidden" name="pedido" value="{{pedido.id}}">
     <button class="btn btn-secondary" name="btnAñadir" id="elBoton">Añadir tarea a este pedido</button>
   </form>
