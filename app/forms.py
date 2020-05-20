@@ -24,8 +24,8 @@ class TareaForm(forms.ModelForm):
         model=Tarea
         fields = '__all__'
         widgets = {
-            'hora_inicio': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}"}),
-            'hora_fin': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}"}),
+            'hora_inicio': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}", "placeholder":"yyyy-mm-dd hh:mm"}),
+            'hora_fin': forms.TextInput(attrs={'pattern': "[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}:[0-9]{2}", "placeholder":"yyyy-mm-dd hh:mm"}),
         }
 
 # Formulario crear Catalogos

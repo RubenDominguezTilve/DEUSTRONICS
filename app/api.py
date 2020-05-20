@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate,login,logout
 from .consts import OPERARIO,RESPONABLE,CLIENTE,SUPERUSER
 from .sessionHandler import getLoggedCliente, getLoggedEmpleado, getTipoUsuario
 from django.forms.models import model_to_dict
-
+from django.core import serializers
 #Catalogos
 #Generar vista modificable de productos
 def catalogo_lista_ajax(req):
@@ -31,19 +31,20 @@ def marcar_tarea(req):
     return HttpResponse("ok")
 
 #Funcion para añadir tareas a BBDD
-def añadir_tarea(req):
+def anadir_tarea(req):
     form =TareaForm(req.POST)
     #falta aplicarle los valores del formulario (o no)
 
     if(form.is_valid()):
-            form.save()        
-            
+        tarea=form.save()        
+        
+        return HttpResponse(tarea.id)
     else:
         #Error
         print("Error en el formulario")
-
+        return HttpResponse("error")
 
     #tarea.finalizada=True
     #tarea.save()    
     #return JsonResponse(list(tarea.values()), safe=False)
-    return HttpResponse("ok")
+
