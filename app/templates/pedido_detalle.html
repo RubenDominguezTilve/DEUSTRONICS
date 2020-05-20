@@ -1,4 +1,4 @@
-{%extends 'base.html'%} {% block content%} {%load static%}
+{%extends 'base.html'%} {% block content%} {%load static%} {% load sesion_tags %}
 
 <div class="mt-2">
   <h1>
@@ -58,7 +58,7 @@
 </div>
 
 
-
+{%if request.user|has_group:"RESPONSABLE" %}
 <div class="w-100">
   <hr>
   <h2>
@@ -116,6 +116,7 @@
     <button class="btn btn-secondary" name="btnAñadir" id="elBoton">Añadir tarea a este pedido</button>
   </form>
 </div>
+{% endif %}
 {%endblock%}
 
 {%block scripts%}
