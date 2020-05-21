@@ -4,7 +4,7 @@
     Añadir productos
   </h1>
 
-  <form action="{%url 'catalogo_create'%}" method="POST">
+  <form action="{%url 'catalogo_create'%}" method="POST" enctype='multipart/form-data'>
     {%csrf_token%}
     {{form.as_p}}
     <input type="submit" value="Añadir" />

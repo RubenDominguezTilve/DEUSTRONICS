@@ -2,6 +2,9 @@ from django.urls import path
 from . import views
 from . import api
 from django.contrib.auth.decorators import login_required
+from django.conf.urls.static import static
+from django.conf import settings
+
 
 urlpatterns = [
     #==========================   HTML   ==========================
@@ -74,8 +77,11 @@ urlpatterns = [
     path('api/anadirTarea/', api.anadir_tarea, name='anadir_tarea'),
 
     #Catalogos
-    path('api/catalogo/', api.catalogo_lista_ajax, name="catalogo_lista_ajax")
+    path('api/catalogo/', api.catalogo_lista_ajax, name="catalogo_lista_ajax"),
 
     #Login
 
-]
+
+    #==========================   STATICS   ==========================
+    #Statics
+    ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

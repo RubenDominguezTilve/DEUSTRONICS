@@ -510,7 +510,9 @@ class CatalogoCreateView(View):
         
     # --La funcion post permite que el formulario envie los datos y redirija despues
     def post(self, req):
-        form = CatalogoForm(req.POST)
+        form = CatalogoForm(req.POST, req.FILES)
+        print("====================================== EL POSTEO ==================================================")
+        print(req.POST)
         if(form.is_valid()):
             form.save()        
             return redirect('catalogo_lista')

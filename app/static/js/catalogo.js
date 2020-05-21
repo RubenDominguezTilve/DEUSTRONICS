@@ -47,11 +47,17 @@ fetch("../api/catalogo")
   });
 
 function template_catalogo(producto, i) {
+  
+  console.log("Producto: " + producto);
+  console.log("Producto.imagen: " + producto.imagen);
+  console.log("Producto.imagen.url: " + producto.imagen.url);
+  //console.log("Producto.imagen.url.bien?: " /media/+ producto.imagen); 
+
   retorno = ` 
   <div class="item catalog-item mb-2 col-sm-3"  >
   <div class="pad15">
     <!-- Imagen del producto -->
-    <img src="https://dummyimage.com/600x400/000/fff" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />
+    <img src="/media/${producto.imagen}" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />
     <!-- Nombre del producto -->
     <p class="lead mt-2">${producto.nombre}</p>
     <!-- Descripción del producto 

@@ -30,7 +30,6 @@ class Equipo(models.Model):
     fecha_instalacion = models.DateField()
     fecha_ultimo_mantenimiento = models.DateField()
 
-    #Revisar
     def __str__(self):
        return str(f"{self.marca}: {self.modelo}")
 
@@ -45,6 +44,7 @@ class Catalogo(models.Model):
     descripcion = models.CharField(max_length=250)
     nombre = models.CharField(max_length=100, default="NombreDefault")
     precio = models.FloatField(default = 0.0)
+    imagen = models.ImageField(upload_to="imagenes_catalogo", blank=True)
     def __str__(self):
        return self.nombre
 
