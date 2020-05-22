@@ -295,7 +295,7 @@ class PedidoCreateView(View):
 def mis_pedidos(req):
     pedidos=Pedido.objects.filter(cliente=getLoggedCliente(req).id)
     context={'pedidos':pedidos}
-    return render(req,'pedido_lista.html',context)
+    return render(req,'pedido_cliente_lista.html',context)
 
 # -Muestra pedidos filtrando los no planificados
 def nuevos_pedidos(req):
