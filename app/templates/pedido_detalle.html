@@ -37,12 +37,20 @@
 
       <label for="pedidoCliente" class="col-sm-2 col-form-label">Cliente: </label>
       <div class="col-sm-10">
+        {%if request.user|has_group:"CLIENTE" %}  
+        <select  id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled {%endif%}>
+          {%for cl in clientes%}
+          <option value="{{cl.id}}" {% if pedido.cliente.id == cl.id %} selected {%endif%}>{{cl.nombre}} </option>
+          {%endfor%}
+        </select>
+        <input type="hidden" name="pedidoCliente" value="{{pedido.cliente.id}}"">
+      {%else%}
         <select name="pedidoCliente" id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled {%endif%}>
           {%for cl in clientes%}
           <option value="{{cl.id}}" {% if pedido.cliente.id == cl.id %} selected {%endif%}>{{cl.nombre}} </option>
           {%endfor%}
         </select>
-
+        {%endif%}
         <!-- <input type="text" class="form-control" id="pedidoCliente" name="pedidoCliente" value="{{pedido.cliente}}" /> -->
       </div>
     </div>
