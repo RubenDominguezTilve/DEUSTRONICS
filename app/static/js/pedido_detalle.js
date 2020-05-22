@@ -13,7 +13,6 @@ document.getElementById("elBoton").addEventListener("click", function (event) {
     equipo: equiposel.options[equiposel.selectedIndex].text,
     proceso: procesosel.options[procesosel.selectedIndex].text,
   };
-  console.log(datos);
   //Hasta aqui parece coherente
   fetch("../../api/anadirTarea/", {
     method: "POST",
@@ -27,8 +26,6 @@ document.getElementById("elBoton").addEventListener("click", function (event) {
       }
     })
     .then(function (text) {
-      console.log(text);
-
       datos.id = text;
       datos.hora_inicio = tarea.get("hora_inicio");
       datos.hora_fin = tarea.get("hora_fin");

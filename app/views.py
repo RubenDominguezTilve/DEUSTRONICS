@@ -22,14 +22,11 @@ def get_login(req):
     
 # -Funcion para hacer el login
 def do_login(req):
-    print('lego aqui')
     username = req.POST['username']
     password = req.POST['password']
     user = authenticate(req, username=username, password=password)
     if user is not None:
         login(req, user)
-        print('bien')
-        print(req.GET)
         return redirect('index')
     else:
         context={'form':RegisterForm, 'login':LoginForm, "LoginMessage":"Usuario y/o contraseña incorrectos"}
@@ -234,7 +231,6 @@ class PedidoDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
-        print(req.POST)
         pedidoUpdate = Pedido()
         pedidoUpdate.id = int(req.POST["id"])
         pedidoUpdate.planificado = bool(req.POST.get('pedidoPlanificado'))
@@ -511,8 +507,6 @@ class CatalogoCreateView(View):
     # --La funcion post permite que el formulario envie los datos y redirija despues
     def post(self, req):
         form = CatalogoForm(req.POST, req.FILES)
-        print("====================================== EL POSTEO ==================================================")
-        print(req.POST)
         if(form.is_valid()):
             form.save()        
             return redirect('catalogo_lista')
