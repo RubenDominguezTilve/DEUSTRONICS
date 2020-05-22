@@ -8452,6 +8452,46 @@ svg {
   -webkit-animation-delay: 2.5s;
   animation-delay: 2.5s; }
 
+.MultiCarousel-inner :nth-child(6) {
+  -webkit-animation-delay: 3s;
+  animation-delay: 3s; }
+
+.MultiCarousel-inner :nth-child(7) {
+  -webkit-animation-delay: 3.5s;
+  animation-delay: 3.5s; }
+
+.MultiCarousel-inner :nth-child(8) {
+  -webkit-animation-delay: 4s;
+  animation-delay: 4s; }
+
+.MultiCarousel-inner :nth-child(9) {
+  -webkit-animation-delay: 4.5s;
+  animation-delay: 4.5s; }
+
+.MultiCarousel-inner :nth-child(10) {
+  -webkit-animation-delay: 5s;
+  animation-delay: 5s; }
+
+.MultiCarousel-inner :nth-child(11) {
+  -webkit-animation-delay: 5.5s;
+  animation-delay: 5.5s; }
+
+.MultiCarousel-inner :nth-child(12) {
+  -webkit-animation-delay: 6s;
+  animation-delay: 6s; }
+
+.MultiCarousel-inner :nth-child(13) {
+  -webkit-animation-delay: 6.5s;
+  animation-delay: 6.5s; }
+
+.MultiCarousel-inner :nth-child(14) {
+  -webkit-animation-delay: 7s;
+  animation-delay: 7s; }
+
+.MultiCarousel-inner :nth-child(15) {
+  -webkit-animation-delay: 7.5s;
+  animation-delay: 7.5s; }
+
 @-webkit-keyframes catalogoAparecer {
   0% {
     -webkit-transform: scale(0);

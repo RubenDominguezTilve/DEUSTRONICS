@@ -135,7 +135,7 @@ $initial-scale: 0;
   animation-fill-mode: forwards;
 }
 
-@for $i from 0 through 5 {
+@for $i from 0 through 15 {
   .MultiCarousel-inner :nth-child(#{$i}) {
     animation-delay: #{$i * 0.5}s;
   }
