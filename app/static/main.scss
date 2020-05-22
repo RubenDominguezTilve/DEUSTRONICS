@@ -61,6 +61,7 @@ body {
 
 .item img {
   min-width: 100%;
+  height: 250px;  
 }
 
 .fill {
@@ -129,7 +130,7 @@ svg {
 $initial-scale: 0;
 .catalog-item {
   min-width: 350px;
-
+  border-radius: 5px;
   animation: catalogoAparecer 0.75s ease-in;
   transform: scale($initial-scale);
   animation-fill-mode: forwards;
