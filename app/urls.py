@@ -69,7 +69,7 @@ urlpatterns = [
     #Equipos 
 
     #Pedidos
-    path("api/estadisticas/pedido/<int:pk>/", api.estadisticas_pedido, name="estadisticas_pedido")
+    path("api/estadisticas/pedido/<int:pk>/", api.estadisticas_pedido, name="estadisticas_pedido"),
     #Procesos
     
     #Tareas
