@@ -1,5 +1,22 @@
 var ctx = document.getElementById("grafico").getContext("2d");
 let color = "#1e90ff";
+alert();
+fetch(`../../api/estadisticas/pedido/${id_pedido}/`)
+  .then(function (res) {
+    console.log(res.text());
+    if (res.ok) {
+      return JSON.parse(res.text());
+    } else {
+      throw "Error desconocido";
+    }
+  })
+  .then(function (data) {
+    console.log(data);
+  })
+  .catch(function (error) {
+    alertify.error("error");
+  });
+
 var chart = new Chart(ctx, {
   // The type of chart we want to create
   type: "doughnut",
