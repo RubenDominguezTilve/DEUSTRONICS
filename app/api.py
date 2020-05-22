@@ -48,3 +48,11 @@ def anadir_tarea(req):
     #tarea.save()    
     #return JsonResponse(list(tarea.values()), safe=False)
 
+def estadisticas_pedido(req, pk):
+    planificadas=Tarea.objects.filter(pedido=pk).filter(finalizada=False).count()
+    hechas=Tarea.objects.filter(pedido=pk).filter(finalizada=True).count()
+    response={
+        "pendientes":planificadas,
+        "realizadas":hechas} 
+
+
