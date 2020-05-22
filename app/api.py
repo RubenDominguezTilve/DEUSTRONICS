@@ -54,5 +54,6 @@ def estadisticas_pedido(req, pk):
     response={
         "pendientes":planificadas,
         "realizadas":hechas} 
+    return JsonResponse(response)
 
 
