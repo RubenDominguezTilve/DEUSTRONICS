@@ -47,12 +47,6 @@ fetch("../api/catalogo")
   });
 
 function template_catalogo(producto, i) {
-  
-  console.log("Producto: " + producto);
-  console.log("Producto.imagen: " + producto.imagen);
-  console.log("Producto.imagen.url: " + producto.imagen.url);
-  //console.log("Producto.imagen.url.bien?: " /media/+ producto.imagen); 
-
   retorno = ` 
   <div class="item catalog-item mb-2 col-sm-3"  >
   <div class="pad15">

@@ -4,7 +4,7 @@ let color2 = "#a4b0be";
 var chart;
 fetch(`../../api/estadisticas/pedido/${id_pedido}/`)
   .then(function (res) {
-    console.log(res);
+    //console.log(res.text());
     if (res.ok) {
       return res.json();
     } else {
