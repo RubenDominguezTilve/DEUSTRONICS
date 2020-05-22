@@ -14,6 +14,7 @@ fetch(`../../api/estadisticas/pedido/${id_pedido}/`)
   .then(function (data) {
     console.log("data 14");
     console.log(data);
+    data.pendientes = data.pendientes == 0 ? 1 : data.pendientes;
     let datos = [data.realizadas, data.pendientes];
     console.log(datos);
     chart = new Chart(ctx, {
