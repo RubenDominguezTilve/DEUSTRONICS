@@ -2,7 +2,7 @@
 
 <div class="mt-2">
   <h1>
-    Pedido {{pedido.id}}
+    Pedido {{pedido.id}} 
   </h1>
 
   <form action="{%url 'pedido_detalle' pedido.id %}" method="POST" class="formDetalle">
@@ -54,6 +54,7 @@
         <!-- <input type="text" class="form-control" id="pedidoCliente" name="pedidoCliente" value="{{pedido.cliente}}" /> -->
       </div>
     </div>
+    <p></p><b>Precio total: {{pedido.importe}}€</b></p>
     <input type="hidden" name="id" value={{pedido.id}}>
     <input type="submit" class="btn btn-secondary" value="Guardar" />
   </form>
@@ -73,10 +74,10 @@
     Tareas de este pedido:
   </h2>
 
-  {% if tareas %}
 
 
-  <table class="table table-hover mx-auto">
+
+  <table class="table table-hover mx-auto" id="tablaGrossa" style="display:{%if tareas%} table;{% else %}none;{% endif %}">
     <thead>
       <tr>
         <th scope="col">Proceso</th>
@@ -101,8 +102,8 @@
       {%endfor%}
     </tbody>
   </table>
-  {% else %}
-  No hay tareas.
+  {% if not tareas %}
+  <p id="noTareas">No hay tareas.</p>   
   {% endif %}
 
 

@@ -278,11 +278,18 @@ class PedidoCreateView(View):
         
     # --La funcion post permite que el formulario envie los datos y redirija despues
     def post(self, req):
-        form = PedidoForm(req.POST)
+        changed_data = req.POST.copy()
+      
+        producto=Catalogo.objects.get(pk=req.POST["catalogo"])       
+        changed_data.update({'importe':int(req.POST["cantidad"]) * producto.precio }) 
+        form = PedidoForm(data = changed_data)
+        # form = PedidoForm(req.POST)
         if(form.is_valid()):
             form.save()        
+            print("form valido")
             return redirect('pedido_lista')
         else:
+            print("form no valido")
             data = Pedido.objects.all()
             context = {'form':form,'Pedidos':data}
             return render(req, 'pedido_lista.html', context)

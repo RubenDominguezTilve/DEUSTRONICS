@@ -51,6 +51,8 @@ document.getElementById("elBoton").addEventListener("click", function (event) {
 // }
 
 function anadir_row(tarea) {
+  document.getElementById("tablaGrossa").style.display = "table";
+  document.getElementById("noTareas").style.display = "none";
   var table = document.getElementById("tareas-body");
 
   var row = table.insertRow(-1); //si le pones un -1 lo pone al final

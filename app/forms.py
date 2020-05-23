@@ -33,6 +33,8 @@ class CatalogoForm(forms.ModelForm):
     class Meta:
         model=Catalogo
         fields = '__all__'
+        
+      
 
 
 # Formulario crear Pedidos
@@ -40,7 +42,9 @@ class PedidoForm(forms.ModelForm):
     class Meta:
         model=Pedido
         fields = '__all__'
-
+        widgets = {
+            'importe': forms.HiddenInput()
+        }
 
 # Formulario crear Procesos
 class ProcesoForm(forms.ModelForm):
