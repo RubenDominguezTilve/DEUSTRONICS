@@ -241,6 +241,8 @@ class PedidoDetailView(DetailView):
         pedidoUpdate.importe = pedidoUpdate.cantidad * pedidoUpdate.catalogo.precio
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         pedidoUpdate.save()
+        if(getTipoUsuario()==CLIENTE):
+            return redirect("mis_pedidos")
         return redirect('pedido_lista')
 
 # -Funcion para borrar un elemento en la BBDD

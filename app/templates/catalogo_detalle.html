@@ -1,7 +1,6 @@
-{%extends 'base.html'%} {% block content%}
+{%extends 'base.html'%} {% load sesion_tags %} {% block content%}
 
 <div class="mt-2">
-
   <h1>
     Artículo ID: {{catalogo.id}}
   </h1>
@@ -10,48 +9,43 @@
     {% csrf_token%}
     <div class="form-group row mt-4">
       <!-- Nombre del producto -->
-      <label for="catalogoNombre" class="col-sm-2 col-form-label ">Nombre: </label>
+      <label for="catalogoNombre" class="col-sm-2 col-form-label">Nombre: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="catalogoNombre" name="catalogoNombre"
-          value={{catalogo.nombre}}>
+        <input type="text" class="form-control ml-2" id="catalogoNombre" name="catalogoNombre" value="{{catalogo.nombre}}" />
       </div>
 
-
       <!-- ID del producto -->
-      <input type="hidden" class="form-control ml-2" id="catalogoID" name="catalogoID" value={{catalogo.id}}>
-
+      <input type="hidden" class="form-control ml-2" id="catalogoID" name="catalogoID" value="{{catalogo.id}}" />
 
       <!-- Descripción del producto -->
-      <label for="catalogoDescripcion" class="col-sm-2 col-form-label ">Descripción: </label>
+      <label for="catalogoDescripcion" class="col-sm-2 col-form-label">Descripción: </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="catalogoDescripcion" name="catalogoDescripcion"
-          value="{{catalogo.descripcion}}">
+        <input type="text" class="form-control ml-2" id="catalogoDescripcion" name="catalogoDescripcion" value="{{catalogo.descripcion}}" />
       </div>
 
       <!-- Precio del producto por unidad -->
-      <label for=" catalogoPrecio" class="col-sm-2 col-form-label ">Precio por unidad (€): </label>
+      <label for=" catalogoPrecio" class="col-sm-2 col-form-label">Precio por unidad (€): </label>
       <div class="col-sm-10">
-        <input type="text" class="form-control ml-2" id="catalogoPrecio" name="catalogoPrecio"
-          value={{catalogo.precio}}>
+        <input type="text" class="form-control ml-2" id="catalogoPrecio" name="catalogoPrecio" value="{{catalogo.precio}}" />
       </div>
 
       <!-- Imagen del producto -->
-      <label for="catalogoImagen" class="col-sm-2 col-form-label ">Imagen: </label>
+      <label for="catalogoImagen" class="col-sm-2 col-form-label">Imagen: </label>
       <div class="col-sm-10">
-        <img src="{{catalogo.imagen.url}}" class="img-fluid rounded mx-auto d-block"
-          alt="Imagen de catálogo" />
+        <img src="{{catalogo.imagen.url}}" class="img-fluid rounded mx-auto d-block" alt="Imagen de catálogo" />
       </div>
-
     </div>
-    <input type="submit" class="btn btn-secondary" value="Guardar">
+    {%if not request.user|has_group:"CLIENTE" %}
+    <input type="submit" class="btn btn-secondary" value="Guardar" />
+    {%endif %}
   </form>
-
+  {%if not request.user|has_group:"CLIENTE" %}
   <form action="{%url 'catalogo_delete'%}" method="POST" class="formDetalle">
     {% csrf_token%}
-    <input type="hidden" name="idCatalogo" value="{{catalogo.id}}">
-    <input type="submit" class="btn btn-danger" value="Eliminar">
+    <input type="hidden" name="idCatalogo" value="{{catalogo.id}}" />
+    <input type="submit" class="btn btn-danger" value="Eliminar" />
   </form>
-
+  {%endif%}
 </div>
 
 {%endblock%}
