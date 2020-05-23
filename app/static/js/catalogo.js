@@ -59,7 +59,7 @@ function template_catalogo(producto, i) {
     <!-- Detalle del producto -->
     <a href="${producto.id}"> Ver detalle</a>
     <!-- Precio del producto por unidad -->
-    <p>Precio: ${producto.precio} €</p>
+    <p>Precio/ud: ${producto.precio} €</p>
     `
 
     
