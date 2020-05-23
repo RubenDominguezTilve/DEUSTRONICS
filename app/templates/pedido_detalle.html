@@ -2,7 +2,7 @@
 
 <div class="mt-2">
   <h1>
-    Pedido {{pedido.id}} 
+    Pedido {{pedido.id}}
   </h1>
 
   <form action="{%url 'pedido_detalle' pedido.id %}" method="POST" class="formDetalle">
@@ -47,7 +47,7 @@
         </select>
         <input type="hidden" name="pedidoCliente" value="{{pedido.cliente.id}}"">
       {%else%}
-        <select name="pedidoCliente" id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled
+        <select name=" pedidoCliente" id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled
           {%endif%}>
         {%for cl in clientes%}
         <option value="{{cl.id}}" {% if pedido.cliente.id == cl.id %} selected {%endif%}>{{cl.nombre}} </option>
@@ -80,7 +80,8 @@
 
 
 
-  <table class="table table-hover mx-auto" id="tablaGrossa" style="display:{%if tareas%} table;{% else %}none;{% endif %}">
+  <table class="table table-hover mx-auto" id="tablaGrossa"
+    style="display:{%if tareas%} table;{% else %}none;{% endif %}">
     <thead>
       <tr>
         <th scope="col">Proceso</th>
@@ -106,7 +107,7 @@
     </tbody>
   </table>
   {% if not tareas %}
-  <p id="noTareas">No hay tareas.</p>   
+  <p id="noTareas">No hay tareas.</p>
   {% endif %}
 
 
