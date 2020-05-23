@@ -47,7 +47,7 @@
         </select>
         <input type="hidden" name="pedidoCliente" value="{{pedido.cliente.id}}"">
       {%else%}
-        <select name=" pedidoCliente" id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled
+        <select name="pedidoCliente" id="" class="form-control" {%if request.user|has_group:"CLIENTE" %} disabled
           {%endif%}>
         {%for cl in clientes%}
         <option value="{{cl.id}}" {% if pedido.cliente.id == cl.id %} selected {%endif%}>{{cl.nombre}} </option>
