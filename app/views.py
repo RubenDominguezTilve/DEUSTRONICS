@@ -484,11 +484,13 @@ class CatalogoDetailView(DetailView):
 
     # --Funcion para actualizar un elemento en la BBDD
     def post(self, req, *args, **kwargs):
+        catalogo_old=Catalogo.objects.get(pk=req.POST["catalogoID"])
         catalogoUpdate = Catalogo()
         catalogoUpdate.id = int(req.POST['catalogoID'])
         catalogoUpdate.descripcion = str(req.POST['catalogoDescripcion'])
         catalogoUpdate.nombre = str(req.POST['catalogoNombre'])
         catalogoUpdate.precio = float(req.POST['catalogoPrecio'])
+        catalogoUpdate.imagen=catalogo_old.imagen
        # procesoUpdate.nombre = str(req.POST.get('NombreProceso', 'DEFAULT'))
         catalogoUpdate.save()
         return redirect('catalogo_lista')
